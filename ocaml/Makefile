@@ -1,7 +1,9 @@
 OCAMLMAKEFILE=OCamlMakefile
 
+SOURCES=src/dance.ml
 TARGET=dance
-OPTS = RESULT=$(TARGET) SOURCES=src/dance.ml LIBS=graphics
+
+OPTS=RESULT=$(TARGET) SOURCES=$(SOURCES) LIBS=graphics
 
 all: $(TARGET)
 

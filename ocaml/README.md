@@ -6,26 +6,20 @@ A sample program using Graphics to draw lines, text.
 
 1. 
 
-```
-opam install graphics
-```
+        opam install graphics
 
 ## Build
 
 1. 
 
-```
-make
-```
+        make
 
 ## Run
 
 1.
 
-```
-./dance
-```
 
+        ./dance
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  

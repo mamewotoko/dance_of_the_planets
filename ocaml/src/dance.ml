@@ -82,7 +82,10 @@ let main () =
   (* wait until q key is pressed*)
   let rec interactive () =
     let event = Graphics.wait_next_event [Graphics.Key_pressed] in
-    if event.key == 'q' then exit 0
+    if event.key == 'q' then
+      begin
+        Graphics.close_graph ();
+      end
     else interactive () in
   begin
     Graphics.open_graph (Printf.sprintf " %dx%d" canvas_len canvas_len);

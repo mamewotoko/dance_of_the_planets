@@ -1,5 +1,7 @@
 # Dance of the planets (BuckleScript)
 
+![earth venus](img/earth_venus.png)
+
 ## Setup
 
 1. 
@@ -27,7 +29,7 @@
 * src/*.ml
 
 ## References
-
+* [The dance of the plantes](https://web.archive.org/web/20140122124421/http:/ensign.editme.com/t43dances)
 * [BuckleScript](https://bucklescript.github.io/)
 * [reasonml-community/bs-webapi-incubator](https://github.com/reasonml-community/bs-webapi-incubator)
 

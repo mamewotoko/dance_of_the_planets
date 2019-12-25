@@ -1,6 +1,8 @@
-# Dance of the planets (Ocaml)
+# Dance of the planets (OCaml)
 
 A sample program using Graphics to draw lines, text.
+
+![Earth Venus](img/earth_venus_ocaml.png)
 
 ## Install
 

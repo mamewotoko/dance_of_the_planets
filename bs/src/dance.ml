@@ -26,8 +26,8 @@ external getElementById: document -> string -> Dom.element = "getElementById" [@
 external doc: document = "document" [@@bs.val]
 
 (* javascript *)
-module Graphics = struct
-  exception GraphicsException of string
+module CanvasGraphics = struct
+  exception CanvasGraphicsException of string
   (* TODO: define color type *)
   let black = "#000000"
   let blue = "#0000FF"
@@ -36,8 +36,8 @@ module Graphics = struct
   let purple = "#800080"
   let maroon = "#800000"
   let navy = "#8B0000"
-  let dark_red = "#FFA500"
-  let gb = "#00FFFF"
+  let dark_red = "8B0000"
+  let orange = "#FFA500"
 
   (* private *)
   let canvas_id = "canvas"
@@ -58,7 +58,7 @@ module Graphics = struct
     Canvas2dRe.font context "12pt Osaka";
     context |> fillText str ~x:(float_of_int x) ~y:(float_of_int y) ~maxWidth:50.
   let draw_line context from_x from_y x y =
-    Canvas2dRe.lineWidth context 1.0;
+    Canvas2dRe.lineWidth context 0.5;
     Canvas2dRe.beginPath context;
     context |> Canvas2dRe.moveTo ~x:(float_of_int from_x) ~y:(float_of_int from_y);
     context |> Canvas2dRe.lineTo ~x:(float_of_int x) ~y:(float_of_int y);
@@ -135,32 +135,28 @@ let main () =
   let a2 = ref 0. in
   let a2_interval = 2. *. pi *. interval_days /. inner_planet_year in
   (* wait until q key is pressed*)
-  let context = Graphics.open_graph canvas_len canvas_len in
+  let context = CanvasGraphics.open_graph canvas_len canvas_len in
   let outer_planet_name = name outer_planet in
   let inner_planet_name = name inner_planet in
   let orbit_text = Printf.sprintf "%.0f orbits" orbits in
   begin
-    (* Graphics.open_graph (Printf.sprintf " %dx%d" canvas_len canvas_len); *)
     (* draw text *)
-    Graphics.set_color context Graphics.blue;
-    (* Graphics.moveto 10 (canvas_len - 20 - 5); *)
-    Graphics.draw_string context 10 (20 + 5) outer_planet_name;
-    (* Graphics.moveto 10 (canvas_len - 40 - 5); *)
-    Graphics.draw_string context 10 (40 + 5) inner_planet_name;
-    (* Graphics.moveto 10 20; *)
-    Graphics.draw_string context 10 (canvas_len - 20) orbit_text;
+    CanvasGraphics.set_color context CanvasGraphics.blue;
+    CanvasGraphics.draw_string context 10 (20 + 5) outer_planet_name;
+    CanvasGraphics.draw_string context 10 (40 + 5) inner_planet_name;
+    CanvasGraphics.draw_string context 10 (canvas_len - 20) orbit_text;
     while !r < rstop do
       let i = int_of_float (floor (!r /. interval_days /. 75.)) in
       let c = 
-        if i = 0 then Graphics.black
-        else if i = 1 then Graphics.blue
-        else if i = 2 then Graphics.red
-        else if i = 3 then Graphics.green
-        else if i = 4 then Graphics.purple
-        else if i = 5 then Graphics.maroon
-        else if i = 6 then Graphics.navy
-        else if i = 7 then Graphics.dark_red
-        else Graphics.gb in
+        if i = 0 then CanvasGraphics.black
+        else if i = 1 then CanvasGraphics.blue
+        else if i = 2 then CanvasGraphics.red
+        else if i = 3 then CanvasGraphics.green
+        else if i = 4 then CanvasGraphics.purple
+        else if i = 5 then CanvasGraphics.maroon
+        else if i = 6 then CanvasGraphics.navy
+        else if i = 7 then CanvasGraphics.dark_red
+        else CanvasGraphics.orange in
       begin
         a1 := !a1 -. a1_interval;
         a2 := !a2 -. a2_interval;
@@ -168,10 +164,10 @@ let main () =
         let y1 = r1 *. sin !a1 in
         let x2 = r2 *. cos !a2 in
         let y2 = r2 *. sin !a2 in
-        Graphics.set_color context c;
-        Graphics.draw_line context
-          (int_of_float (x1 +. xcenter)) (int_of_float (~-. y1 +. ycenter))
-          (int_of_float (x2 +. xcenter)) (int_of_float (~-. y2 +. ycenter));
+        CanvasGraphics.set_color context c;
+        CanvasGraphics.draw_line context
+          (int_of_float (x1 +. xcenter)) (int_of_float (y1 +. ycenter))
+          (int_of_float (x2 +. xcenter)) (int_of_float (y2 +. ycenter));
         r := !r +. interval_days;
       end
     done;

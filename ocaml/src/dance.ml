@@ -104,11 +104,11 @@ let main () =
         else if i = 1 then Graphics.blue
         else if i = 2 then Graphics.red
         else if i = 3 then Graphics.green
-        else if i = 4 then Graphics.rgb 128 0 128
-        else if i = 5 then Graphics.rgb 128 0 0
-        else if i = 6 then Graphics.rgb 0 0 128
-        else if i = 7 then Graphics.rgb 139 0 0
-        else Graphics.rgb 255 165 0 in
+        else if i = 4 then Graphics.rgb 128 0 128 (* purple *)
+        else if i = 5 then Graphics.rgb 128 0 0   (* maroon *)
+        else if i = 6 then Graphics.rgb 0 0 128   (* navy *)
+        else if i = 7 then Graphics.rgb 139 0 0   (* darkred *)
+        else Graphics.rgb 255 165 0 in (* orange *)
       begin
         a1 := !a1 -. a1_interval;
         a2 := !a2 -. a2_interval;

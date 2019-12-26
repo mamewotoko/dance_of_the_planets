@@ -39,10 +39,8 @@ module CanvasGraphics = struct
   let dark_red = "8B0000"
   let orange = "#FFA500"
 
-  (* private *)
-  let canvas_id = "canvas"
-  let open_graph width height =
-    match Document.getElementById canvas_id  document with
+  let open_graph canvas_id =
+    match Document.getElementById canvas_id document with
     | Some e ->
        (* e##setAttribute "width" (string_of_int width);
         * e##setAttribute "height" (string_of_int height); *)
@@ -66,43 +64,51 @@ module CanvasGraphics = struct
 end
 ;;                
 
-let year i =
-  if i = 1 then 87.969
-  else if i = 2 then 224.701
-  else if i = 3 then 365.256
-  else if i = 4 then 686.980
-  else if i = 5 then 4332.6
-  else if i = 6 then 10759.2
-  else if i = 7 then 30685.
-  else if i = 8 then 60190.
-  else if i = 9 then 90465.
-  else 0.
+type planet_t =
+  | Mercury
+  | Venus
+  | Earth
+  | Mars
+  | Jupiter
+  | Saturn
+  | Uranus
+  | Neptune
+  | Pluto
+
+let year = function
+  | Mercury -> 87.969
+  | Venus -> 224.701
+  | Earth -> 365.256
+  | Mars -> 686.980
+  | Jupiter -> 4332.6
+  | Saturn -> 10759.2
+  | Uranus -> 30685.
+  | Neptune -> 60190.
+  | Pluto -> 90465.
 ;;
 
-let orbit i =
-  if i=1 then 57.91
-  else if i=2 then 108.21
-  else if i=3 then 149.60
-  else if i=4 then 227.92
-  else if i=5 then 778.57
-  else if i=6 then 1433.5
-  else if i=7 then 2872.46
-  else if i=8 then 4495.1
-  else if i=9 then 5869.7
-  else 0.
+let orbit = function
+  | Mercury -> 57.91
+  | Venus -> 108.21
+  | Earth -> 149.60
+  | Mars -> 227.92
+  | Jupiter -> 778.57
+  | Saturn -> 1433.5
+  | Uranus -> 2872.46
+  | Neptune -> 4495.1
+  | Pluto -> 5869.7
 ;;
 
-let name i = 
-  if i = 1 then "Mercury"
-  else if i = 2 then "Venus"
-  else if i = 3 then "Earth"
-  else if i = 4 then "Mars"
-  else if i = 5 then "Jupiter"
-  else if i = 6 then "Saturn"
-  else if i = 7 then "Uranus"
-  else if i = 8 then "Neptune"
-  else if i = 9 then "Pluto"
-  else "yyy"
+let name = function
+  | Mercury -> "Mercury"
+  | Venus -> "Venus"
+  | Earth -> "Earth"
+  | Mars -> "Mars"
+  | Jupiter -> "Jupiter"
+  | Saturn -> "Saturn"
+  | Uranus -> "Uranus"
+  | Neptune -> "Neptune"
+  | Pluto -> "Pluto"
 ;;
 
 (* let draw_caption outer_planet inner_planet orbits =
@@ -111,13 +117,11 @@ let name i =
  *   let orbit_text = Printf.sprintf "%.0f" orbits in
  *   draw_text 10 10 *)
 
-let main () =
+let dance context outer_planet inner_planet orbits =
   let pi = 4.0 *. atan 1.0 in
+  (* constant... *)
   let canvas_len = 400 in
-  let outer_planet = 3 in
-  let inner_planet = 2 in
   (* number of outer rotations *)
-  let orbits = 8. in
   let outer_planet_year = year outer_planet in
   let inner_planet_year = year inner_planet in
   let outer_planet_radius = orbit outer_planet in
@@ -135,7 +139,6 @@ let main () =
   let a2 = ref 0. in
   let a2_interval = 2. *. pi *. interval_days /. inner_planet_year in
   (* wait until q key is pressed*)
-  let context = CanvasGraphics.open_graph canvas_len canvas_len in
   let outer_planet_name = name outer_planet in
   let inner_planet_name = name inner_planet in
   let orbit_text = Printf.sprintf "%.0f orbits" orbits in
@@ -174,4 +177,11 @@ let main () =
   end
 ;;
 
-let _ = main ()
+let _ =
+  (* Earth Venus *)
+  let context = CanvasGraphics.open_graph "canvas1" in
+  dance context Earth Venus 8.;
+  (* Mars Venus *)
+  let context = CanvasGraphics.open_graph "canvas2" in
+  dance context Mars Venus 7.;
+;;

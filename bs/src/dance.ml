@@ -3,19 +3,12 @@ https://web.archive.org/web/20140122124421/http:/ensign.editme.com/t43dances
 https://github.com/reasonml-community/bs-webapi-incubator/blob/master/tests/Webapi/Webapi__Canvas/Webapi__Canvas__Canvas2d__test.re
 
 Usage:
-opam install -y graphics
+npm i
 
-ocaml
-#load "graphics.cma"
-#use "dance.ml";;
  *)
-
-(* open Graphics *)
 
 (* CavnasRe
  * Canvas2dRe *)
-
-(* bucklescript *)
 
 open Webapi.Canvas
 open Webapi.Canvas.Canvas2d

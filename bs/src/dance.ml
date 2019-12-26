@@ -178,10 +178,18 @@ let dance context outer_planet inner_planet orbits =
 ;;
 
 let _ =
-  (* Earth Venus *)
   let context = CanvasGraphics.open_graph "canvas1" in
   dance context Earth Venus 8.;
-  (* Mars Venus *)
   let context = CanvasGraphics.open_graph "canvas2" in
   dance context Mars Venus 7.;
+  let context = CanvasGraphics.open_graph "canvas3" in
+  dance context Saturn Jupiter 7.;
+  let context = CanvasGraphics.open_graph "canvas4" in
+  dance context Uranus Saturn 7.;
+  let context = CanvasGraphics.open_graph "canvas5" in
+  dance context Jupiter Earth 7.;
+  let context = CanvasGraphics.open_graph "canvas6" in
+  dance context Mars Earth 7.;
+  let context = CanvasGraphics.open_graph "canvas7" in
+  dance context Earth Mercury 6.;
 ;;

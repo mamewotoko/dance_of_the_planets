@@ -1,0 +1,11 @@
+language: c
+sudo: required
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install node
+script:
+  - cd bs
+  - npm i
+  - ./build.sh
+os:
+  - linux

@@ -28,3 +28,4 @@ jobs:
         make
       env:
         OCAML_VERSION: 4.02
+        TRAVIS_OS_NAME: linux

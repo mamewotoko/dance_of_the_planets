@@ -4,50 +4,59 @@ https://web.archive.org/web/20140122124421/http:/ensign.editme.com/t43dances
 Usage:
 opam install -y graphics
 
-ocaml
+ocaml (interpreter)
 #load "graphics.cma"
 #use "dance.ml";;
  *)
 
 open Graphics
 
-let year i =
-  if i = 1 then 87.969
-  else if i = 2 then 224.701
-  else if i = 3 then 365.256
-  else if i = 4 then 686.980
-  else if i = 5 then 4332.6
-  else if i = 6 then 10759.2
-  else if i = 7 then 30685.
-  else if i = 8 then 60190.
-  else if i = 9 then 90465.
-  else 0.
+type planet_t =
+  | Mercury
+  | Venus
+  | Earth
+  | Mars
+  | Jupiter
+  | Saturn
+  | Uranus
+  | Neptune
+  | Pluto
 ;;
 
-let orbit i =
-  if i=1 then 57.91
-  else if i=2 then 108.21
-  else if i=3 then 149.60
-  else if i=4 then 227.92
-  else if i=5 then 778.57
-  else if i=6 then 1433.5
-  else if i=7 then 2872.46
-  else if i=8 then 4495.1
-  else if i=9 then 5869.7
-  else 0.
+let year = function
+  | Mercury -> 87.969
+  | Venus -> 224.701
+  | Earth -> 365.256
+  | Mars -> 686.980
+  | Jupiter -> 4332.6
+  | Saturn -> 10759.2
+  | Uranus -> 30685.
+  | Neptune -> 60190.
+  | Pluto -> 90465.
 ;;
 
-let name i = 
-  if i = 1 then "Mercury"
-  else if i = 2 then "Venus"
-  else if i = 3 then "Earth"
-  else if i = 4 then "Mars"
-  else if i = 5 then "Jupiter"
-  else if i = 6 then "Saturn"
-  else if i = 7 then "Uranus"
-  else if i = 8 then "Neptune"
-  else if i = 9 then "Pluto"
-  else "yyy"
+let orbit = function
+  | Mercury -> 57.91
+  | Venus -> 108.21
+  | Earth -> 149.60
+  | Mars -> 227.92
+  | Jupiter -> 778.57
+  | Saturn -> 1433.5
+  | Uranus -> 2872.46
+  | Neptune -> 4495.1
+  | Pluto -> 5869.7
+;;
+
+let name = function
+  | Mercury -> "Mercury"
+  | Venus -> "Venus"
+  | Earth -> "Earth"
+  | Mars -> "Mars"
+  | Jupiter -> "Jupiter"
+  | Saturn -> "Saturn"
+  | Uranus -> "Uranus"
+  | Neptune -> "Neptune"
+  | Pluto -> "Pluto"
 ;;
 
 (* let draw_caption outer_planet inner_planet orbits =
@@ -56,13 +65,9 @@ let name i =
  *   let orbit_text = Printf.sprintf "%.0f" orbits in
  *   draw_text 10 10 *)
 
-let main () =
+let main outer_planet inner_planet orbits =
   let pi = 4.0 *. atan 1.0 in
   let canvas_len = 400 in
-  let outer_planet = 3 in
-  let inner_planet = 2 in
-  (* number of outer rotations *)
-  let orbits = 8. in
   let outer_planet_year = year outer_planet in
   let inner_planet_year = year inner_planet in
   let outer_planet_radius = orbit outer_planet in
@@ -123,10 +128,11 @@ let main () =
         Graphics.moveto (int_of_float (x1 +. xcenter)) (int_of_float (~-. y1 +. ycenter));
         Graphics.lineto (int_of_float (x2 +. xcenter)) (int_of_float (~-. y2 +. ycenter));
         r := !r +. interval_days;
+        Unix.sleepf 0.02
       end
     done;
     interactive ()
   end
 ;;
 
-let _ = main ()
+let _ = main Earth Venus 8.

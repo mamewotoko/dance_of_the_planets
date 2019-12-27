@@ -1,11 +1,10 @@
 {
     "name": "dance",
     "version": "0.0.1",
-
     "repository": {
         "type" : "git",
         "url" : "git@github.com:mamewotoko/dance_of_the_planets.git"
-    }
+    },
     "scripts": {
         "clean": "bsb -clean-world",
         "build": "bsb -make-world",

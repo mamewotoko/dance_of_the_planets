@@ -79,6 +79,7 @@ add_ppa () {
     if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
         APT_UPDATED=0
         sudo add-apt-repository --yes ppa:$1
+        sudo apt-get -qq update
     fi
 }
 

@@ -19,6 +19,8 @@ jobs:
         cd ..        
     - name: build ocaml
       run: |
+        uname -a
+        cat /etc/lsb-release
         cd ocaml
         sudo apt-get update
         sudo apt-get install -y make

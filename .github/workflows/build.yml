@@ -18,11 +18,14 @@ jobs:
         ./build.sh
         mkdir site
         cp -r index.html js site
-
+    - name: deploy bucklescript site
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./bs/site
     - name: build ocaml
       run: |
-        uname -a
-        cat /etc/lsb-release
         cd ocaml
         sudo apt-get update
         sudo apt-get install -y make
@@ -33,9 +36,16 @@ jobs:
       env:
         OCAML_VERSION: 4.02
         TRAVIS_OS_NAME: linux
-    - name: deploy bucklescript site
-      uses: peaceiris/actions-gh-pages@v2
+
+    - name: build labltk
+      run: |
+        uname -a
+        sudo apt-get update
+        sudo apt-get install -y make
+        bash -ex .travis-ocaml.sh
+        eval $(opam env)
+        sh setup-opam
+        make
       env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./bs/site
+        OCAML_VERSION: 4.07.0
+        TRAVIS_OS_NAME: linux

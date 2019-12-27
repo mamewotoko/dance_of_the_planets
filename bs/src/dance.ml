@@ -57,6 +57,8 @@ module CanvasGraphics = struct
 end
 ;;                
 
+exception End_of_loop
+
 type planet_t =
   | Mercury
   | Venus
@@ -125,64 +127,79 @@ let dance context outer_planet inner_planet orbits =
   (* outer radius *)
   let r1 = ycenter in 
   let r2 = r1 *. inner_planet_radius /. outer_planet_radius in
-  let r = ref 0. in
+  let r = 0. in
   let rstop = outer_planet_year *. orbits in
-  let a1 = ref 0. in
+  let a1 = 0. in
   let a1_interval = 2. *. pi *. interval_days /. outer_planet_year in
-  let a2 = ref 0. in
+  let a2 = 0. in
   let a2_interval = 2. *. pi *. interval_days /. inner_planet_year in
   (* wait until q key is pressed*)
   let outer_planet_name = name outer_planet in
   let inner_planet_name = name inner_planet in
   let orbit_text = Printf.sprintf "%.0f orbits" orbits in
-  begin
-    (* draw text *)
-    CanvasGraphics.set_color context CanvasGraphics.blue;
-    CanvasGraphics.draw_string context 10 (20 + 5) outer_planet_name;
-    CanvasGraphics.draw_string context 10 (40 + 5) inner_planet_name;
-    CanvasGraphics.draw_string context 10 (canvas_len - 20) orbit_text;
-    while !r < rstop do
-      let i = int_of_float (floor (!r /. interval_days /. 75.)) in
-      let c = 
-        if i = 0 then CanvasGraphics.black
-        else if i = 1 then CanvasGraphics.blue
-        else if i = 2 then CanvasGraphics.red
-        else if i = 3 then CanvasGraphics.green
-        else if i = 4 then CanvasGraphics.purple
-        else if i = 5 then CanvasGraphics.maroon
-        else if i = 6 then CanvasGraphics.navy
-        else if i = 7 then CanvasGraphics.dark_red
-        else CanvasGraphics.orange in
-      begin
-        a1 := !a1 -. a1_interval;
-        a2 := !a2 -. a2_interval;
-        let x1 = r1 *. cos !a1 in
-        let y1 = r1 *. sin !a1 in
-        let x2 = r2 *. cos !a2 in
-        let y2 = r2 *. sin !a2 in
-        CanvasGraphics.set_color context c;
-        CanvasGraphics.draw_line context
-          (int_of_float (x1 +. xcenter)) (int_of_float (y1 +. ycenter))
-          (int_of_float (x2 +. xcenter)) (int_of_float (y2 +. ycenter));
-        r := !r +. interval_days;
-      end
-    done;
-  end
+  (* draw text *)
+  CanvasGraphics.set_color context CanvasGraphics.blue;
+  CanvasGraphics.draw_string context 10 (20 + 5) outer_planet_name;
+  CanvasGraphics.draw_string context 10 (40 + 5) inner_planet_name;
+  CanvasGraphics.draw_string context 10 (canvas_len - 20) orbit_text;
+  let step (r, a1, a2) = 
+    if rstop <= r then
+      raise End_of_loop;
+    let i = int_of_float (floor (r /. interval_days /. 75.)) in
+    let c = 
+      if i = 0 then CanvasGraphics.black
+      else if i = 1 then CanvasGraphics.blue
+      else if i = 2 then CanvasGraphics.red
+      else if i = 3 then CanvasGraphics.green
+      else if i = 4 then CanvasGraphics.purple
+      else if i = 5 then CanvasGraphics.maroon
+      else if i = 6 then CanvasGraphics.navy
+      else if i = 7 then CanvasGraphics.dark_red
+      else CanvasGraphics.orange in
+    begin
+      let a1 = a1 -. a1_interval in
+      let a2 = a2 -. a2_interval in
+      let x1 = r1 *. cos a1 in
+      let y1 = r1 *. sin a1 in
+      let x2 = r2 *. cos a2 in
+      let y2 = r2 *. sin a2 in
+      CanvasGraphics.set_color context c;
+      CanvasGraphics.draw_line context
+        (int_of_float (x1 +. xcenter)) (int_of_float (y1 +. ycenter))
+        (int_of_float (x2 +. xcenter)) (int_of_float (y2 +. ycenter));
+      let r = r +. interval_days in
+      (r, a1, a2)
+    end in
+  (step, (r, a1, a2))
 ;;
 
+let looping = ref false
+
+let loop context planet1 planet2 orbits =
+  looping := true;
+  let (step, args) = dance context planet1 planet2 orbits in
+  let rec inner args = 
+    try
+      let next_args = step args in
+      Webapi.requestAnimationFrame (fun _  -> inner next_args)
+    with End_of_loop ->
+      looping := false in
+  inner args
+;;
+  
 let _ =
   let context = CanvasGraphics.open_graph "canvas1" in
-  dance context Earth Venus 8.;
+  loop context Earth Venus 8.;
   let context = CanvasGraphics.open_graph "canvas2" in
-  dance context Mars Venus 7.;
+  loop context Mars Venus 7.;
   let context = CanvasGraphics.open_graph "canvas3" in
-  dance context Saturn Jupiter 7.;
+  loop context Saturn Jupiter 7.;
   let context = CanvasGraphics.open_graph "canvas4" in
-  dance context Uranus Saturn 7.;
+  loop context Uranus Saturn 7.;
   let context = CanvasGraphics.open_graph "canvas5" in
-  dance context Jupiter Earth 7.;
+  loop context Jupiter Earth 7.;
   let context = CanvasGraphics.open_graph "canvas6" in
-  dance context Mars Earth 7.;
+  loop context Mars Earth 7.;
   let context = CanvasGraphics.open_graph "canvas7" in
-  dance context Earth Mercury 6.;
+  loop context Earth Mercury 6.;
 ;;

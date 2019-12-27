@@ -103,7 +103,10 @@ install_ocaml () {
 install_opam2 () {
     case $TRAVIS_OS_NAME in
         linux)
-            add_ppa ansible/bubblewrap
+            UBUNTU_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d= -f2)
+            if [ "${UBUNTU_VERSION}" != "18.04" ] ; then
+                add_ppa ansible/bubblewrap
+            fi
             if [ "${INSTALL_LOCAL:=0}" = 0 ] ; then
                 install_ocaml
             fi

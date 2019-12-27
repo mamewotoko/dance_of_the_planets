@@ -2,7 +2,12 @@ language: c
 sudo: required
 before_install:
   - sudo apt-get update
-  - sudo apt-get install nodejs
+  - sudo apt-get install nodejs make
+
+  - cd ocaml
+  - bash -ex .travis-ocaml.sh
+  - eval $(opam env); sh setup-opam
+
 jobs:
   include:
   - stage: bucklescript
@@ -10,6 +15,9 @@ jobs:
       - cd bs
       - npm i
       - ./build.sh
-     
+  - stage: ocaml
+    script:
+      - cd ocaml
+      - make
 os:
   - linux

@@ -1,6 +1,11 @@
 {
     "name": "dance",
     "version": "0.0.1",
+
+    "repository": {
+        "type" : "git",
+        "url" : "git@github.com:mamewotoko/dance_of_the_planets.git"
+    }
     "scripts": {
         "clean": "bsb -clean-world",
         "build": "bsb -make-world",
@@ -10,8 +15,8 @@
     "keywords": [
         "BuckleScript"
     ],
-    "author": "anonyouse",
-    "license": "MIT",
+    "author": "Takashi Masuyama",
+    "license": "Apache-2.0",
     "devDependencies": {
         "babel-preset-es2015": "^6.24.1",
         "babelify7": "^1.0.0",

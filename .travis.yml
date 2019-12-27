@@ -19,5 +19,9 @@ jobs:
     script:
       - cd ocaml
       - make
+#
+env:
+  # only for ocaml
+  - OCAML_VERSION=4.02
 os:
   - linux

@@ -13921,8 +13921,6 @@ var CanvasGraphics = {
     draw_line: draw_line
 };
 
-var End_of_loop = Caml_exceptions.create("Dance.End_of_loop");
-
 function year(param) {
     switch (param) {
         case /* Mercury */0:
@@ -14005,8 +14003,11 @@ function dance(context, outer_planet, inner_planet, orbits) {
     var ycenter = 200;
     var xcenter = 200;
     var r2 = ycenter * inner_planet_radius / outer_planet_radius;
+    var r = 0;
     var rstop = outer_planet_year * orbits;
+    var a1 = 0;
     var a1_interval = 2 * pi * interval_days / outer_planet_year;
+    var a2 = 0;
     var a2_interval = 2 * pi * interval_days / inner_planet_year;
     var outer_planet_name = name(outer_planet);
     var inner_planet_name = name(inner_planet);
@@ -14021,93 +14022,56 @@ function dance(context, outer_planet, inner_planet, orbits) {
     draw_string(context, 10, 25, outer_planet_name);
     draw_string(context, 10, 45, inner_planet_name);
     draw_string(context, 10, 380, orbit_text);
-    var step = function (param) {
-        var r = param[0];
-        if (rstop <= r) {
-            throw End_of_loop;
-        }
+    while (r < rstop) {
         var i = Math.floor(r / interval_days / 75) | 0;
         var c = i === 0 ? black : i === 1 ? blue : i === 2 ? red : i === 3 ? green : i === 4 ? purple : i === 5 ? maroon : i === 6 ? navy : i === 7 ? dark_red : orange;
-        var a1 = param[1] - a1_interval;
-        var a2 = param[2] - a2_interval;
+        a1 -= a1_interval;
+        a2 -= a2_interval;
         var x1 = ycenter * Math.cos(a1);
         var y1 = ycenter * Math.sin(a1);
         var x2 = r2 * Math.cos(a2);
         var y2 = r2 * Math.sin(a2);
         set_color(context, c);
         draw_line(context, x1 + xcenter | 0, y1 + ycenter | 0, x2 + xcenter | 0, y2 + ycenter | 0);
-        var r$1 = r + interval_days;
-        return (/* tuple */[r$1, a1, a2]
-        );
+        r += interval_days;
     };
-    return (/* tuple */[step,
-        /* tuple */[0, 0, 0]]
+    return (/* () */0
     );
-}
-
-var looping = /* record */[/* contents */false];
-
-function loop(context, planet1, planet2, orbits) {
-    looping[0] = true;
-    var match = dance(context, planet1, planet2, orbits);
-    var step = match[0];
-    var inner = function (args) {
-        try {
-            var next_args = Curry._1(step, args);
-            requestAnimationFrame(function (param) {
-                return inner(next_args);
-            });
-            return (/* () */0
-            );
-        } catch (exn) {
-            if (exn === End_of_loop) {
-                looping[0] = false;
-                return (/* () */0
-                );
-            } else {
-                throw exn;
-            }
-        }
-    };
-    return inner(match[1]);
 }
 
 var context = open_graph("canvas1");
 
-loop(context, /* Earth */2, /* Venus */1, 8);
+dance(context, /* Earth */2, /* Venus */1, 8);
 
 var context$1 = open_graph("canvas2");
 
-loop(context$1, /* Mars */3, /* Venus */1, 7);
+dance(context$1, /* Mars */3, /* Venus */1, 7);
 
 var context$2 = open_graph("canvas3");
 
-loop(context$2, /* Saturn */5, /* Jupiter */4, 7);
+dance(context$2, /* Saturn */5, /* Jupiter */4, 7);
 
 var context$3 = open_graph("canvas4");
 
-loop(context$3, /* Uranus */6, /* Saturn */5, 7);
+dance(context$3, /* Uranus */6, /* Saturn */5, 7);
 
 var context$4 = open_graph("canvas5");
 
-loop(context$4, /* Jupiter */4, /* Earth */2, 7);
+dance(context$4, /* Jupiter */4, /* Earth */2, 7);
 
 var context$5 = open_graph("canvas6");
 
-loop(context$5, /* Mars */3, /* Earth */2, 7);
+dance(context$5, /* Mars */3, /* Earth */2, 7);
 
 var context$6 = open_graph("canvas7");
 
-loop(context$6, /* Earth */2, /* Mercury */0, 6);
+dance(context$6, /* Earth */2, /* Mercury */0, 6);
 
 exports.CanvasGraphics = CanvasGraphics;
-exports.End_of_loop = End_of_loop;
 exports.year = year;
 exports.orbit = orbit;
 exports.name = name;
 exports.dance = dance;
-exports.looping = looping;
-exports.loop = loop;
 /* context Not a pure module */
 
 },{"bs-platform/lib/js/block.js":1,"bs-platform/lib/js/caml_builtin_exceptions.js":5,"bs-platform/lib/js/caml_exceptions.js":7,"bs-platform/lib/js/curry.js":23,"bs-platform/lib/js/printf.js":26,"bs-webapi/src/canvas/Canvas2dRe.js":28}]},{},[30]);

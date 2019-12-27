@@ -22,6 +22,8 @@
 
 2. browse <http://localhost:8000/>
 
+[Generated HTML](https://mamewotoko.github.io/dance_of_the_planets/) is served as GitHub Pages.
+
 ## Source files
 
 * bsconfig.json

@@ -1,1 +1,1 @@
-opam install graphics
+opam install -y graphics

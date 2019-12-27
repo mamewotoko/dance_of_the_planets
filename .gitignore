@@ -1,5 +1,11 @@
 bs/js
 bs/lib
 bs/node_modules
+labltk/dance
+._d
 .merlin
 *.bs.js
+*.cmi
+*.cmx
+*.o
+

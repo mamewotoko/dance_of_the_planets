@@ -39,7 +39,7 @@ jobs:
 
     - name: build labltk
       run: |
-        uname -a
+        cd labltk
         sudo apt-get update
         sudo apt-get install -y make
         bash -ex .travis-ocaml.sh

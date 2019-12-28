@@ -1,1 +1,3 @@
-opam install -y labltk tcl-dev tk-dev
+apt-get install -y tcl-dev tk-dev
+opam install -y labltk 
+

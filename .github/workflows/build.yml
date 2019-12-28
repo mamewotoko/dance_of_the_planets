@@ -47,7 +47,7 @@ jobs:
         sh setup-opam
         make
       env:
-        OCAML_VERSION: 4.07.0
+        OCAML_VERSION: 4.07
         TRAVIS_OS_NAME: linux
 
     - name: build lablgtk
@@ -60,6 +60,5 @@ jobs:
         sh setup-opam
         make
       env:
-        OCAML_VERSION: 4.07.0
+        OCAML_VERSION: 4.07
         TRAVIS_OS_NAME: linux
-        

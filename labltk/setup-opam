@@ -1,2 +1,2 @@
-apt-get install -y tk-dev
+apt-get install -y tk8.6-dev tcl8.6-dev
 opam install -y labltk 

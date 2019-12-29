@@ -1,3 +1,3 @@
 #! /bin/bash
-apt-get install -y tk8.6-dev tcl8.6-dev
+sudo apt-get install -y tk-dev tcl-dev
 opam install -y labltk 

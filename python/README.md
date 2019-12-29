@@ -14,7 +14,7 @@ sh run.sh
 
 ## References
 
-* [Introduction to Gtk](https://ocaml.org/learn/tutorials/introduction_to_gtk.html)
+* [Pillow](https://pillow.readthedocs.io/en/stable/)
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  

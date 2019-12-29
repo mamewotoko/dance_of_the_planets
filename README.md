@@ -4,7 +4,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ## BuckleScript [bs](./bs)
 * webiopi
-  * Canvas2dRe
+  * Canvas2d
 * html
 
 ## OCaml graphics [ocaml](./ocaml)
@@ -14,6 +14,14 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## OCaml lalbltk [labltk](./labltk)
 * labltk
 * gui
+
+## OCaml lalblgtk [lablgtk](./lablgtk)
+* lablgtk
+* gui
+
+## Python [Pillow](./python)
+* python
+* png image
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  

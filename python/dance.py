@@ -74,7 +74,7 @@ def draw_line(draw, color, from_x, from_y, to_x, to_y):
 def draw_text(draw, color, x, y, text):
 #    draw.text((x, y), text, fill=color, font=font)
     draw.text((x, y), text, fill=color)
-    
+
 
 def main(draw, outer_planet, inner_planet, orbits):
     outer_planet_year = year[outer_planet]

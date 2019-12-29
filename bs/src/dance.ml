@@ -7,9 +7,6 @@ npm i
 
  *)
 
-(* CavnasRe
- * Canvas2dRe *)
-
 open Webapi.Canvas
 open Webapi
 

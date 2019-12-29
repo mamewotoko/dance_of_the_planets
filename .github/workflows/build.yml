@@ -70,5 +70,3 @@ jobs:
         sudo apt-get install -y python3
         sh setup.sh
         sh run.sh
-
-        

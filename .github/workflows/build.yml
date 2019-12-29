@@ -41,7 +41,7 @@ jobs:
         sudo apt-get install -y make
         bash -ex .travis-ocaml.sh
         eval $(opam env)
-        sh setup-opam
+        sudo bash -x setup-opam
         make
       env:
         OCAML_VERSION: 4.02
@@ -54,7 +54,7 @@ jobs:
         sudo apt-get install -y make
         bash -ex .travis-ocaml.sh
         eval $(opam env)
-        bash -x setup-opam
+        sudo bash -x setup-opam
         make
       env:
         OCAML_VERSION: 4.07
@@ -67,7 +67,7 @@ jobs:
         sudo apt-get install -y make
         bash -ex .travis-ocaml.sh
         eval $(opam env)
-        sh setup-opam
+        sudo bash -x setup-opam
         make
       env:
         OCAML_VERSION: 4.07

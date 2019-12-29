@@ -69,10 +69,11 @@ canvas_len = 400
 def draw_line(draw, color, from_x, from_y, to_x, to_y):
     draw.line((from_x, from_y, to_x, to_y), fill=color, width=1)
 
-font = ImageFont.truetype("/Library/Fonts/Comic Sans MS.ttf", 14)
+#font = ImageFont.truetype("/Library/Fonts/Comic Sans MS.ttf", 14)
 
 def draw_text(draw, color, x, y, text):
-    draw.text((x, y), text, fill=color, font=font)
+#    draw.text((x, y), text, fill=color, font=font)
+    draw.text((x, y), text, fill=color)
     
 
 def main(draw, outer_planet, inner_planet, orbits):

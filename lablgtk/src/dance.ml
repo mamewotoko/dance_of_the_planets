@@ -6,6 +6,8 @@ opam install -y lablgtk
 
  *)
 
+let canvas_len = 400
+
 type planet_t =
   | Mercury
   | Venus
@@ -54,7 +56,8 @@ let name = function
   | Pluto -> "Pluto"
 ;;
 
-let canvas_len = 400
+let f_canvas_len = float_of_int (canvas_len / 2)
+
 let pi = 4.0 *. atan 1.0
 
 let black = "#000000"
@@ -67,10 +70,13 @@ let navy = "#8B0000"
 let dark_red = "#8B0000"
 let orange = "#FFA500"
 
-let draw_text group color x y text =
-  ignore @@ GnoCanvas.text ~text:text
-              ~props:[`X 0.; `Y 0.; `FILL_COLOR color;
-                      `CLIP_WIDTH 50. ; `CLIP_HEIGHT 55. ;]
+let draw_text ~group ~color ~x ~y ~text =
+  ignore @@ GnoCanvas.text
+              ~props:[`X (~-. f_canvas_len +. x); `Y (~-. f_canvas_len +. y);
+                      `FILL_COLOR color;
+                      `TEXT text;
+                      `FONT "Sans 12";
+                      `CLIP_WIDTH 50.; `CLIP_HEIGHT 55.;]
               group
 ;;
            
@@ -104,9 +110,9 @@ let main group outer_planet inner_planet orbits =
   let orbit_text = Printf.sprintf "%.0f orbits" orbits in
   begin
     (* TODO cannot draw *)
-    (* draw_text group blue 30. 20. outer_planet_name;
-     * draw_text group blue 30. 40. inner_planet_name;
-     * draw_text group blue 30. (float_of_int (canvas_len/2 - 20)) orbit_text; *)
+    draw_text ~group ~color:blue ~x:30. ~y:20. ~text:outer_planet_name;
+    draw_text ~group ~color:blue ~x:30. ~y:40. ~text:inner_planet_name;
+    draw_text ~group ~color:blue ~x:40. ~y:(float_of_int (canvas_len - 20)) ~text:orbit_text;
     while !r < rstop do
       let i = int_of_float (floor (!r /. interval_days /. 75.)) in
       let color = 
@@ -136,20 +142,20 @@ let main group outer_planet inner_planet orbits =
 ;;
 
 let _ =
-  let margin = 100 in
   ignore @@ GtkMain.Main.init ();
-  let window = GWindow.window ~width:canvas_len ~height:canvas_len
+  let window = GWindow.window ~width:(canvas_len + 40) ~height:(canvas_len + 40)
                  ~title:"Dance of the Planets" () in
   ignore @@ window#connect#destroy ~callback:GMain.Main.quit;
   let canvas = GnoCanvas.canvas
-                 ~width:(canvas_len + margin)
-                 ~height:(canvas_len + margin)
+                 ~width:canvas_len
+                 ~height:canvas_len
                  ~packing:window#add
                  ~show:true () in
   let group = canvas#root in
-  let f_canvas_len = float_of_int (canvas_len / 2) in
-  GnoCanvas.rect ~props:[`X1 ~-.f_canvas_len; `Y1 ~-.f_canvas_len;
-                         `X2 f_canvas_len; `Y2 f_canvas_len; `FILL_COLOR "white"] group;
+  ignore @@ GnoCanvas.rect ~props:[`X1 ~-.f_canvas_len; `Y1 ~-.f_canvas_len;
+                                   `X2 f_canvas_len; `Y2 f_canvas_len;
+                                   `FILL_COLOR "white"]
+              group;
   main group Earth Venus 8.;
   (* window# *)
   window#show ();

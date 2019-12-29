@@ -112,6 +112,7 @@ def main(draw, outer_planet, inner_planet, orbits):
         draw_line(draw, color, xcenter + x1, ycenter + y1, xcenter + x2, ycenter + y2)
         r = r + interval_days
         
+
 if __name__ == '__main__':
     im = Image.new('RGB', (400, 400), (0xFF, 0xFF, 0xFF))
     draw = ImageDraw.Draw(im)

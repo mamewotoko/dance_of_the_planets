@@ -335,7 +335,7 @@ exports.add_channel = add_channel;
 exports.output_buffer = output_buffer;
 /* No side effect */
 
-},{"./bytes.js":3,"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_string.js":17,"./curry.js":23,"./pervasives.js":25,"./string.js":27}],3:[function(require,module,exports){
+},{"./bytes.js":3,"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_string.js":17,"./curry.js":23,"./pervasives.js":26,"./string.js":28}],3:[function(require,module,exports){
 'use strict';
 
 var Char = require("./char.js");
@@ -823,7 +823,7 @@ exports.unsafe_to_string = unsafe_to_string;
 exports.unsafe_of_string = unsafe_of_string;
 /* No side effect */
 
-},{"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_int32.js":10,"./caml_obj.js":14,"./caml_primitive.js":16,"./char.js":22,"./curry.js":23,"./list.js":24}],4:[function(require,module,exports){
+},{"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_int32.js":10,"./caml_obj.js":14,"./caml_primitive.js":16,"./char.js":22,"./curry.js":23,"./list.js":25}],4:[function(require,module,exports){
 'use strict';
 
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
@@ -2818,7 +2818,7 @@ exports.caml_ml_out_channels_list = caml_ml_out_channels_list;
 /* No side effect */
 
 }).call(this,require('_process'))
-},{"./curry.js":23,"_process":29}],13:[function(require,module,exports){
+},{"./curry.js":23,"_process":85}],13:[function(require,module,exports){
 'use strict';
 
 var Caml_option = require("./caml_option.js");
@@ -3808,7 +3808,7 @@ exports.caml_sys_file_exists = caml_sys_file_exists;
 /* No side effect */
 
 }).call(this,require('_process'))
-},{"./caml_builtin_exceptions.js":5,"_process":29}],19:[function(require,module,exports){
+},{"./caml_builtin_exceptions.js":5,"_process":85}],19:[function(require,module,exports){
 'use strict';
 
 
@@ -10089,7 +10089,7 @@ exports.trans = trans;
 exports.recast = recast;
 /* No side effect */
 
-},{"./block.js":1,"./buffer.js":2,"./bytes.js":3,"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_exceptions.js":7,"./caml_format.js":9,"./caml_int32.js":10,"./caml_io.js":12,"./caml_js_exceptions.js":13,"./caml_obj.js":14,"./caml_primitive.js":16,"./caml_string.js":17,"./camlinternalFormatBasics.js":21,"./char.js":22,"./curry.js":23,"./pervasives.js":25,"./string.js":27}],21:[function(require,module,exports){
+},{"./block.js":1,"./buffer.js":2,"./bytes.js":3,"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_exceptions.js":7,"./caml_format.js":9,"./caml_int32.js":10,"./caml_io.js":12,"./caml_js_exceptions.js":13,"./caml_obj.js":14,"./caml_primitive.js":16,"./caml_string.js":17,"./camlinternalFormatBasics.js":21,"./char.js":22,"./curry.js":23,"./pervasives.js":26,"./string.js":28}],21:[function(require,module,exports){
 'use strict';
 
 var Block = require("./block.js");
@@ -10991,6 +10991,57 @@ exports.__8 = __8;
 /* No side effect */
 
 },{"./caml_array.js":4}],24:[function(require,module,exports){
+'use strict';
+
+var Caml_option = require("./caml_option.js");
+
+function test(x) {
+  return x === null;
+}
+
+function getExn(f) {
+  if (f !== null) {
+    return f;
+  } else {
+    throw new Error("Js.Null.getExn");
+  }
+}
+
+function bind(x, f) {
+  if (x !== null) {
+    return f(x);
+  } else {
+    return null;
+  }
+}
+
+function iter(x, f) {
+  if (x !== null) {
+    return f(x);
+  } else {
+    return /* () */0;
+  }
+}
+
+function fromOption(x) {
+  if (x !== undefined) {
+    return Caml_option.valFromOption(x);
+  } else {
+    return null;
+  }
+}
+
+var from_opt = fromOption;
+
+exports.test = test;
+exports.getExn = getExn;
+exports.bind = bind;
+exports.iter = iter;
+exports.fromOption = fromOption;
+exports.from_opt = from_opt;
+/* No side effect */
+
+},{"./caml_option.js":15}],25:[function(require,module,exports){
 'use strict';
 
 var Curry = require("./curry.js");
@@ -12567,7 +12618,7 @@ exports.sort_uniq = sort_uniq;
 exports.merge = merge;
 /* No side effect */
 
-},{"./caml_builtin_exceptions.js":5,"./caml_obj.js":14,"./curry.js":23,"./pervasives.js":25}],25:[function(require,module,exports){
+},{"./caml_builtin_exceptions.js":5,"./caml_obj.js":14,"./curry.js":23,"./pervasives.js":26}],26:[function(require,module,exports){
 'use strict';
 
 var Curry = require("./curry.js");
@@ -13217,7 +13268,7 @@ exports.unsafe_really_input = unsafe_really_input;
 exports.do_at_exit = do_at_exit;
 /* No side effect */
 
-},{"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_exceptions.js":7,"./caml_external_polyfill.js":8,"./caml_format.js":9,"./caml_io.js":12,"./caml_string.js":17,"./caml_sys.js":18,"./camlinternalFormatBasics.js":21,"./curry.js":23}],26:[function(require,module,exports){
+},{"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_exceptions.js":7,"./caml_external_polyfill.js":8,"./caml_format.js":9,"./caml_io.js":12,"./caml_string.js":17,"./caml_sys.js":18,"./camlinternalFormatBasics.js":21,"./curry.js":23}],27:[function(require,module,exports){
 'use strict';
 
 var Curry = require("./curry.js");
@@ -13301,7 +13352,7 @@ exports.kbprintf = kbprintf;
 exports.kprintf = kprintf;
 /* No side effect */
 
-},{"./buffer.js":2,"./camlinternalFormat.js":20,"./curry.js":23,"./pervasives.js":25}],27:[function(require,module,exports){
+},{"./buffer.js":2,"./camlinternalFormat.js":20,"./curry.js":23,"./pervasives.js":26}],28:[function(require,module,exports){
 'use strict';
 
 var List = require("./list.js");
@@ -13575,7 +13626,31 @@ exports.uncapitalize = uncapitalize;
 exports.compare = compare;
 /* No side effect */
 
-},{"./bytes.js":3,"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_int32.js":10,"./caml_primitive.js":16,"./list.js":24}],28:[function(require,module,exports){
+},{"./bytes.js":3,"./caml_builtin_exceptions.js":5,"./caml_bytes.js":6,"./caml_int32.js":10,"./caml_primitive.js":16,"./list.js":25}],29:[function(require,module,exports){
+'use strict';
+
+var DomRe = require("./dom/DomRe.js");
+
+var $$File = {
+  Url: 0
+};
+
+var Base64 = 0;
+
+var Canvas = 0;
+
+var Dom = 0;
+
+var Url = 0;
+
+exports.Base64 = Base64;
+exports.Canvas = Canvas;
+exports.Dom = Dom;
+exports.$$File = $$File;
+exports.Url = Url;
+/* DomRe Not a pure module */
+
+},{"./dom/DomRe.js":31}],30:[function(require,module,exports){
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
@@ -13656,7 +13731,1713 @@ exports.fillStyle = fillStyle;
 exports.strokeStyle = strokeStyle;
 /* No side effect */
 
-},{"bs-platform/lib/js/caml_builtin_exceptions.js":5,"bs-platform/lib/js/curry.js":23}],29:[function(require,module,exports){
+},{"bs-platform/lib/js/caml_builtin_exceptions.js":5,"bs-platform/lib/js/curry.js":23}],31:[function(require,module,exports){
+'use strict';
+
+var AttrRe = require("./nodes/AttrRe.js");
+var NodeRe = require("./nodes/NodeRe.js");
+var TextRe = require("./nodes/TextRe.js");
+var WindowRe = require("./html/WindowRe.js");
+var CommentRe = require("./nodes/CommentRe.js");
+var ElementRe = require("./nodes/ElementRe.js");
+var UiEventRe = require("./events/UiEventRe.js");
+var DocumentRe = require("./nodes/DocumentRe.js");
+var DomTypesRe = require("./DomTypesRe.js");
+var DragEventRe = require("./events/DragEventRe.js");
+var TimeEventRe = require("./events/TimeEventRe.js");
+var CloseEventRe = require("./events/CloseEventRe.js");
+var ErrorEventRe = require("./events/ErrorEventRe.js");
+var FocusEventRe = require("./events/FocusEventRe.js");
+var InputEventRe = require("./events/InputEventRe.js");
+var MouseEventRe = require("./events/MouseEventRe.js");
+var ShadowRootRe = require("./nodes/ShadowRootRe.js");
+var TouchEventRe = require("./events/TouchEventRe.js");
+var TrackEventRe = require("./events/TrackEventRe.js");
+var WheelEventRe = require("./events/WheelEventRe.js");
+var CustomEventRe = require("./events/CustomEventRe.js");
+var HtmlElementRe = require("./html/HtmlElementRe.js");
+var CdataSectionRe = require("./nodes/CdataSectionRe.js");
+var DocumentTypeRe = require("./nodes/DocumentTypeRe.js");
+var HtmlDocumentRe = require("./html/HtmlDocumentRe.js");
+var PointerEventRe = require("./events/PointerEventRe.js");
+var RelatedEventRe = require("./events/RelatedEventRe.js");
+var StorageEventRe = require("./events/StorageEventRe.js");
+var SvgZoomEventRe = require("./events/SvgZoomEventRe.js");
+var CharacterDataRe = require("./nodes/CharacterDataRe.js");
+var KeyboardEventRe = require("./events/KeyboardEventRe.js");
+var PopStateEventRe = require("./events/PopStateEventRe.js");
+var ProgressEventRe = require("./events/ProgressEventRe.js");
+var AnimationEventRe = require("./events/AnimationEventRe.js");
+var ClipboardEventRe = require("./events/ClipboardEventRe.js");
+var HtmlFormElementRe = require("./html/HtmlFormElementRe.js");
+var TransitionEventRe = require("./events/TransitionEventRe.js");
+var CompositionEventRe = require("./events/CompositionEventRe.js");
+var DocumentFragmentRe = require("./nodes/DocumentFragmentRe.js");
+var HtmlImageElementRe = require("./html/HtmlImageElementRe.js");
+var HtmlInputElementRe = require("./html/HtmlInputElementRe.js");
+var BeforeUnloadEventRe = require("./events/BeforeUnloadEventRe.js");
+var WebGlContextEventRe = require("./events/WebGlContextEventRe.js");
+var PageTransitionEventRe = require("./events/PageTransitionEventRe.js");
+var IdbVersionChangeEventRe = require("./events/IdbVersionChangeEventRe.js");
+
+var $$AnimationEvent = 0;
+
+var $$Attr = 0;
+
+var $$BeforeUnloadEvent = 0;
+
+var CdataSection = 0;
+
+var $$CharacterData = 0;
+
+var $$Comment = 0;
+
+var CssStyleDeclaration = 0;
+
+var $$ClipboardEvent = 0;
+
+var $$CloseEvent = 0;
+
+var $$CompositionEvent = 0;
+
+var $$CustomEvent = 0;
+
+var $$Document = 0;
+
+var $$DocumentFragment = 0;
+
+var $$DocumentType = 0;
+
+var DomImplementation = 0;
+
+var DomRect = 0;
+
+var DomTokenList = 0;
+
+var $$DragEvent = 0;
+
+var $$Element = 0;
+
+var $$ErrorEvent = 0;
+
+var $$Event = 0;
+
+var $$EventTarget = 0;
+
+var $$FocusEvent = 0;
+
+var $$History = 0;
+
+var HtmlCollection = 0;
+
+var HtmlDocument = 0;
+
+var HtmlElement = 0;
+
+var HtmlFormElement = 0;
+
+var HtmlImageElement = 0;
+
+var HtmlInputElement = 0;
+
+var IdbVersionChangeEvent = 0;
+
+var $$Image = 0;
+
+var $$InputEvent = 0;
+
+var $$KeyboardEvent = 0;
+
+var $$Location = 0;
+
+var $$MouseEvent = 0;
+
+var $$MutationObserver = 0;
+
+var $$MutationRecord = 0;
+
+var $$NamedNodeMap = 0;
+
+var $$Node = 0;
+
+var $$NodeFilter = 0;
+
+var $$NodeList = 0;
+
+var $$PageTransitionEvent = 0;
+
+var $$PointerEvent = 0;
+
+var $$PopStateEvent = 0;
+
+var $$ProgressEvent = 0;
+
+var $$Range = 0;
+
+var RelatedEvent = 0;
+
+var $$Selection = 0;
+
+var $$ShadowRoot = 0;
+
+var $$StorageEvent = 0;
+
+var SvgZoomEvent = 0;
+
+var $$Text = 0;
+
+var TimeEvent = 0;
+
+var $$TouchEvent = 0;
+
+var $$TrackEvent = 0;
+
+var $$TransitionEvent = 0;
+
+var UiEvent = 0;
+
+var $$ValidityState = 0;
+
+var WebGlContextEvent = 0;
+
+var $$WheelEvent = 0;
+
+var $$Window = 0;
+
+var encodeCompareHow = DomTypesRe.encodeCompareHow;
+
+var decodeCompareResult = DomTypesRe.decodeCompareResult;
+
+var decodeCompatMode = DomTypesRe.decodeCompatMode;
+
+var encodeContentEditable = DomTypesRe.encodeContentEditable;
+
+var decodeContentEditable = DomTypesRe.decodeContentEditable;
+
+var decodeDeltaMode = DomTypesRe.decodeDeltaMode;
+
+var encodeDesignMode = DomTypesRe.encodeDesignMode;
+
+var decodeDesignMode = DomTypesRe.decodeDesignMode;
+
+var encodeDir = DomTypesRe.encodeDir;
+
+var decodeDir = DomTypesRe.decodeDir;
+
+var decodeEventPhase = DomTypesRe.decodeEventPhase;
+
+var encodeFilterAction = DomTypesRe.encodeFilterAction;
+
+var encodeInsertPosition = DomTypesRe.encodeInsertPosition;
+
+var encodeModifierKey = DomTypesRe.encodeModifierKey;
+
+var decodeNodeType = DomTypesRe.decodeNodeType;
+
+var decodePointerType = DomTypesRe.decodePointerType;
+
+var decodeReadyState = DomTypesRe.decodeReadyState;
+
+var decodeShadowRootMode = DomTypesRe.decodeShadowRootMode;
+
+var decodeVisibilityState = DomTypesRe.decodeVisibilityState;
+
+var WhatToShow = DomTypesRe.WhatToShow;
+
+exports.$$AnimationEvent = $$AnimationEvent;
+exports.$$Attr = $$Attr;
+exports.$$BeforeUnloadEvent = $$BeforeUnloadEvent;
+exports.CdataSection = CdataSection;
+exports.$$CharacterData = $$CharacterData;
+exports.$$Comment = $$Comment;
+exports.CssStyleDeclaration = CssStyleDeclaration;
+exports.$$ClipboardEvent = $$ClipboardEvent;
+exports.$$CloseEvent = $$CloseEvent;
+exports.$$CompositionEvent = $$CompositionEvent;
+exports.$$CustomEvent = $$CustomEvent;
+exports.$$Document = $$Document;
+exports.$$DocumentFragment = $$DocumentFragment;
+exports.$$DocumentType = $$DocumentType;
+exports.DomImplementation = DomImplementation;
+exports.DomRect = DomRect;
+exports.DomTokenList = DomTokenList;
+exports.$$DragEvent = $$DragEvent;
+exports.$$Element = $$Element;
+exports.$$ErrorEvent = $$ErrorEvent;
+exports.$$Event = $$Event;
+exports.$$EventTarget = $$EventTarget;
+exports.$$FocusEvent = $$FocusEvent;
+exports.$$History = $$History;
+exports.HtmlCollection = HtmlCollection;
+exports.HtmlDocument = HtmlDocument;
+exports.HtmlElement = HtmlElement;
+exports.HtmlFormElement = HtmlFormElement;
+exports.HtmlImageElement = HtmlImageElement;
+exports.HtmlInputElement = HtmlInputElement;
+exports.IdbVersionChangeEvent = IdbVersionChangeEvent;
+exports.$$Image = $$Image;
+exports.$$InputEvent = $$InputEvent;
+exports.$$KeyboardEvent = $$KeyboardEvent;
+exports.$$Location = $$Location;
+exports.$$MouseEvent = $$MouseEvent;
+exports.$$MutationObserver = $$MutationObserver;
+exports.$$MutationRecord = $$MutationRecord;
+exports.$$NamedNodeMap = $$NamedNodeMap;
+exports.$$Node = $$Node;
+exports.$$NodeFilter = $$NodeFilter;
+exports.$$NodeList = $$NodeList;
+exports.$$PageTransitionEvent = $$PageTransitionEvent;
+exports.$$PointerEvent = $$PointerEvent;
+exports.$$PopStateEvent = $$PopStateEvent;
+exports.$$ProgressEvent = $$ProgressEvent;
+exports.$$Range = $$Range;
+exports.RelatedEvent = RelatedEvent;
+exports.$$Selection = $$Selection;
+exports.$$ShadowRoot = $$ShadowRoot;
+exports.$$StorageEvent = $$StorageEvent;
+exports.SvgZoomEvent = SvgZoomEvent;
+exports.$$Text = $$Text;
+exports.TimeEvent = TimeEvent;
+exports.$$TouchEvent = $$TouchEvent;
+exports.$$TrackEvent = $$TrackEvent;
+exports.$$TransitionEvent = $$TransitionEvent;
+exports.UiEvent = UiEvent;
+exports.$$ValidityState = $$ValidityState;
+exports.WebGlContextEvent = WebGlContextEvent;
+exports.$$WheelEvent = $$WheelEvent;
+exports.$$Window = $$Window;
+exports.encodeCompareHow = encodeCompareHow;
+exports.decodeCompareResult = decodeCompareResult;
+exports.decodeCompatMode = decodeCompatMode;
+exports.encodeContentEditable = encodeContentEditable;
+exports.decodeContentEditable = decodeContentEditable;
+exports.decodeDeltaMode = decodeDeltaMode;
+exports.encodeDesignMode = encodeDesignMode;
+exports.decodeDesignMode = decodeDesignMode;
+exports.encodeDir = encodeDir;
+exports.decodeDir = decodeDir;
+exports.decodeEventPhase = decodeEventPhase;
+exports.encodeFilterAction = encodeFilterAction;
+exports.encodeInsertPosition = encodeInsertPosition;
+exports.encodeModifierKey = encodeModifierKey;
+exports.decodeNodeType = decodeNodeType;
+exports.decodePointerType = decodePointerType;
+exports.decodeReadyState = decodeReadyState;
+exports.decodeShadowRootMode = decodeShadowRootMode;
+exports.decodeVisibilityState = decodeVisibilityState;
+exports.WhatToShow = WhatToShow;
+/* AttrRe Not a pure module */
+
+},{"./DomTypesRe.js":32,"./events/AnimationEventRe.js":33,"./events/BeforeUnloadEventRe.js":34,"./events/ClipboardEventRe.js":35,"./events/CloseEventRe.js":36,"./events/CompositionEventRe.js":37,"./events/CustomEventRe.js":38,"./events/DragEventRe.js":39,"./events/ErrorEventRe.js":40,"./events/FocusEventRe.js":43,"./events/IdbVersionChangeEventRe.js":44,"./events/InputEventRe.js":45,"./events/KeyboardEventRe.js":46,"./events/MouseEventRe.js":47,"./events/PageTransitionEventRe.js":48,"./events/PointerEventRe.js":49,"./events/PopStateEventRe.js":50,"./events/ProgressEventRe.js":51,"./events/RelatedEventRe.js":52,"./events/StorageEventRe.js":53,"./events/SvgZoomEventRe.js":54,"./events/TimeEventRe.js":55,"./events/TouchEventRe.js":56,"./events/TrackEventRe.js":57,"./events/TransitionEventRe.js":58,"./events/UiEventRe.js":59,"./events/WebGlContextEventRe.js":60,"./events/WheelEventRe.js":61,"./html/HtmlDocumentRe.js":62,"./html/HtmlElementRe.js":63,"./html/HtmlFormElementRe.js":64,"./html/HtmlImageElementRe.js":65,"./html/HtmlInputElementRe.js":66,"./html/WindowRe.js":67,"./nodes/AttrRe.js":68,"./nodes/CdataSectionRe.js":69,"./nodes/CharacterDataRe.js":70,"./nodes/CommentRe.js":72,"./nodes/DocumentFragmentRe.js":73,"./nodes/DocumentRe.js":75,"./nodes/DocumentTypeRe.js":76,"./nodes/ElementRe.js":77,"./nodes/NodeRe.js":78,"./nodes/ShadowRootRe.js":82,"./nodes/TextRe.js":84}],32:[function(require,module,exports){
+'use strict';
+
+var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
+
+function encodeCompareHow(param) {
+  return param;
+}
+
+function decodeCompareResult(param) {
+  var switcher = param + 1 | 0;
+  if (switcher > 2 || switcher < 0) {
+    return /* Unknown */3;
+  } else {
+    return switcher;
+  }
+}
+
+function decodeCompatMode(param) {
+  switch (param) {
+    case "BackCompat" :
+        return /* BackCompat */0;
+    case "CSS1Compat" :
+        return /* CSS1Compat */1;
+    default:
+      return /* Unknown */2;
+  }
+}
+
+function encodeContentEditable(param) {
+  switch (param) {
+    case /* True */0 :
+        return "true";
+    case /* False */1 :
+        return "false";
+    case /* Inherit */2 :
+        return "inherit";
+    case /* Unknown */3 :
+        return "";
+    
+  }
+}
+
+function decodeContentEditable(param) {
+  switch (param) {
+    case "false" :
+        return /* False */1;
+    case "inherit" :
+        return /* Inherit */2;
+    case "true" :
+        return /* True */0;
+    default:
+      return /* Unknown */3;
+  }
+}
+
+function decodeDeltaMode(param) {
+  if (param > 2 || param < 0) {
+    throw [
+          Caml_builtin_exceptions.invalid_argument,
+          "invalid deltaMode"
+        ];
+  }
+  return param;
+}
+
+function encodeDesignMode(param) {
+  switch (param) {
+    case /* On */0 :
+        return "on";
+    case /* Off */1 :
+        return "off";
+    case /* Unknown */2 :
+        return "";
+    
+  }
+}
+
+function decodeDesignMode(param) {
+  switch (param) {
+    case "off" :
+        return /* Off */1;
+    case "on" :
+        return /* On */0;
+    default:
+      return /* Unknown */2;
+  }
+}
+
+function encodeDir(param) {
+  switch (param) {
+    case /* Ltr */0 :
+        return "ltr";
+    case /* Rtl */1 :
+        return "rtl";
+    case /* Unknown */2 :
+        return "";
+    
+  }
+}
+
+function decodeDir(param) {
+  switch (param) {
+    case "ltr" :
+        return /* Ltr */0;
+    case "rtl" :
+        return /* Rtl */1;
+    default:
+      return /* Unknown */2;
+  }
+}
+
+function decodeEventPhase(param) {
+  if (param > 3 || param < 0) {
+    return /* Unknown */4;
+  } else {
+    return param;
+  }
+}
+
+function encodeFilterAction(param) {
+  return param + 1 | 0;
+}
+
+function encodeInsertPosition(param) {
+  switch (param) {
+    case /* BeforeBegin */0 :
+        return "beforebegin";
+    case /* AfterBegin */1 :
+        return "afterbegin";
+    case /* BeforeEnd */2 :
+        return "beforeend";
+    case /* AfterEnd */3 :
+        return "afterend";
+    
+  }
+}
+
+function encodeModifierKey(param) {
+  switch (param) {
+    case /* Alt */0 :
+        return "Alt";
+    case /* AltGraph */1 :
+        return "AltGraph";
+    case /* CapsLock */2 :
+        return "CapsLock";
+    case /* Control */3 :
+        return "Control";
+    case /* Fn */4 :
+        return "Fn";
+    case /* FnLock */5 :
+        return "FnLock";
+    case /* Hyper */6 :
+        return "Hyper";
+    case /* Meta */7 :
+        return "Meta";
+    case /* NumLock */8 :
+        return "NumLock";
+    case /* ScrollLock */9 :
+        return "ScrollLock";
+    case /* Shift */10 :
+        return "Shift";
+    case /* Super */11 :
+        return "Super";
+    case /* Symbol */12 :
+        return "Symbol";
+    case /* SymbolLock */13 :
+        return "SymbolLock";
+    
+  }
+}
+
+function decodeNodeType(param) {
+  var switcher = param - 1 | 0;
+  if (switcher > 11 || switcher < 0) {
+    return /* Unknown */12;
+  } else {
+    return switcher;
+  }
+}
+
+function decodePointerType(param) {
+  switch (param) {
+    case "mouse" :
+        return /* Mouse */0;
+    case "pen" :
+        return /* Pen */1;
+    case "touch|" :
+        return /* Touch */2;
+    default:
+      return /* Unknown */3;
+  }
+}
+
+function decodeReadyState(param) {
+  switch (param) {
+    case "complete" :
+        return /* Complete */2;
+    case "interactive" :
+        return /* Interactive */1;
+    case "loading" :
+        return /* Loading */0;
+    default:
+      return /* Unknown */3;
+  }
+}
+
+function decodeShadowRootMode(param) {
+  switch (param) {
+    case "closed" :
+        return /* Closed */1;
+    case "open" :
+        return /* Open */0;
+    default:
+      throw [
+            Caml_builtin_exceptions.invalid_argument,
+            "Unknown shadowRootMode"
+          ];
+  }
+}
+
+function decodeVisibilityState(param) {
+  switch (param) {
+    case "hidden" :
+        return /* Hidden */1;
+    case "prerender" :
+        return /* Prerender */2;
+    case "unloaded" :
+        return /* Unloaded */3;
+    case "visible" :
+        return /* Visible */0;
+    default:
+      return /* Unknown */4;
+  }
+}
+
+function many(param) {
+  if (param) {
+    return param[0] | many(param[1]);
+  } else {
+    return 0;
+  }
+}
+
+var WhatToShow = {
+  _All: -1,
+  _Element: 1,
+  _Attribute: 2,
+  _Text: 4,
+  _CDATASection: 8,
+  _EntityReference: 16,
+  _Entity: 32,
+  _ProcessingInstruction: 64,
+  _Comment: 128,
+  _Document: 256,
+  _DocumentType: 512,
+  _DocumentFragment: 1024,
+  _Notation: 2048,
+  many: many
+};
+
+exports.encodeCompareHow = encodeCompareHow;
+exports.decodeCompareResult = decodeCompareResult;
+exports.decodeCompatMode = decodeCompatMode;
+exports.encodeContentEditable = encodeContentEditable;
+exports.decodeContentEditable = decodeContentEditable;
+exports.decodeDeltaMode = decodeDeltaMode;
+exports.encodeDesignMode = encodeDesignMode;
+exports.decodeDesignMode = decodeDesignMode;
+exports.encodeDir = encodeDir;
+exports.decodeDir = decodeDir;
+exports.decodeEventPhase = decodeEventPhase;
+exports.encodeFilterAction = encodeFilterAction;
+exports.encodeInsertPosition = encodeInsertPosition;
+exports.encodeModifierKey = encodeModifierKey;
+exports.decodeNodeType = decodeNodeType;
+exports.decodePointerType = decodePointerType;
+exports.decodeReadyState = decodeReadyState;
+exports.decodeShadowRootMode = decodeShadowRootMode;
+exports.decodeVisibilityState = decodeVisibilityState;
+exports.WhatToShow = WhatToShow;
+/* No side effect */
+
+},{"bs-platform/lib/js/caml_builtin_exceptions.js":5}],33:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+
+var include = EventRe.Impl({ });
+
+var eventPhase = include.eventPhase;
+
+exports.eventPhase = eventPhase;
+/* include Not a pure module */
+
+},{"./EventRe.js":41}],34:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],35:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],36:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],37:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+var eventPhase = include.eventPhase;
+
+exports.eventPhase = eventPhase;
+/* include Not a pure module */
+
+},{"./EventRe.js":41,"./UiEventRe.js":59}],38:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],39:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+var MouseEventRe = require("./MouseEventRe.js");
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+var include$1 = MouseEventRe.Impl({ });
+
+var eventPhase = include.eventPhase;
+
+var getModifierState = include$1.getModifierState;
+
+exports.eventPhase = eventPhase;
+exports.getModifierState = getModifierState;
+/* include Not a pure module */
+
+},{"./EventRe.js":41,"./MouseEventRe.js":47,"./UiEventRe.js":59}],40:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],41:[function(require,module,exports){
+'use strict';
+
+var DomTypesRe = require("../DomTypesRe.js");
+
+function Impl(T) {
+  var eventPhase = function (self) {
+    return DomTypesRe.decodeEventPhase(self.eventPhase);
+  };
+  return {
+          eventPhase: eventPhase
+        };
+}
+
+function eventPhase(self) {
+  return DomTypesRe.decodeEventPhase(self.eventPhase);
+}
+
+exports.Impl = Impl;
+exports.eventPhase = eventPhase;
+/* No side effect */
+
+},{"../DomTypesRe.js":32}],42:[function(require,module,exports){
+'use strict';
+
+
+function Impl(T) {
+  return { };
+}
+
+exports.Impl = Impl;
+/* No side effect */
+
+},{}],43:[function(require,module,exports){
+arguments[4][37][0].apply(exports,arguments)
+},{"./EventRe.js":41,"./UiEventRe.js":59,"dup":37}],44:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],45:[function(require,module,exports){
+arguments[4][37][0].apply(exports,arguments)
+},{"./EventRe.js":41,"./UiEventRe.js":59,"dup":37}],46:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+function getModifierState(key, self) {
+  return self.getModifierState(DomTypesRe.encodeModifierKey(key));
+}
+
+var eventPhase = include.eventPhase;
+
+exports.eventPhase = eventPhase;
+exports.getModifierState = getModifierState;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"./EventRe.js":41,"./UiEventRe.js":59}],47:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+
+function Impl(T) {
+  var getModifierState = function (key, self) {
+    return self.getModifierState(DomTypesRe.encodeModifierKey(key));
+  };
+  return {
+          getModifierState: getModifierState
+        };
+}
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+function getModifierState(key, self) {
+  return self.getModifierState(DomTypesRe.encodeModifierKey(key));
+}
+
+var eventPhase = include.eventPhase;
+
+exports.Impl = Impl;
+exports.eventPhase = eventPhase;
+exports.getModifierState = getModifierState;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"./EventRe.js":41,"./UiEventRe.js":59}],48:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],49:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+var MouseEventRe = require("./MouseEventRe.js");
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+var include$1 = MouseEventRe.Impl({ });
+
+function pointerType(self) {
+  return DomTypesRe.decodePointerType(self.pointerType);
+}
+
+var eventPhase = include.eventPhase;
+
+var getModifierState = include$1.getModifierState;
+
+exports.eventPhase = eventPhase;
+exports.getModifierState = getModifierState;
+exports.pointerType = pointerType;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"./EventRe.js":41,"./MouseEventRe.js":47,"./UiEventRe.js":59}],50:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],51:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],52:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],53:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],54:[function(require,module,exports){
+arguments[4][37][0].apply(exports,arguments)
+},{"./EventRe.js":41,"./UiEventRe.js":59,"dup":37}],55:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],56:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+
+function Impl(T) {
+  return { };
+}
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+var eventPhase = include.eventPhase;
+
+exports.Impl = Impl;
+exports.eventPhase = eventPhase;
+/* include Not a pure module */
+
+},{"./EventRe.js":41,"./UiEventRe.js":59}],57:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],58:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],59:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+
+function Impl(T) {
+  return { };
+}
+
+var include = EventRe.Impl({ });
+
+var eventPhase = include.eventPhase;
+
+exports.Impl = Impl;
+exports.eventPhase = eventPhase;
+/* include Not a pure module */
+
+},{"./EventRe.js":41}],60:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"./EventRe.js":41,"dup":33}],61:[function(require,module,exports){
+'use strict';
+
+var EventRe = require("./EventRe.js");
+var UiEventRe = require("./UiEventRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+
+var include = EventRe.Impl({ });
+
+UiEventRe.Impl({ });
+
+function deltaMode(self) {
+  return DomTypesRe.decodeDeltaMode(self.deltaMode);
+}
+
+var eventPhase = include.eventPhase;
+
+exports.eventPhase = eventPhase;
+exports.deltaMode = deltaMode;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"./EventRe.js":41,"./UiEventRe.js":59}],62:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("../nodes/NodeRe.js");
+var Js_null = require("bs-platform/lib/js/js_null.js");
+var DocumentRe = require("../nodes/DocumentRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+
+function Impl(T) {
+  var designMode = function (self) {
+    return DomTypesRe.decodeDesignMode(self.designMode);
+  };
+  var setDesignMode = function (self, value) {
+    self.designMode = DomTypesRe.encodeDesignMode(value);
+    return /* () */0;
+  };
+  var dir = function (self) {
+    return DomTypesRe.decodeDir(self.dir);
+  };
+  var setDir = function (self, value) {
+    self.dir = DomTypesRe.encodeDir(value);
+    return /* () */0;
+  };
+  var readyState = function (self) {
+    return DomTypesRe.decodeReadyState(self.readyState);
+  };
+  var execCommand = function (command, show, value, self) {
+    return self.execCommand(command, show, Js_null.fromOption(value));
+  };
+  return {
+          designMode: designMode,
+          setDesignMode: setDesignMode,
+          dir: dir,
+          setDir: setDir,
+          readyState: readyState,
+          execCommand: execCommand
+        };
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+var include$1 = DocumentRe.Impl({ });
+
+function designMode(self) {
+  return DomTypesRe.decodeDesignMode(self.designMode);
+}
+
+function setDesignMode(self, value) {
+  self.designMode = DomTypesRe.encodeDesignMode(value);
+  return /* () */0;
+}
+
+function dir(self) {
+  return DomTypesRe.decodeDir(self.dir);
+}
+
+function setDir(self, value) {
+  self.dir = DomTypesRe.encodeDir(value);
+  return /* () */0;
+}
+
+function readyState(self) {
+  return DomTypesRe.decodeReadyState(self.readyState);
+}
+
+function execCommand(command, show, value, self) {
+  return self.execCommand(command, show, Js_null.fromOption(value));
+}
+
+var nodeType = include.nodeType;
+
+var asHtmlDocument = include$1.asHtmlDocument;
+
+var ofNode = include$1.ofNode;
+
+var compatMode = include$1.compatMode;
+
+var visibilityState = include$1.visibilityState;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+exports.asHtmlDocument = asHtmlDocument;
+exports.ofNode = ofNode;
+exports.compatMode = compatMode;
+exports.visibilityState = visibilityState;
+exports.designMode = designMode;
+exports.setDesignMode = setDesignMode;
+exports.dir = dir;
+exports.setDir = setDir;
+exports.readyState = readyState;
+exports.execCommand = execCommand;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"../events/EventTargetRe.js":42,"../nodes/DocumentRe.js":75,"../nodes/NodeRe.js":78,"bs-platform/lib/js/js_null.js":24}],63:[function(require,module,exports){
+'use strict';
+
+var Curry = require("bs-platform/lib/js/curry.js");
+var NodeRe = require("../nodes/NodeRe.js");
+var ElementRe = require("../nodes/ElementRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+
+function Impl(T) {
+  var ofElement = (
+    function (element) {
+      // BEWARE: Assumes "contentEditable" uniquely identifies an HTMLELement
+      return element.contentEditable !== undefined ?  element : null;
+    }
+  );
+  var ofElement$1 = function (self) {
+    return Caml_option.null_to_opt(Curry._1(ofElement, self));
+  };
+  var contentEditable = function (self) {
+    return DomTypesRe.decodeContentEditable(self.contentEditable);
+  };
+  var setContentEditable = function (self, value) {
+    self.contentEditable = DomTypesRe.encodeContentEditable(value);
+    return /* () */0;
+  };
+  var dir = function (self) {
+    return DomTypesRe.decodeDir(self.dir);
+  };
+  var setDir = function (self, value) {
+    self.dir = DomTypesRe.encodeDir(value);
+    return /* () */0;
+  };
+  return {
+          ofElement: ofElement$1,
+          contentEditable: contentEditable,
+          setContentEditable: setContentEditable,
+          dir: dir,
+          setDir: setDir
+        };
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+var include$1 = ElementRe.Impl({ });
+
+var ofElement = (
+    function (element) {
+      // BEWARE: Assumes "contentEditable" uniquely identifies an HTMLELement
+      return element.contentEditable !== undefined ?  element : null;
+    }
+  );
+
+function ofElement$1(self) {
+  return Caml_option.null_to_opt(Curry._1(ofElement, self));
+}
+
+function contentEditable(self) {
+  return DomTypesRe.decodeContentEditable(self.contentEditable);
+}
+
+function setContentEditable(self, value) {
+  self.contentEditable = DomTypesRe.encodeContentEditable(value);
+  return /* () */0;
+}
+
+function dir(self) {
+  return DomTypesRe.decodeDir(self.dir);
+}
+
+function setDir(self, value) {
+  self.dir = DomTypesRe.encodeDir(value);
+  return /* () */0;
+}
+
+var nodeType = include.nodeType;
+
+var asHtmlElement = include$1.asHtmlElement;
+
+var ofNode = include$1.ofNode;
+
+var insertAdjacentElement = include$1.insertAdjacentElement;
+
+var insertAdjacentHTML = include$1.insertAdjacentHTML;
+
+var insertAdjacentText = include$1.insertAdjacentText;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+exports.asHtmlElement = asHtmlElement;
+exports.ofNode = ofNode;
+exports.insertAdjacentElement = insertAdjacentElement;
+exports.insertAdjacentHTML = insertAdjacentHTML;
+exports.insertAdjacentText = insertAdjacentText;
+exports.ofElement = ofElement$1;
+exports.contentEditable = contentEditable;
+exports.setContentEditable = setContentEditable;
+exports.dir = dir;
+exports.setDir = setDir;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"../events/EventTargetRe.js":42,"../nodes/ElementRe.js":77,"../nodes/NodeRe.js":78,"bs-platform/lib/js/caml_option.js":15,"bs-platform/lib/js/curry.js":23}],64:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("../nodes/NodeRe.js");
+var ElementRe = require("../nodes/ElementRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var HtmlElementRe = require("./HtmlElementRe.js");
+
+function Impl(T) {
+  return { };
+}
+
+EventTargetRe.Impl({ });
+
+var include = NodeRe.Impl({ });
+
+var include$1 = ElementRe.Impl({ });
+
+var include$2 = HtmlElementRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+var asHtmlElement = include$1.asHtmlElement;
+
+var ofNode = include$1.ofNode;
+
+var insertAdjacentElement = include$1.insertAdjacentElement;
+
+var insertAdjacentHTML = include$1.insertAdjacentHTML;
+
+var insertAdjacentText = include$1.insertAdjacentText;
+
+var ofElement = include$2.ofElement;
+
+var contentEditable = include$2.contentEditable;
+
+var setContentEditable = include$2.setContentEditable;
+
+var dir = include$2.dir;
+
+var setDir = include$2.setDir;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+exports.asHtmlElement = asHtmlElement;
+exports.ofNode = ofNode;
+exports.insertAdjacentElement = insertAdjacentElement;
+exports.insertAdjacentHTML = insertAdjacentHTML;
+exports.insertAdjacentText = insertAdjacentText;
+exports.ofElement = ofElement;
+exports.contentEditable = contentEditable;
+exports.setContentEditable = setContentEditable;
+exports.dir = dir;
+exports.setDir = setDir;
+/*  Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"../nodes/ElementRe.js":77,"../nodes/NodeRe.js":78,"./HtmlElementRe.js":63}],65:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("../nodes/NodeRe.js");
+var Js_null = require("bs-platform/lib/js/js_null.js");
+var ElementRe = require("../nodes/ElementRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var HtmlElementRe = require("./HtmlElementRe.js");
+
+function setCrossOrigin(self, value) {
+  self.crossOrigin = Js_null.fromOption(value);
+  return /* () */0;
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+var include$1 = ElementRe.Impl({ });
+
+var include$2 = HtmlElementRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+var asHtmlElement = include$1.asHtmlElement;
+
+var ofNode = include$1.ofNode;
+
+var insertAdjacentElement = include$1.insertAdjacentElement;
+
+var insertAdjacentHTML = include$1.insertAdjacentHTML;
+
+var insertAdjacentText = include$1.insertAdjacentText;
+
+var ofElement = include$2.ofElement;
+
+var contentEditable = include$2.contentEditable;
+
+var setContentEditable = include$2.setContentEditable;
+
+var dir = include$2.dir;
+
+var setDir = include$2.setDir;
+
+exports.setCrossOrigin = setCrossOrigin;
+exports.nodeType = nodeType;
+exports.asHtmlElement = asHtmlElement;
+exports.ofNode = ofNode;
+exports.insertAdjacentElement = insertAdjacentElement;
+exports.insertAdjacentHTML = insertAdjacentHTML;
+exports.insertAdjacentText = insertAdjacentText;
+exports.ofElement = ofElement;
+exports.contentEditable = contentEditable;
+exports.setContentEditable = setContentEditable;
+exports.dir = dir;
+exports.setDir = setDir;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"../nodes/ElementRe.js":77,"../nodes/NodeRe.js":78,"./HtmlElementRe.js":63,"bs-platform/lib/js/js_null.js":24}],66:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("../nodes/NodeRe.js");
+var ElementRe = require("../nodes/ElementRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var HtmlElementRe = require("./HtmlElementRe.js");
+
+function Impl(T) {
+  var toString = function (param) {
+    switch (param) {
+      case /* Forward */0 :
+          return "forward";
+      case /* Backward */1 :
+          return "backward";
+      case /* None */2 :
+          return "none";
+      
+    }
+  };
+  var SelectionDirection = {
+    toString: toString
+  };
+  var setSelectionRangeWithDirection = function (selectionStart, selectionEnd, selectionDirection, element) {
+    element.setSelectionRange(selectionStart, selectionEnd, toString(selectionDirection));
+    return /* () */0;
+  };
+  var toString$1 = function (param) {
+    switch (param) {
+      case /* Select */0 :
+          return "select";
+      case /* Start */1 :
+          return "start";
+      case /* End */2 :
+          return "end";
+      case /* Preserve */3 :
+          return "preserve";
+      
+    }
+  };
+  var SelectionMode = {
+    toString: toString$1
+  };
+  var setRangeTextWithinIntervalWithSelectionMode = function (text, selectionStart, selectionEnd, selectionMode, element) {
+    element.setRangeText(text, selectionStart, selectionEnd, toString$1(selectionMode));
+    return /* () */0;
+  };
+  return {
+          SelectionDirection: SelectionDirection,
+          setSelectionRangeWithDirection: setSelectionRangeWithDirection,
+          SelectionMode: SelectionMode,
+          setRangeTextWithinIntervalWithSelectionMode: setRangeTextWithinIntervalWithSelectionMode
+        };
+}
+
+EventTargetRe.Impl({ });
+
+var include = NodeRe.Impl({ });
+
+var include$1 = ElementRe.Impl({ });
+
+var include$2 = HtmlElementRe.Impl({ });
+
+function toString(param) {
+  switch (param) {
+    case /* Forward */0 :
+        return "forward";
+    case /* Backward */1 :
+        return "backward";
+    case /* None */2 :
+        return "none";
+    
+  }
+}
+
+var SelectionDirection = {
+  toString: toString
+};
+
+function setSelectionRangeWithDirection(selectionStart, selectionEnd, selectionDirection, element) {
+  element.setSelectionRange(selectionStart, selectionEnd, toString(selectionDirection));
+  return /* () */0;
+}
+
+function toString$1(param) {
+  switch (param) {
+    case /* Select */0 :
+        return "select";
+    case /* Start */1 :
+        return "start";
+    case /* End */2 :
+        return "end";
+    case /* Preserve */3 :
+        return "preserve";
+    
+  }
+}
+
+var SelectionMode = {
+  toString: toString$1
+};
+
+function setRangeTextWithinIntervalWithSelectionMode(text, selectionStart, selectionEnd, selectionMode, element) {
+  element.setRangeText(text, selectionStart, selectionEnd, toString$1(selectionMode));
+  return /* () */0;
+}
+
+var nodeType = include.nodeType;
+
+var asHtmlElement = include$1.asHtmlElement;
+
+var ofNode = include$1.ofNode;
+
+var insertAdjacentElement = include$1.insertAdjacentElement;
+
+var insertAdjacentHTML = include$1.insertAdjacentHTML;
+
+var insertAdjacentText = include$1.insertAdjacentText;
+
+var ofElement = include$2.ofElement;
+
+var contentEditable = include$2.contentEditable;
+
+var setContentEditable = include$2.setContentEditable;
+
+var dir = include$2.dir;
+
+var setDir = include$2.setDir;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+exports.asHtmlElement = asHtmlElement;
+exports.ofNode = ofNode;
+exports.insertAdjacentElement = insertAdjacentElement;
+exports.insertAdjacentHTML = insertAdjacentHTML;
+exports.insertAdjacentText = insertAdjacentText;
+exports.ofElement = ofElement;
+exports.contentEditable = contentEditable;
+exports.setContentEditable = setContentEditable;
+exports.dir = dir;
+exports.setDir = setDir;
+exports.SelectionDirection = SelectionDirection;
+exports.setSelectionRangeWithDirection = setSelectionRangeWithDirection;
+exports.SelectionMode = SelectionMode;
+exports.setRangeTextWithinIntervalWithSelectionMode = setRangeTextWithinIntervalWithSelectionMode;
+/*  Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"../nodes/ElementRe.js":77,"../nodes/NodeRe.js":78,"./HtmlElementRe.js":63}],67:[function(require,module,exports){
+'use strict';
+
+var EventTargetRe = require("../events/EventTargetRe.js");
+
+function Impl(T) {
+  return { };
+}
+
+EventTargetRe.Impl({ });
+
+exports.Impl = Impl;
+/*  Not a pure module */
+
+},{"../events/EventTargetRe.js":42}],68:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+exports.nodeType = nodeType;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"./NodeRe.js":78}],69:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var SlotableRe = require("./SlotableRe.js");
+var ChildNodeRe = require("./ChildNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var CharacterDataRe = require("./CharacterDataRe.js");
+var NonDocumentTypeChildNodeRe = require("./NonDocumentTypeChildNodeRe.js");
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+CharacterDataRe.Impl({ });
+
+NonDocumentTypeChildNodeRe.Impl({ });
+
+ChildNodeRe.Impl({ });
+
+SlotableRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+exports.nodeType = nodeType;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"./CharacterDataRe.js":70,"./ChildNodeRe.js":71,"./NodeRe.js":78,"./NonDocumentTypeChildNodeRe.js":79,"./SlotableRe.js":83}],70:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var ChildNodeRe = require("./ChildNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var NonDocumentTypeChildNodeRe = require("./NonDocumentTypeChildNodeRe.js");
+
+function Impl(T) {
+  return { };
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+NonDocumentTypeChildNodeRe.Impl({ });
+
+ChildNodeRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"./ChildNodeRe.js":71,"./NodeRe.js":78,"./NonDocumentTypeChildNodeRe.js":79}],71:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"dup":42}],72:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"../events/EventTargetRe.js":42,"./CharacterDataRe.js":70,"./ChildNodeRe.js":71,"./NodeRe.js":78,"./NonDocumentTypeChildNodeRe.js":79,"./SlotableRe.js":83,"dup":69}],73:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var ParentNodeRe = require("./ParentNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var NonElementParentNodeRe = require("./NonElementParentNodeRe.js");
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+NonElementParentNodeRe.Impl({ });
+
+ParentNodeRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+exports.nodeType = nodeType;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"./NodeRe.js":78,"./NonElementParentNodeRe.js":80,"./ParentNodeRe.js":81}],74:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"dup":42}],75:[function(require,module,exports){
+'use strict';
+
+var Curry = require("bs-platform/lib/js/curry.js");
+var NodeRe = require("./NodeRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
+var ParentNodeRe = require("./ParentNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var DocumentOrShadowRootRe = require("./DocumentOrShadowRootRe.js");
+var NonElementParentNodeRe = require("./NonElementParentNodeRe.js");
+
+function Impl(T) {
+  var asHtmlDocument = (
+    function (document) {
+      return document.doctype.name === "html" ?  document : null;
+    }
+  );
+  var asHtmlDocument$1 = function (self) {
+    return Caml_option.null_to_opt(Curry._1(asHtmlDocument, self));
+  };
+  var ofNode = function (node) {
+    var match = NodeRe.nodeType(node) === /* Document */8;
+    if (match) {
+      return Caml_option.some(node);
+    }
+    
+  };
+  var compatMode = function (self) {
+    return DomTypesRe.decodeCompatMode(self.compatMode);
+  };
+  var visibilityState = function (self) {
+    return DomTypesRe.decodeVisibilityState(self.visibilityState);
+  };
+  return {
+          asHtmlDocument: asHtmlDocument$1,
+          ofNode: ofNode,
+          compatMode: compatMode,
+          visibilityState: visibilityState
+        };
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+NonElementParentNodeRe.Impl({ });
+
+DocumentOrShadowRootRe.Impl({ });
+
+ParentNodeRe.Impl({ });
+
+var asHtmlDocument = (
+    function (document) {
+      return document.doctype.name === "html" ?  document : null;
+    }
+  );
+
+function asHtmlDocument$1(self) {
+  return Caml_option.null_to_opt(Curry._1(asHtmlDocument, self));
+}
+
+function ofNode(node) {
+  var match = NodeRe.nodeType(node) === /* Document */8;
+  if (match) {
+    return Caml_option.some(node);
+  }
+  
+}
+
+function compatMode(self) {
+  return DomTypesRe.decodeCompatMode(self.compatMode);
+}
+
+function visibilityState(self) {
+  return DomTypesRe.decodeVisibilityState(self.visibilityState);
+}
+
+var nodeType = include.nodeType;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+exports.asHtmlDocument = asHtmlDocument$1;
+exports.ofNode = ofNode;
+exports.compatMode = compatMode;
+exports.visibilityState = visibilityState;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"../events/EventTargetRe.js":42,"./DocumentOrShadowRootRe.js":74,"./NodeRe.js":78,"./NonElementParentNodeRe.js":80,"./ParentNodeRe.js":81,"bs-platform/lib/js/caml_option.js":15,"bs-platform/lib/js/curry.js":23}],76:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var ChildNodeRe = require("./ChildNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+ChildNodeRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+exports.nodeType = nodeType;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"./ChildNodeRe.js":71,"./NodeRe.js":78}],77:[function(require,module,exports){
+'use strict';
+
+var Curry = require("bs-platform/lib/js/curry.js");
+var NodeRe = require("./NodeRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+var SlotableRe = require("./SlotableRe.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
+var ChildNodeRe = require("./ChildNodeRe.js");
+var ParentNodeRe = require("./ParentNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var NonDocumentTypeChildNodeRe = require("./NonDocumentTypeChildNodeRe.js");
+
+function ofNode(node) {
+  var match = NodeRe.nodeType(node) === /* Element */0;
+  if (match) {
+    return Caml_option.some(node);
+  }
+  
+}
+
+function Impl(T) {
+  var asHtmlElement = (
+    function (element) {
+      // BEWARE: Assumes "contentEditable" uniquely identifies an HTMLELement
+      return element.contentEditable !== undefined ?  element : null;
+    }
+  );
+  var asHtmlElement$1 = function (self) {
+    return Caml_option.null_to_opt(Curry._1(asHtmlElement, self));
+  };
+  var insertAdjacentElement = function (position, element, self) {
+    self.insertAdjacentElement(DomTypesRe.encodeInsertPosition(position), element);
+    return /* () */0;
+  };
+  var insertAdjacentHTML = function (position, text, self) {
+    self.insertAdjacentHTML(DomTypesRe.encodeInsertPosition(position), text);
+    return /* () */0;
+  };
+  var insertAdjacentText = function (position, text, self) {
+    self.insertAdjacentText(DomTypesRe.encodeInsertPosition(position), text);
+    return /* () */0;
+  };
+  return {
+          asHtmlElement: asHtmlElement$1,
+          ofNode: ofNode,
+          insertAdjacentElement: insertAdjacentElement,
+          insertAdjacentHTML: insertAdjacentHTML,
+          insertAdjacentText: insertAdjacentText
+        };
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+ParentNodeRe.Impl({ });
+
+NonDocumentTypeChildNodeRe.Impl({ });
+
+ChildNodeRe.Impl({ });
+
+SlotableRe.Impl({ });
+
+var asHtmlElement = (
+    function (element) {
+      // BEWARE: Assumes "contentEditable" uniquely identifies an HTMLELement
+      return element.contentEditable !== undefined ?  element : null;
+    }
+  );
+
+function asHtmlElement$1(self) {
+  return Caml_option.null_to_opt(Curry._1(asHtmlElement, self));
+}
+
+function insertAdjacentElement(position, element, self) {
+  self.insertAdjacentElement(DomTypesRe.encodeInsertPosition(position), element);
+  return /* () */0;
+}
+
+function insertAdjacentHTML(position, text, self) {
+  self.insertAdjacentHTML(DomTypesRe.encodeInsertPosition(position), text);
+  return /* () */0;
+}
+
+function insertAdjacentText(position, text, self) {
+  self.insertAdjacentText(DomTypesRe.encodeInsertPosition(position), text);
+  return /* () */0;
+}
+
+var nodeType = include.nodeType;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+exports.asHtmlElement = asHtmlElement$1;
+exports.ofNode = ofNode;
+exports.insertAdjacentElement = insertAdjacentElement;
+exports.insertAdjacentHTML = insertAdjacentHTML;
+exports.insertAdjacentText = insertAdjacentText;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"../events/EventTargetRe.js":42,"./ChildNodeRe.js":71,"./NodeRe.js":78,"./NonDocumentTypeChildNodeRe.js":79,"./ParentNodeRe.js":81,"./SlotableRe.js":83,"bs-platform/lib/js/caml_option.js":15,"bs-platform/lib/js/curry.js":23}],78:[function(require,module,exports){
+'use strict';
+
+var DomTypesRe = require("../DomTypesRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+
+function Impl(T) {
+  var nodeType = function (self) {
+    return DomTypesRe.decodeNodeType(self.nodeType);
+  };
+  return {
+          nodeType: nodeType
+        };
+}
+
+EventTargetRe.Impl({ });
+
+function nodeType(self) {
+  return DomTypesRe.decodeNodeType(self.nodeType);
+}
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+/*  Not a pure module */
+
+},{"../DomTypesRe.js":32,"../events/EventTargetRe.js":42}],79:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"dup":42}],80:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"dup":42}],81:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"dup":42}],82:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var DomTypesRe = require("../DomTypesRe.js");
+var ParentNodeRe = require("./ParentNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var DocumentOrShadowRootRe = require("./DocumentOrShadowRootRe.js");
+var NonElementParentNodeRe = require("./NonElementParentNodeRe.js");
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+NonElementParentNodeRe.Impl({ });
+
+DocumentOrShadowRootRe.Impl({ });
+
+ParentNodeRe.Impl({ });
+
+function shadowRootMode(self) {
+  return DomTypesRe.decodeShadowRootMode(self.shadowRootMode);
+}
+
+var nodeType = include.nodeType;
+
+exports.nodeType = nodeType;
+exports.shadowRootMode = shadowRootMode;
+/* include Not a pure module */
+
+},{"../DomTypesRe.js":32,"../events/EventTargetRe.js":42,"./DocumentOrShadowRootRe.js":74,"./NodeRe.js":78,"./NonElementParentNodeRe.js":80,"./ParentNodeRe.js":81}],83:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"dup":42}],84:[function(require,module,exports){
+'use strict';
+
+var NodeRe = require("./NodeRe.js");
+var SlotableRe = require("./SlotableRe.js");
+var ChildNodeRe = require("./ChildNodeRe.js");
+var EventTargetRe = require("../events/EventTargetRe.js");
+var CharacterDataRe = require("./CharacterDataRe.js");
+var NonDocumentTypeChildNodeRe = require("./NonDocumentTypeChildNodeRe.js");
+
+function Impl(T) {
+  return { };
+}
+
+var include = NodeRe.Impl({ });
+
+EventTargetRe.Impl({ });
+
+CharacterDataRe.Impl({ });
+
+NonDocumentTypeChildNodeRe.Impl({ });
+
+ChildNodeRe.Impl({ });
+
+SlotableRe.Impl({ });
+
+var nodeType = include.nodeType;
+
+exports.Impl = Impl;
+exports.nodeType = nodeType;
+/* include Not a pure module */
+
+},{"../events/EventTargetRe.js":42,"./CharacterDataRe.js":70,"./ChildNodeRe.js":71,"./NodeRe.js":78,"./NonDocumentTypeChildNodeRe.js":79,"./SlotableRe.js":83}],85:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -13842,13 +15623,14 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],30:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 // Generated by BUCKLESCRIPT, PLEASE EDIT WITH CARE
 'use strict';
 
 var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Printf = require("bs-platform/lib/js/printf.js");
+var Webapi = require("bs-webapi/src/Webapi.js");
 var Canvas2dRe = require("bs-webapi/src/canvas/Canvas2dRe.js");
 var Caml_exceptions = require("bs-platform/lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
@@ -14074,4 +15856,4 @@ exports.name = name;
 exports.dance = dance;
 /* context Not a pure module */
 
-},{"bs-platform/lib/js/block.js":1,"bs-platform/lib/js/caml_builtin_exceptions.js":5,"bs-platform/lib/js/caml_exceptions.js":7,"bs-platform/lib/js/curry.js":23,"bs-platform/lib/js/printf.js":26,"bs-webapi/src/canvas/Canvas2dRe.js":28}]},{},[30]);
+},{"bs-platform/lib/js/block.js":1,"bs-platform/lib/js/caml_builtin_exceptions.js":5,"bs-platform/lib/js/caml_exceptions.js":7,"bs-platform/lib/js/curry.js":23,"bs-platform/lib/js/printf.js":27,"bs-webapi/src/Webapi.js":29,"bs-webapi/src/canvas/Canvas2dRe.js":30}]},{},[86]);

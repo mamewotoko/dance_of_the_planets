@@ -10,13 +10,8 @@ npm i
 (* CavnasRe
  * Canvas2dRe *)
 
+open Webapi
 open Webapi.Canvas
-open Webapi.Canvas.Canvas2d
-open Webapi.Dom
-
-type document (* abstract type for a document object *)
-external getElementById: document -> string -> Dom.element = "getElementById" [@@bs.send]
-external doc: document = "document" [@@bs.val]
 
 (* javascript *)
 module CanvasGraphics = struct
@@ -33,7 +28,7 @@ module CanvasGraphics = struct
   let orange = "#FFA500"
 
   let open_graph canvas_id =
-    match Document.getElementById canvas_id document with
+    match Dom.Document.getElementById canvas_id Dom.document with
     | Some e ->
        (* e##setAttribute "width" (string_of_int width);
         * e##setAttribute "height" (string_of_int height); *)
@@ -42,18 +37,18 @@ module CanvasGraphics = struct
        (* elemnet not found *)
        raise Not_found
   let set_color context color =
-    Canvas2dRe.setFillStyle context String color;
-    Canvas2dRe.setStrokeStyle context String color
+    Canvas2d.setFillStyle context String color;
+    Canvas2d.setStrokeStyle context String color
   (* TODO: private field *)
   let draw_string context x y str =
-    Canvas2dRe.font context "12pt Osaka";
-    context |> fillText str ~x:(float_of_int x) ~y:(float_of_int y) ~maxWidth:50.
+    Canvas2d.font context "12pt Osaka";
+    context |> Canvas2d.fillText str ~x:(float_of_int x) ~y:(float_of_int y) ~maxWidth:50.
   let draw_line context from_x from_y x y =
-    Canvas2dRe.lineWidth context 0.5;
-    Canvas2dRe.beginPath context;
-    context |> Canvas2dRe.moveTo ~x:(float_of_int from_x) ~y:(float_of_int from_y);
-    context |> Canvas2dRe.lineTo ~x:(float_of_int x) ~y:(float_of_int y);
-    Canvas2dRe.stroke context;
+    Canvas2d.lineWidth context 0.5;
+    Canvas2d.beginPath context;
+    context |> Canvas2d.moveTo ~x:(float_of_int from_x) ~y:(float_of_int from_y);
+    context |> Canvas2d.lineTo ~x:(float_of_int x) ~y:(float_of_int y);
+    Canvas2d.stroke context;
 end
 ;;                
 

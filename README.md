@@ -21,7 +21,8 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ## Python [Pillow](./python)
 * python
-* png image
+* [Pillow](https://pillow.readthedocs.io/en/stable/)
+* output png image file
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  

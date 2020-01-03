@@ -24,6 +24,11 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Pillow](https://pillow.readthedocs.io/en/stable/)
 * output png image file
 
+## TODO?
+* R
+* java
+* svgjs 
+
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  
 https://mamewo.ddo.jp/

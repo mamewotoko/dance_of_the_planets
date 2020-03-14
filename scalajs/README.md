@@ -3,20 +3,30 @@
 ## Setup
 
 1. [Install sbt](https://www.scala-sbt.org/1.x/docs/Setup.html)
-    * Mac
 
-        brew install sbt
+        ./build.sh
 
 
 ## Build
 
-1. 
+1. build scala into JavaScript
 
         sbt fastOptJS
 
+    * `./target/scala-2.13/scala-js-tutorial-fastopt.js` will be generated
+    * main method of Dance.scala is called.
+         * `scalaJSUseMainModuleInitializer := true`
+
+
 ## Browse
 
-Open `index-dev.html` with web browser.
+Open [index-dev.html](index-dev.html) with web browser.
+
+## Note
+
+In this example, Dance.main is called <https://www.scala-js.org/doc/project/building.html>
+
+        scalaJSUseMainModuleInitializer := true
 
 ## References
 

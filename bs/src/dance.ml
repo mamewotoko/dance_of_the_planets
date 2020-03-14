@@ -33,13 +33,16 @@ module CanvasGraphics = struct
     | None ->
        (* elemnet not found *)
        raise Not_found
+
   let set_color context color =
     Canvas2d.setFillStyle context String color;
     Canvas2d.setStrokeStyle context String color
   (* TODO: private field *)
+
   let draw_string context x y str =
     Canvas2d.font context "12pt Osaka";
     context |> Canvas2d.fillText str ~x:(float_of_int x) ~y:(float_of_int y) ~maxWidth:50.
+
   let draw_line context from_x from_y x y =
     Canvas2d.lineWidth context 0.5;
     Canvas2d.beginPath context;

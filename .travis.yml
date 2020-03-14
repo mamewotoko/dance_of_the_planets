@@ -10,16 +10,23 @@ jobs:
   - stage: bucklescript
     script:
       - cd bs
-      - sudo apt-get install nodejs make
-      - npm i
+      - ./setup.sh
       - ./build.sh
+
   - stage: ocaml
     script:
       - cd ocaml
-      - sudo apt-get install make
+      - ./setup.sh
       - bash -ex .travis-ocaml.sh
       - eval $(opam env); sh setup-opam
       - make
+
+  - stage: python
+    script:
+      - cd python
+      - ./setup.sh
+      - ./run.sh
+      
   - stage: scalajs
     script:
       - cd scalajs
@@ -38,4 +45,4 @@ env:
 
 os:
   - linux
-#  - osx
+  - osx

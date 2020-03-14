@@ -104,6 +104,7 @@ install_opam2 () {
     case $TRAVIS_OS_NAME in
         linux)
             UBUNTU_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d= -f2)
+            # default repository of ubuntu:18.04 contains bubblewrap
             if [ "${UBUNTU_VERSION}" != "18.04" ] ; then
                 add_ppa ansible/bubblewrap
             fi

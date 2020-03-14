@@ -9,14 +9,9 @@
 
 ## Build
 
-1. build scala into JavaScript
+1. build scala into a JavaScript file `./target/scala-2.13/scala-js-tutorial-fastopt.js`.
 
         sbt fastOptJS
-
-    * `./target/scala-2.13/scala-js-tutorial-fastopt.js` will be generated
-    * main method of Dance.scala is called.
-         * `scalaJSUseMainModuleInitializer := true`
-
 
 ## Browse
 

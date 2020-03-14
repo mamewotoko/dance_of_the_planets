@@ -1,4 +1,4 @@
-# Dance of the planets (ScalaJS)
+# Dance of the planets (Scala.js)
 
 ## Setup
 

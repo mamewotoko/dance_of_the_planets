@@ -2,6 +2,9 @@ bs/js
 bs/lib
 bs/node_modules
 labltk/dance
+scalajs/project/target
+scalajs/target
+scalajs/.metals
 ._d
 .merlin
 *.bs.js

@@ -14,6 +14,7 @@ jobs:
         cd labltk
         ./setup.sh
         bash -ex .travis-ocaml.sh
+        opam switch create 4.07.1
         eval $(opam env)
         bash -x setup-opam
         make

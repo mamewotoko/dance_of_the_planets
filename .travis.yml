@@ -18,7 +18,7 @@ jobs:
       - cd ocaml
       - ./setup.sh
       - bash -ex .travis-ocaml.sh
-      - eval $(opam env); sh setup-opam
+      - opam switch create 4.07.0 && eval $(opam env) && sh setup-opam
       - make
 
   - stage: python

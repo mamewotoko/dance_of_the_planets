@@ -34,7 +34,7 @@ jobs:
         make
       env:
         OCAML_VERSION: 4.02
-        TRAVIS_OS_NAME: linux
+        TRAVIS_OS_NAME: osx
 
     - name: build labltk
       run: |
@@ -46,7 +46,7 @@ jobs:
         make
       env:
         OCAML_VERSION: 4.07
-        TRAVIS_OS_NAME: linux
+        TRAVIS_OS_NAME: osx
 
     - name: build lablgtk
       run: |
@@ -58,11 +58,10 @@ jobs:
         make
       env:
         OCAML_VERSION: 4.07
-        TRAVIS_OS_NAME: linux
+        TRAVIS_OS_NAME: osx
 
     - name: build scalajs
       run: |
         cd scalajs
         ./setup.sh
         sbt fastOptJS
-

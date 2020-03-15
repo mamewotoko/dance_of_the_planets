@@ -1,3 +1,11 @@
 #! /bin/bash
-sudo apt-get install -y tk-dev tcl-dev
-opam install -y labltk 
+if [ $(uname) = Darwin ]; then
+    brew install tcl-tk
+elif [ -f /etc/lsb-release ]; then
+    sudo apt-get update
+    sudo apt-get install -y tk-dev tcl-dev
+else
+    echo not yet
+fi
+
+opam install -y labltk

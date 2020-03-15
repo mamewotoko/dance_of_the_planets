@@ -4,7 +4,7 @@
 
 1. [Install sbt](https://www.scala-sbt.org/1.x/docs/Setup.html)
 
-        ./build.sh
+        ./setup.sh
 
 
 ## Build

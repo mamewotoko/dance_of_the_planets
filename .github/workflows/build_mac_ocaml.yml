@@ -12,7 +12,7 @@ jobs:
         cd ocaml
         ./build.sh
         bash -ex .travis-ocaml.sh
-        opam create switch 4.07.1
+        opam switch create 4.07.1
         eval $(opam env)
         sh setup-opam
         make

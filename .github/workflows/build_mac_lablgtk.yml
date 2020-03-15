@@ -12,7 +12,7 @@ jobs:
     - name: build lablgtk
       run: |
         cd lablgtk
-        brew install make
+        ./setup.sh
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         sh setup-opam

@@ -1,0 +1,21 @@
+name: mac_ocaml
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build ocaml
+      run: |
+        cd ocaml
+        ./build.sh
+        bash -ex .travis-ocaml.sh
+        opam create switch 4.07.1
+        eval $(opam env)
+        sh setup-opam
+        make
+      env:
+        OCAML_VERSION: 4.02
+        TRAVIS_OS_NAME: osx

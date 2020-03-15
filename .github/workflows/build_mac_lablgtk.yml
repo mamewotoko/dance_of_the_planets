@@ -1,0 +1,22 @@
+name: mac_lablgtk
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: build lablgtk
+      run: |
+        cd lablgtk
+        brew install make
+        bash -ex .travis-ocaml.sh
+        eval $(opam env)
+        sh setup-opam
+        make
+      env:
+        OCAML_VERSION: 4.07
+        TRAVIS_OS_NAME: osx

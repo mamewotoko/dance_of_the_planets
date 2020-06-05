@@ -37,4 +37,5 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >
+
 https://mamewo.ddo.jp/

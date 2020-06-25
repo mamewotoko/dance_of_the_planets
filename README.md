@@ -30,10 +30,15 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * scala-js-dom
 * html
 
-## TODO?
+## TODO
 * R
 * java
 * svgjs
+* Ruby
+  * [Ruby2D](https://www.ruby2d.com/)
+* Perl?
+* Qt??
+
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >

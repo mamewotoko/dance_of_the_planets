@@ -5,7 +5,7 @@ if [ $(uname) = Darwin ]; then
     # pip install PIL
 elif [ -f /etc/lsb-release ]; then
     sudo apt-get update
-    sudo apt-get install -y python3
+    sudo apt-get install -y python3 python3-pip
 else
     echo not yet
 fi

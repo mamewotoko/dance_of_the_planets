@@ -42,7 +42,8 @@ jobs:
 env:
   # only for ocaml
   - OCAML_VERSION=4.02
-
+  - TRAVIS_DIST=bionic
+  
 os:
   - linux
 #  - osx

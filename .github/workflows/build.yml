@@ -39,7 +39,7 @@ jobs:
         cd ocaml
         sudo apt-get update
         sudo apt-get install -y make
-        bash -ex .travis-ocaml.sh
+        TRAVIS_DIST=bionic bash -ex .travis-ocaml.sh
         eval $(opam env)
         sh setup-opam
         make

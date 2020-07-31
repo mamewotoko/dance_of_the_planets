@@ -14,16 +14,23 @@ full_apt_version () {
 
 set -uex
 
+if [ "$TRAVIS_OS_NAME" = freebsd -a "${OPAM_VERSION+x}" = x ]; then
+  echo OPAM_VERSION not permitted for FreeBSD targets
+  exit 1
+fi
 
-# the ocaml version to test
 OCAML_VERSION=${OCAML_VERSION:-latest}
-SYS_OCAML_VERSION=4.02
+SYS_OCAML_VERSION=4.05
 # Default opam is the latest release of opam 2
 OPAM_VERSION=${OPAM_VERSION:-2}
 OPAM_INIT=${OPAM_INIT:-true}
+OCAML_BETA=${OCAML_BETA:-disable}
+
+OPAM_LATEST_RELEASE=2.0.6
 
 case $OPAM_VERSION in
-    2|2.0) OPAM_VERSION=2.0.1;;
+    2|2.0) OPAM_VERSION=$OPAM_LATEST_RELEASE;;
+    1.*) echo "Opam version '$OPAM_VERSION' is not supported"; exit 1;;
 esac
 
 if [ "$TRAVIS_OS_NAME" = "osx" ] ; then
@@ -38,37 +45,33 @@ if [ "$TRAVIS_OS_NAME" = "osx" ] ; then
     OPAM_VERSION="$BREW_OPAM_VERSION"
 fi
 
+if [ "$OPAM_VERSION" != "$OPAM_LATEST_RELEASE" ] ; then
+    set +x
+    echo -e "[\e[0;31mWARNING\e[0m] Out-of-date opam $OPAM_VERSION requested" >&2
+    echo -e "[\e[0;31mWARNING\e[0m] Latest release is $OPAM_LATEST_RELEASE" >&2
+    set -x
+fi
+
 if [ "${INSTALL_LOCAL+x}" = x ] ; then
-  if [ "$TRAVIS_OS_NAME" = osx ] ; then
-    echo INSTALL_LOCAL not permitted for macOS targets
+  if [ "$TRAVIS_OS_NAME" = osx -o "$TRAVIS_OS_NAME" = freebsd ] ; then
+    echo INSTALL_LOCAL not permitted for macOS and FreeBSD targets
     exit 1
   fi
 
-  case ${OPAM_VERSION} in
-      2*)
-          if [ "${OPAM_SWITCH:=ocaml-system}" != ocaml-system ] ; then
-              echo "INSTALL_LOCAL requires OPAM_SWITCH=ocaml-system (or unset/null)"
-              exit 1
-          fi ;;
-      *)
-          if [ "${OPAM_SWITCH:=system}" != system ] ; then
-              echo "INSTALL_LOCAL requires OPAM_SWITCH=system (or unset/null)"
-              exit 1
-          fi ;;
-  esac
+  if [ "${OPAM_SWITCH:=ocaml-system}" != ocaml-system ] ; then
+    echo "INSTALL_LOCAL requires OPAM_SWITCH=ocaml-system (or unset/null)"
+    exit 1
+  fi
 fi
 
 # the base opam repository to use for bootstrapping and catch-all namespace
-case $OPAM_VERSION in
-    2*) BASE_REMOTE=${BASE_REMOTE:-git://github.com/ocaml/opam-repository} ;;
-    *) BASE_REMOTE=${BASE_REMOTE:-git://github.com/ocaml/opam-repository#1.2} ;;
-esac
+BASE_REMOTE=${BASE_REMOTE:-git://github.com/ocaml/opam-repository}
 
 # whether we need a new gcc and binutils
 UPDATE_GCC_BINUTILS=${UPDATE_GCC_BINUTILS:-"0"}
 
-# Install Trusty remotes
-UBUNTU_TRUSTY=${UBUNTU_TRUSTY:-"0"}
+# Install Xenial remotes
+UBUNTU_XENIAL=${UBUNTU_XENIAL:-"0"}
 
 # Install XQuartz on OSX
 INSTALL_XQUARTZ=${INSTALL_XQUARTZ:-"false"}
@@ -79,7 +82,6 @@ add_ppa () {
     if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
         APT_UPDATED=0
         sudo add-apt-repository --yes ppa:$1
-        sudo apt-get -qq update
     fi
 }
 
@@ -89,25 +91,26 @@ apt_install () {
             APT_UPDATED=1
             sudo apt-get update -qq
         fi
-        sudo apt-get install -y "$@"
+        sudo apt-get install --no-install-recommends -y "$@"
     fi
 }
 
 install_ocaml () {
     apt_install \
          ocaml ocaml-base ocaml-native-compilers ocaml-compiler-libs \
-         ocaml-interp ocaml-base-nox ocaml-nox \
-         camlp4 camlp4-extra
+         ocaml-interp ocaml-base-nox ocaml-nox
 }
 
 install_opam2 () {
     case $TRAVIS_OS_NAME in
+        freebsd)
+            # Opam does not have any ready to use binaries for FreeBSD
+            sudo pkg install -qy ocaml-opam ;;
         linux)
-            UBUNTU_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d= -f2)
-            # default repository of ubuntu:18.04 contains bubblewrap
-            if [ "${UBUNTU_VERSION}" != "18.04" ] ; then
-                add_ppa ansible/bubblewrap
-            fi
+            case $TRAVIS_DIST in
+                precise|trusty|xenial)
+                    add_ppa ansible/bubblewrap ;;
+            esac
             if [ "${INSTALL_LOCAL:=0}" = 0 ] ; then
                 install_ocaml
             fi
@@ -118,7 +121,7 @@ install_opam2 () {
             if [ "${INSTALL_LOCAL:=0}" = 0 ] ; then
                 brew install ocaml
             fi
-            sudo curl -sL https://github.com/ocaml/opam/releases/download/$OPAM_VERSION/opam-$OPAM_VERSION-x86_64-darwin -o /usr/local/bin/opam
+            sudo curl -fsSL https://github.com/ocaml/opam/releases/download/$OPAM_VERSION/opam-$OPAM_VERSION-x86_64-macos -o /usr/local/bin/opam
             sudo chmod +x /usr/local/bin/opam ;;
     esac
 }
@@ -126,6 +129,8 @@ install_opam2 () {
 install_ppa () {
   add_ppa $1
   if [ "${INSTALL_LOCAL:=0}" = 0 ] ; then
+    sudo apt-get -qq update
+    APT_UPDATED=1
     apt_install \
        "$(full_apt_version ocaml $SYS_OCAML_VERSION)" \
        "$(full_apt_version ocaml-base $SYS_OCAML_VERSION)" \
@@ -133,103 +138,77 @@ install_ppa () {
        "$(full_apt_version ocaml-compiler-libs $SYS_OCAML_VERSION)" \
        "$(full_apt_version ocaml-interp $SYS_OCAML_VERSION)" \
        "$(full_apt_version ocaml-base-nox $SYS_OCAML_VERSION)" \
-       "$(full_apt_version ocaml-nox $SYS_OCAML_VERSION)" \
-       "$(full_apt_version camlp4 $SYS_OCAML_VERSION)" \
-       "$(full_apt_version camlp4-extra $SYS_OCAML_VERSION)"
+       "$(full_apt_version ocaml-nox $SYS_OCAML_VERSION)"
   fi
   apt_install opam
 }
 
+install_on_freebsd () {
+  case "$OCAML_VERSION" in
+    3.12) OCAML_FULL_VERSION=3.12.1; install_opam2 ;;
+    4.00) OCAML_FULL_VERSION=4.00.1; install_opam2 ;;
+    4.01) OCAML_FULL_VERSION=4.01.0; install_opam2 ;;
+    4.02) OCAML_FULL_VERSION=4.02.3; install_opam2 ;;
+    4.03) OCAML_FULL_VERSION=4.03.0; install_opam2 ;;
+    4.04) OCAML_FULL_VERSION=4.04.2; install_opam2 ;;
+    4.05) OCAML_FULL_VERSION=4.05.0; install_opam2 ;;
+    4.06) OCAML_FULL_VERSION=4.06.1; install_opam2 ;;
+    4.07) OCAML_FULL_VERSION=4.07.1; install_opam2 ;;
+    4.08) OCAML_FULL_VERSION=4.08.1; install_opam2 ;;
+    4.09) OCAML_FULL_VERSION=4.09.1; install_opam2 ;;
+    4.10) OCAML_FULL_VERSION=4.10.0; install_opam2 ;;
+    *)
+        if [ "$OCAML_BETA" != "enable" ]; then
+            echo "Unknown OCAML_VERSION=$OCAML_VERSION"
+            echo "(An unset OCAML_VERSION used to default to \"latest\", but you must now specify it."
+            echo "Try something like \"OCAML_VERSION=3.12\", \"OCAML_VERSION=4.10\", or see README-travis.md at https://github.com/ocaml/ocaml-ci-scripts )"
+            exit 1
+        fi
+        OCAML_FULL_VERSION="${OCAML_VERSION}"
+        install_opam2 ;;
+  esac
+}
+
 install_on_linux () {
-  case "$OCAML_VERSION,$OPAM_VERSION" in
-    3.12,1.2.2)
-        OCAML_FULL_VERSION=3.12.1
-        install_ppa avsm/ocaml42+opam12 ;;
-    3.12,2*)
-        OCAML_FULL_VERSION=3.12.1
+  case "$OCAML_VERSION" in
+    3.12) OCAML_FULL_VERSION=3.12.1; install_opam2 ;;
+    4.00) OCAML_FULL_VERSION=4.00.1; install_opam2 ;;
+    4.01) OCAML_FULL_VERSION=4.01.0; install_opam2 ;;
+    4.02) OCAML_FULL_VERSION=4.02.3; install_opam2 ;;
+    4.03) OCAML_FULL_VERSION=4.03.0; install_opam2 ;;
+    4.04) OCAML_FULL_VERSION=4.04.2; install_opam2 ;;
+    4.05) OCAML_FULL_VERSION=4.05.0; install_opam2 ;;
+    4.06) OCAML_FULL_VERSION=4.06.1; install_opam2 ;;
+    4.07) OCAML_FULL_VERSION=4.07.1; install_opam2 ;;
+    4.08) OCAML_FULL_VERSION=4.08.1; install_opam2 ;;
+    4.09) OCAML_FULL_VERSION=4.09.1; install_opam2 ;;
+    4.10) OCAML_FULL_VERSION=4.10.0; install_opam2 ;;
+    *)
+        if [ "$OCAML_BETA" != "enable" ]; then
+            echo "Unknown OCAML_VERSION=$OCAML_VERSION"
+            echo "(An unset OCAML_VERSION used to default to \"latest\", but you must now specify it."
+            echo "Try something like \"OCAML_VERSION=3.12\", \"OCAML_VERSION=4.10\", or see README-travis.md at https://github.com/ocaml/ocaml-ci-scripts )"
+            exit 1
+        fi
+        OCAML_FULL_VERSION="${OCAML_VERSION}"
         install_opam2 ;;
-    4.00,1.2.2)
-        OCAML_FULL_VERSION=4.00.1
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.00,2*)
-        OCAML_FULL_VERSION=4.00.1
-        install_opam2 ;;
-    4.01,1.2.2)
-        OCAML_FULL_VERSION=4.01.0
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.01,2*)
-        OCAML_FULL_VERSION=4.01.0
-        install_opam2 ;;
-    4.02,1.1.2)
-        OCAML_FULL_VERSION=4.02.3
-        OPAM_SWITCH=${OPAM_SWITCH:-system}
-        install_ppa avsm/ocaml42+opam11 ;;
-    4.02,1.2.0)
-        OCAML_FULL_VERSION=4.02.3
-        OPAM_SWITCH=${OPAM_SWITCH:-system}
-        install_ppa avsm/ocaml42+opam120 ;;
-    4.02,1.2.1)
-        OCAML_FULL_VERSION=4.02.3
-        OPAM_SWITCH=${OPAM_SWITCH:-system}
-        install_ppa avsm/ocaml42+opam121 ;;
-    4.02,1.2.2)
-        OCAML_FULL_VERSION=4.02.3
-        OPAM_SWITCH=${OPAM_SWITCH:-system}
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.02,2*)
-        OCAML_FULL_VERSION=4.02.3
-        install_opam2 ;;
-    4.03,1.2.2)
-        OCAML_FULL_VERSION=4.03.0
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.03,2*)
-        OCAML_FULL_VERSION=4.03.0
-        install_opam2 ;;
-    4.04,1.2.2)
-        OCAML_FULL_VERSION=4.04.2
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.04,2*)
-        OCAML_FULL_VERSION=4.04.2
-        install_opam2 ;;
-    4.05,1.2.2)
-        OCAML_FULL_VERSION=4.05.0
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.05,2*)
-        OCAML_FULL_VERSION=4.05.0
-        install_opam2 ;;
-    4.06,1.2.2)
-        OCAML_FULL_VERSION=4.06.1
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.06,2*)
-        OCAML_FULL_VERSION=4.06.1
-        install_opam2 ;;
-    4.07,1.2.2)
-        OCAML_FULL_VERSION=4.07.1
-        install_ppa avsm/ocaml42+opam12 ;;
-    4.07,2*)
-        OCAML_FULL_VERSION=4.07.1
-        install_opam2 ;;
-    *) echo "Unknown OCAML_VERSION=$OCAML_VERSION OPAM_VERSION=$OPAM_VERSION"
-       echo "(An unset OCAML_VERSION used to default to \"latest\", but you must now specify it."
-       echo "Try something like \"OCAML_VERSION=3.12\", \"OCAML_VERSION=4.07\", or see README-travis.md at https://github.com/ocaml/ocaml-ci-scripts )"
-       exit 1 ;;
   esac
 
-  TRUSTY="deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe"
+  XENIAL="deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted universe"
 
   if [ "$UPDATE_GCC_BINUTILS" != "0" ] ; then
     echo "installing a recent gcc and binutils (mainly to get mirage-entropy-xen working!)"
-    sudo add-apt-repository "${TRUSTY}"
+    sudo add-apt-repository "${XENIAL}"
     sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
     sudo apt-get -qq update
-    sudo apt-get install -y gcc-4.8
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 90
-    sudo add-apt-repository -r "${TRUSTY}"
+    sudo apt-get install -y gcc-5
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 90
+    sudo add-apt-repository -r "${XENIAL}"
   fi
 
-  if [ "$UBUNTU_TRUSTY" != "0" ] ; then
-    echo "Adding Ubuntu Trusty mirrors"
-    sudo add-apt-repository "${TRUSTY}"
+  if [ "$UBUNTU_XENIAL" != "0" ] ; then
+    echo "Adding Ubuntu Xenial mirrors"
+    sudo add-apt-repository "${XENIAL}"
     sudo apt-get -qq update
     APT_UPDATED=1
   fi
@@ -256,55 +235,72 @@ install_on_osx () {
         sudo installer -verbose -pkg /Volumes/XQuartz-2.7.6/XQuartz.pkg -target /
         ;;
   esac
-  brew upgrade python || true
-  case "$OCAML_VERSION,$OPAM_VERSION" in
-    3.12,1.2.2) OCAML_FULL_VERSION=3.12.1; brew install opam ;;
-    3.12,2*) OCAML_FULL_VERSION=3.12.1; install_opam2 ;;
-    4.00,1.2.2) OCAML_FULL_VERSION=4.00.1; brew install opam ;;
-    4.00,2*) OCAML_FULL_VERSION=4.00.1; install_opam2 ;;
-    4.01,1.2.2) OCAML_FULL_VERSION=4.01.0; brew install opam ;;
-    4.01,2*) OCAML_FULL_VERSION=4.01.0; install_opam2 ;;
-    4.02,1.2.2) OCAML_FULL_VERSION=4.02.3; brew install opam ;;
-    4.02,2*) OCAML_FULL_VERSION=4.02.3; install_opam2 ;;
-    4.03,1.2.2) OCAML_FULL_VERSION=4.03.0; brew install opam ;;
-    4.03,2*) OCAML_FULL_VERSION=4.03.0; install_opam2 ;;
-    4.04,1.2.2) OCAML_FULL_VERSION=4.04.2; brew install opam ;;
-    4.04,2*) OCAML_FULL_VERSION=4.04.2; install_opam2 ;;
-    4.05,1.2.2) OCAML_FULL_VERSION=4.05.0; brew install opam ;;
-    4.05,2*) OCAML_FULL_VERSION=4.05.0; install_opam2 ;;
-    4.06,1.2.2) OCAML_FULL_VERSION=4.06.1; brew install opam ;;
-    4.06,2*) OCAML_FULL_VERSION=4.06.1; install_opam2 ;;
-    4.07,1.2.2) OCAML_FULL_VERSION=4.07.1;
-                OPAM_SWITCH=${OPAM_SWITCH:-system};
-                brew install ocaml;
-                brew install opam ;;
-    4.07,2*) OCAML_FULL_VERSION=4.07.1;
-                OPAM_SWITCH=${OPAM_SWITCH:-ocaml-system};
-                brew install ocaml;
-                install_opam2 ;;
-    *) echo "Unknown OCAML_VERSION=$OCAML_VERSION OPAM_VERSION=$OPAM_VERSION"
-       exit 1 ;;
+  case "$OCAML_VERSION" in
+    3.12) OCAML_FULL_VERSION=3.12.1; install_opam2 ;;
+    4.00) OCAML_FULL_VERSION=4.00.1; install_opam2 ;;
+    4.01) OCAML_FULL_VERSION=4.01.0; install_opam2 ;;
+    4.02) OCAML_FULL_VERSION=4.02.3; install_opam2 ;;
+    4.03) OCAML_FULL_VERSION=4.03.0; install_opam2 ;;
+    4.04) OCAML_FULL_VERSION=4.04.2; install_opam2 ;;
+    4.05) OCAML_FULL_VERSION=4.05.0; install_opam2 ;;
+    4.06) OCAML_FULL_VERSION=4.06.1; install_opam2 ;;
+    4.07) OCAML_FULL_VERSION=4.07.1; install_opam2 ;;
+    4.08) OCAML_FULL_VERSION=4.08.1; install_opam2 ;;
+    4.09) OCAML_FULL_VERSION=4.09.0;
+          OPAM_SWITCH=${OPAM_SWITCH:-ocaml-system};
+          brew install ocaml;
+          install_opam2 ;;
+    4.10) OCAML_FULL_VERSION=4.10.0; install_opam2 ;;
+    *)
+        if [ "$OCAML_BETA" != "enable" ]; then
+            echo "Unknown OCAML_VERSION=$OCAML_VERSION"
+            exit 1
+        fi
+        OCAML_FULL_VERSION="${OCAML_VERSION}"
+        install_opam2 ;;
   esac
 }
 
 case $TRAVIS_OS_NAME in
+    freebsd) install_on_freebsd ;;
     osx) install_on_osx ;;
     linux) install_on_linux ;;
 esac
 
-OPAM_SWITCH=${OPAM_SWITCH:-ocaml-base-compiler.$OCAML_FULL_VERSION}
+ocaml_package=ocaml-base-compiler
+if [ "$OCAML_BETA" = "enable" ]; then
+    ocaml_package=ocaml-variants
+fi
+
+OPAM_SWITCH=${OPAM_SWITCH:-$ocaml_package.$OCAML_FULL_VERSION}
+
+PACKAGES="$OPAM_SWITCH"
+case "$OCAML_VERSION" in
+  3.12|4.00|4.01|4.02|4.03|4.04|4.05|4.06)
+    PACKAGES="$PACKAGES,ocaml-secondary-compiler";;
+esac
 
 export OPAMYES=1
 
 case $OPAM_INIT in
   true)
-      opam init -a "$BASE_REMOTE" --comp="$OPAM_SWITCH"
+      opam init -a --bare "$BASE_REMOTE"
+      opam_repo_selection=
+      if [ "$OCAML_BETA" = "enable" ]; then
+          opam repo add --dont-select beta git://github.com/ocaml/ocaml-beta-repository.git
+          opam_repo_selection="--repo=default,beta"
+      fi
+      opam switch "$OPAM_SWITCH" || opam switch create $opam_repo_selection "$OPAM_SWITCH" --packages="$PACKAGES"
       eval $(opam config env)
       ;;
 esac
 
 echo OCAML_VERSION=$OCAML_VERSION >  .travis-ocaml.env
 echo OPAM_SWITCH=$OPAM_SWITCH     >> .travis-ocaml.env
+
+# Temporary fix an issue with opam-depext < 1.1.3 on FreeBSD.
+# See https://github.com/ocaml/opam-depext/pull/123
+echo export ASSUME_ALWAYS_YES=YES >> .travis-ocaml.env
 
 if [ -x "$(command -v ocaml)" ]; then
     ocaml -version

@@ -8,4 +8,4 @@ elif [ -f /etc/lsb-release ]; then
 else
     echo not yet
 fi
-npm i
+npm install

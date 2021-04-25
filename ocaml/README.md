@@ -8,20 +8,19 @@ A sample program using Graphics to draw lines, text.
 
 1. 
 
-        opam install graphics
+        opam install odoc graphics dune
 
 ## Build
 
 1. 
 
-        make
+        dune build src/dance.exe
 
 ## Run
 
 1.
 
-
-        ./dance
+        dune exec src/dance.exe
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  

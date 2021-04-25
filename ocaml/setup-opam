@@ -2,4 +2,4 @@ if [ $(uname) = Darwin ]; then
     brew install pkg-config
 fi
 
-opam install -y graphics
+opam install -y odoc graphics dune

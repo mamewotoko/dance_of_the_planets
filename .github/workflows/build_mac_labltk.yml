@@ -12,7 +12,7 @@ jobs:
     - name: build labltk
       run: |
         cd labltk
-        brew install cask
+        brew reinstall cask
         ./setup.sh
         bash -ex .travis-ocaml.sh
         opam switch create 4.07.1

@@ -10,6 +10,7 @@ jobs:
     - name: build ocaml
       run: |
         cd ocaml
+        brew install cask        
         ./setup.sh
         bash -ex .travis-ocaml.sh
         opam switch create 4.07.1
@@ -17,5 +18,5 @@ jobs:
         sh setup-opam
         make
       env:
-        OCAML_VERSION: 4.02
+        OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: osx

@@ -2,47 +2,58 @@ language: sh
 dist: focal
 sudo: required
 
-install:
-  - sudo apt-get update
+before_install:
+  - apt-get update
 
 jobs:
   include:
   - stage: bucklescript
-    script:
-      - cd bs
-      - ./setup.sh
-      - ./build.sh
+    script: |
+      cd bs
+      apt-get install -y npm
+      ./setup.sh
+      ./build.sh
 
   - stage: ocaml
-    script:
-      - cd ocaml
-      - ./setup.sh
-      - bash -ex .travis-ocaml.sh
-      - opam switch create 4.07.0 && eval $(opam env) && sh setup-opam
-      - dune build src/dance.exe
+    script: |
+      cd ocaml
+      ./setup.sh
+      bash -ex .travis-ocaml.sh
+      opam switch create 4.11.0 && eval $(opam env) && sh setup-opam
+      dune build src/dance.exe
 
+  - stage: labltk
+    script: |
+      cd labltk
+      ./setup.sh
+      bash -ex .travis-ocaml.sh
+      opam switch create 4.11.0 && eval $(opam env) && sh setup-opam
+      dune build src/dance.exe
+
+  - stage: lablgtk
+    script: |
+      cd lablgtk
+      ./setup.sh
+      bash -ex .travis-ocaml.sh
+      opam switch create 4.11.0 && eval $(opam env) && sh setup-opam
+      dune build src/dance.exe
+      
   - stage: python
-    script:
-      - cd python
-      - ./setup.sh
-      - ./run.sh
+    script: |
+      cd python
+      ./setup.sh
+      ./run.sh
       
   - stage: scalajs
-    script:
-      - cd scalajs
-      - sh setup.sh
-      # - echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-      # - curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
-      # - sudo apt-get update
-      # - cat /etc/lsb-release
-      # - sudo apt search openjdk
-      # - sudo apt install sbt openjdk-11-jdk
-      - sbt fastOptJS
+    script: |
+      cd scalajs
+      sh setup.sh
+      sbt fastOptJS
 
 env:
   # only for ocaml
-  - OCAML_VERSION=4.02
-  - TRAVIS_DIST=bionic
+  - OCAML_VERSION=4.11
+  - TRAVIS_DIST=focal
   
 os:
   - linux

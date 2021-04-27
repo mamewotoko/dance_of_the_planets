@@ -61,8 +61,6 @@ jobs:
     - name: build labltk
       run: |
         cd labltk
-        # sudo apt-get update
-        # sudo apt-get install -y make
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         bash -x setup-opam

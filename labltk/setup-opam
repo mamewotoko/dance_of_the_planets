@@ -8,4 +8,4 @@ else
     echo not yet
 fi
 
-opam install -y labltk
+opam install -y labltk dune

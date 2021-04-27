@@ -1,8 +1,9 @@
 if [ $(uname) = Darwin ]; then
     brew install gtk+ libgnomecanvas
 elif [ -f /etc/lsb-release ]; then
+    sudo apt update
     sudo apt install -y gtk2.0 libgnomecanvas2-dev
 else
     echo not supported yet
 fi
-opam install -y lablgtk conf-gnomecanvas
+opam install -y lablgtk conf-gnomecanvas dune

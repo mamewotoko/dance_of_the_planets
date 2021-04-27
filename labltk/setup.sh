@@ -1,6 +1,6 @@
 #! /bin/sh
 if [ $(uname) = Darwin ]; then
-    brew install make pkg-config --cask
+    brew install make pkg-config
     brew cask install xquartz    
 elif [ -f /etc/lsb-release ]; then
     sudo apt-get update

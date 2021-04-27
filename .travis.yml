@@ -1,8 +1,8 @@
-language: c
-dist: bionic
+language: sh
+dist: focal
 sudo: required
 
-before_install:
+install:
   - sudo apt-get update
 
 jobs:

@@ -17,5 +17,5 @@ jobs:
         sh setup-opam
         make
       env:
-        OCAML_VERSION: 4.02
+        OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: osx

@@ -1,0 +1,3 @@
+(executable
+  (name dance)
+  (libraries graphics))

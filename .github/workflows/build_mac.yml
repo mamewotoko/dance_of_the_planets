@@ -3,8 +3,7 @@ name: CI on macos
 on: [push]
 
 jobs:
-  build:
-
+  build_bucklescript:
     runs-on: macos-latest
 
     steps:
@@ -18,9 +17,73 @@ jobs:
         mkdir site
         cp -r index.html js site
 
+  build_python:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
     - name: build python
       run: |
         cd python
         ./setup.sh
         ./run.sh
 
+  build_ocaml:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build ocaml
+      run: |
+        cd ocaml
+        # sudo apt-get update
+        # sudo apt-get install -y make
+        bash -ex .travis-ocaml.sh
+        eval $(opam env)
+        sh setup-opam
+        dune
+      env:
+        OCAML_VERSION: 4.11
+        TRAVIS_OS_NAME: osx
+
+  build_labltk:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build labltk
+      run: |
+        cd labltk
+        # sudo apt-get update
+        # sudo apt-get install -y make
+        bash -ex .travis-ocaml.sh
+        eval $(opam env)
+        bash -x setup-opam
+        dune
+      env:
+        OCAML_VERSION: 4.11
+        TRAVIS_OS_NAME: osx
+
+  build_lablgtk:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build lablgtk
+      run: |
+        cd lablgtk
+        sudo apt-get update
+        sudo apt-get install -y make
+        bash -ex .travis-ocaml.sh
+        eval $(opam env)
+        sh setup-opam
+        make
+      env:
+        OCAML_VERSION: 4.11
+        TRAVIS_OS_NAME: osx
+
+  build_scalajs:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build scalajs
+      run: |
+        cd scalajs
+        ./setup.sh
+        sbt fastOptJS

@@ -39,6 +39,7 @@ jobs:
         sh setup-opam
         dune
       env:
+        OPAM_VERSION: 2
         OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: osx
 
@@ -54,6 +55,7 @@ jobs:
         bash -x setup-opam
         dune
       env:
+        OPAM_VERSION: 2
         OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: osx
 
@@ -69,6 +71,7 @@ jobs:
         sh setup-opam
         make
       env:
+        OPAM_VERSION: 2
         OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: osx
 

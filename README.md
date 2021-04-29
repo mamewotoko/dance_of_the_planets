@@ -7,19 +7,19 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## BuckleScript [bs](./bs)
 * webiopi
   * Canvas2d
-* html
+* HTML
 
 ## OCaml graphics [ocaml](./ocaml)
 * graphics
-* gui
+* GUI
 
 ## OCaml lalbltk [labltk](./labltk)
 * labltk
-* gui
+* GUI
 
 ## OCaml lalblgtk [lablgtk](./lablgtk)
 * lablgtk
-* gui
+* GUI
 
 ## Python [Pillow](./python)
 * python
@@ -30,9 +30,15 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * scala-js-dom
 * html
 
+## [Java](./java)
+* GUI
+
 ## TODO
+* javascript + canvas
+* typescript?
+* Reason
+* threejs?
 * R
-* java
 * svgjs
 * Ruby
   * [Ruby2D](https://www.ruby2d.com/)

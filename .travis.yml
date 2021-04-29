@@ -50,6 +50,11 @@ jobs:
       sh setup.sh
       sbt fastOptJS
 
+  - stage: java
+    script: |
+      cd java
+      ./gradlew build
+      
 env:
   # only for ocaml
   - OCAML_VERSION=4.11

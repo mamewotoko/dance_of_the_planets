@@ -98,10 +98,11 @@ let main canvas outer_planet inner_planet orbits =
   let a2 = ref 0. in
   let a2_interval = 2. *. pi *. interval_days /. inner_planet_year in
   (* wait until q key is pressed*)
+  (* draw text *)
+  let outer_planet_name = name outer_planet in
+  let inner_planet_name = name inner_planet in
+
   begin
-    (* draw text *)
-    let outer_planet_name = name outer_planet in
-    let inner_planet_name = name inner_planet in
     let orbit_text = Printf.sprintf "%.0f orbits" orbits in
     ignore @@ draw_text canvas blue 30 20 outer_planet_name;
     ignore @@ draw_text canvas blue 30 40 inner_planet_name;

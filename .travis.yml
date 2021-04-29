@@ -3,14 +3,14 @@ dist: focal
 sudo: required
 
 before_install:
-  - apt-get update
+  - sudo apt-get update
 
 jobs:
   include:
   - stage: bucklescript
     script: |
       cd bs
-      apt-get install -y npm
+      sudo apt-get install -y npm
       ./setup.sh
       ./build.sh
 

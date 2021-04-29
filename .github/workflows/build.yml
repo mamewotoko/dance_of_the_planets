@@ -77,8 +77,6 @@ jobs:
     - name: build lablgtk
       run: |
         cd lablgtk
-        sudo apt-get update
-        sudo apt-get install -y make
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         sh setup-opam
@@ -86,7 +84,7 @@ jobs:
       env:
         OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: linux
-        TRAVIS_DIST: bionic
+        TRAVIS_DIST: focal
 
   build_scalajs:
     runs-on: ubuntu-latest

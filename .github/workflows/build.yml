@@ -63,6 +63,7 @@ jobs:
         cd labltk
         bash -ex .travis-ocaml.sh
         eval $(opam env)
+        ./setup.sh
         bash -x setup-opam
         dune
       env:
@@ -79,6 +80,7 @@ jobs:
         cd lablgtk
         bash -ex .travis-ocaml.sh
         eval $(opam env)
+        ./setup.sh
         sh setup-opam
         make
       env:

@@ -9,6 +9,9 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
   * Canvas2d
 * HTML
 
+## [svgjs bucklescript](https://github.com/mamewotoko/bs-svgjs)
+* HTML
+
 ## OCaml graphics [ocaml](./ocaml)
 * graphics
 * GUI
@@ -33,7 +36,10 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## [Java](./java)
 * GUI
 
+
+
 ## TODO
+* animation?
 * javascript + canvas
 * typescript?
 * Reason

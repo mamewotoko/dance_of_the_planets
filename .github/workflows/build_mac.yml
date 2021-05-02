@@ -36,7 +36,7 @@ jobs:
         cd ocaml
         bash -ex .travis-ocaml.sh
         eval $(opam env)
-        brew install xquartz --cask
+        ./setup.sh
         sh setup-opam
         dune
       env:
@@ -53,6 +53,7 @@ jobs:
         cd labltk
         bash -ex .travis-ocaml.sh
         eval $(opam env)
+        ./setup.sh
         bash -x setup-opam
         dune
       env:

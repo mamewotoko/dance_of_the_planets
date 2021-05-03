@@ -6,7 +6,7 @@ jobs:
   build_bucklescript:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: build bucklescript
       run: |
         cd bs
@@ -27,7 +27,7 @@ jobs:
   build_python:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: build python
       run: |
         cd python
@@ -39,7 +39,7 @@ jobs:
   build_ocaml:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: build ocaml
       run: |
         cd ocaml
@@ -57,7 +57,7 @@ jobs:
   build_labltk:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: build labltk
       run: |
         cd labltk
@@ -74,7 +74,7 @@ jobs:
   build_lablgtk:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: build lablgtk
       run: |
         cd lablgtk
@@ -91,11 +91,23 @@ jobs:
   build_scalajs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: build scalajs
       run: |
         cd scalajs
         ./setup.sh
         sbt fastOptJS
 
-    # TODO deploy
+  build_kotlinjs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'      
+    - name: build kotlinjs
+      run: |
+        cd kotlinjs
+        ./gradlew build
+

@@ -1,0 +1,115 @@
+name: CI
+
+on: [push]
+
+jobs:
+  # build_bucklescript:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: build bucklescript
+  #     run: |
+  #       cd bs
+  #       sudo apt-get update
+  #       sudo apt-get install -y nodejs make
+  #       npm i
+  #       ./build.sh
+  #       mkdir site
+  #       cp -r index.html js site
+
+  #   - name: deploy bucklescript site
+  #     uses: peaceiris/actions-gh-pages@v2
+  #     env:
+  #       ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+  #       PUBLISH_BRANCH: gh-pages
+  #       PUBLISH_DIR: ./bs/site
+
+  build_python:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build python
+      run: |
+        cd python
+        sudo apt-get update
+        sudo apt-get install -y python3
+        sh setup.sh
+        sh run.sh
+
+  # build_ocaml:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: build ocaml
+  #     run: |
+  #       cd ocaml
+  #       # sudo apt-get update
+  #       # sudo apt-get install -y make
+  #       bash -ex .travis-ocaml.sh
+  #       eval $(opam env)
+  #       sh setup-opam
+  #       dune
+  #     env:
+  #       OCAML_VERSION: 4.11
+  #       TRAVIS_OS_NAME: linux
+  #       TRAVIS_DIST: focal
+
+  # build_labltk:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: build labltk
+  #     run: |
+  #       cd labltk
+  #       bash -ex .travis-ocaml.sh
+  #       eval $(opam env)
+  #       ./setup.sh
+  #       bash -x setup-opam
+  #       dune
+  #     env:
+  #       OCAML_VERSION: 4.11
+  #       TRAVIS_OS_NAME: linux
+  #       TRAVIS_DIST: focal
+
+  # build_lablgtk:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: build lablgtk
+  #     run: |
+  #       cd lablgtk
+  #       bash -ex .travis-ocaml.sh
+  #       eval $(opam env)
+  #       ./setup.sh
+  #       sh setup-opam
+  #       make
+  #     env:
+  #       OCAML_VERSION: 4.11
+  #       TRAVIS_OS_NAME: linux
+  #       TRAVIS_DIST: focal
+
+  build_scalajs:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: olafurpg/setup-scala@v10
+      with:
+        java-version: adopt@1.11      
+    - name: build scalajs
+      run: |
+        cd scalajs
+        sbt fastOptJS
+
+  build_kotlinjs:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: build kotlinjs
+        run: |
+          cd kotlinjs
+          gradlew build

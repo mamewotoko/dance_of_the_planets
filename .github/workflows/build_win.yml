@@ -28,13 +28,15 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+        architecture: 'x64'      
     - name: build python
       run: |
         cd python
-        sudo apt-get update
-        sudo apt-get install -y python3
-        sh setup.sh
-        sh run.sh
+        python3 -m pip install Pillow
+        py dance.py
 
   # build_ocaml:
   #   runs-on: windows-latest

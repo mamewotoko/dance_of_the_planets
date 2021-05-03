@@ -1,0 +1,45 @@
+plugins {
+    id 'org.jetbrains.kotlin.js' version '1.4.32'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven" }
+    mavenCentral()
+}
+
+dependencies {
+    def kotlinx_html_version = "0.6.12"
+    // include for client-side
+    implementation("org.jetbrains.kotlinx:kotlinx-html-js:${kotlinx_html_version}")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+    //implementation "org.jetbrains.kotlinx:kotlinx-html-common:0.6.12"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
+}
+
+kotlin {
+    js {
+        browser {
+            webpackTask {
+                cssSupport.enabled = true
+            }
+
+            runTask {
+                cssSupport.enabled = true
+            }
+
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                    webpackConfig.cssSupport.enabled = true
+                }
+            }
+        }
+        binaries.executable()
+    }
+}
+

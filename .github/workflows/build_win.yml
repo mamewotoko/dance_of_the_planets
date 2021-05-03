@@ -35,7 +35,7 @@ jobs:
     - name: build python
       run: |
         cd python
-        python3 -m pip install Pillow
+        py -m pip install Pillow
         py dance.py
 
   # build_ocaml:
@@ -114,4 +114,4 @@ jobs:
       - name: build kotlinjs
         run: |
           cd kotlinjs
-          gradlew.bat build
+          .\gradlew build

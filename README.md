@@ -36,21 +36,20 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## [Java](./java)
 * GUI
 
-
+## [Kotlin/JS](./kotlinjs)
+* HTML
 
 ## TODO
 * animation?
 * javascript + canvas
-* typescript?
 * Reason
 * threejs?
 * R
-* svgjs
 * Ruby
   * [Ruby2D](https://www.ruby2d.com/)
+* typescript?
 * Perl?
 * Qt??
-
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >

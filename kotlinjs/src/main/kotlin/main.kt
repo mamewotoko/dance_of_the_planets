@@ -91,6 +91,15 @@ fun dance(canvas: HTMLCanvasElement, outerPlanet: Planet, innerPlanet: Planet, o
     val a1Interval = 2.0 * PI * intervalDays / outerPlanetYear
     var a2 = 0.0
     val a2Interval = 2.0 * PI * intervalDays / innerPlanetYear
+    val outerPlanetName = nameOfPlanet(outerPlanet)
+    val innerPlanetName = nameOfPlanet(innerPlanet)
+    val orbitText = "${orbit} orbits"
+    c.fillStyle = "blue"
+    c.font = "12pt Osaka"
+    c.fillText(outerPlanetName, 10.0, 25.0)
+    c.fillText(innerPlanetName, 10.0, 45.0)
+    c.fillText(orbitText, 10.0, CANVAS_LEN-20.0)
+    
     while(r < rstop){
         val i = (r / intervalDays / 75.0).toInt()
         console.log(i)
@@ -114,7 +123,7 @@ fun dance(canvas: HTMLCanvasElement, outerPlanet: Planet, innerPlanet: Planet, o
         val y2 = r2 * sin(a2)
 
         drawLine(c, x1 + xcenter, y1 + ycenter, x2 + xcenter, y2 + ycenter, color)
-        r = r + intervalDays
+        r += intervalDays
     }
 }
 

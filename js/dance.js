@@ -13917,7 +13917,7 @@ var maroon = "#800000";
 
 var navy = "#8B0000";
 
-var dark_red = "8B0000";
+var dark_red = "#8B0000";
 
 var orange = "#FFA500";
 

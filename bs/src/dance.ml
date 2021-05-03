@@ -21,7 +21,7 @@ module CanvasGraphics = struct
   let purple = "#800080"
   let maroon = "#800000"
   let navy = "#8B0000"
-  let dark_red = "8B0000"
+  let dark_red = "#8B0000"
   let orange = "#FFA500"
 
   let open_graph canvas_id =

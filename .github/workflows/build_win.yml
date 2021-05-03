@@ -114,4 +114,4 @@ jobs:
       - name: build kotlinjs
         run: |
           cd kotlinjs
-          gradlew build
+          gradlew.bat build

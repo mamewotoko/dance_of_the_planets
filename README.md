@@ -50,7 +50,6 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * javascript + canvas
 * Reason
 * threejs?
-* R
 * Ruby
   * [Ruby2D](https://www.ruby2d.com/)
 * typescript?

@@ -129,7 +129,9 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore
+        run: |
+          cd csharp
+          dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
 #      - name: Test

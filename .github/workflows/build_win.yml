@@ -120,7 +120,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        dotnet-version: ['3.0', '3.1.x', '5.0.x' ]
+        dotnet-version: ['5.0.100']
 
     steps:
       - uses: actions/checkout@v2 

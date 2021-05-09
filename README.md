@@ -52,7 +52,9 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## TODO
 * animation?
 * javascript + canvas
+* Haskel
 * Reason
+  * format from OCaml??
 * threejs?
 * Ruby
   * [Ruby2D](https://www.ruby2d.com/)

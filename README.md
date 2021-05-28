@@ -5,54 +5,67 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ![earth venus](./bs/img/earth_venus.png)
 
 ## BuckleScript [bs](./bs)
+
 * webiopi
   * Canvas2d
 * HTML
 
 ## [svgjs bucklescript](https://github.com/mamewotoko/bs-svgjs)
+
 * HTML
 
 ## OCaml graphics [ocaml](./ocaml)
+
 * graphics
 * GUI
 
 ## OCaml lalbltk [labltk](./labltk)
+
 * labltk
 * GUI
 
 ## OCaml lalblgtk [lablgtk](./lablgtk)
+
 * lablgtk
 * GUI
 
 ## Python [Pillow](./python)
+
 * python
 * [Pillow](https://pillow.readthedocs.io/en/stable/)
 * output png image file
 
 ## [Scala.js](./scalajs)
+
 * scala-js-dom
 * html
 
 ## [Java](./java)
+
 * GUI
 
 ## [Kotlin/JS](./kotlinjs)
+
 * HTML
 
 ## [Kotlin Android](./kotlin_android)
+
 * Android App
 
 ## [R](./r)
+
 * png image file
 
 ## [C#](./csharp)
+
 * GUI
 * Windows
 
 ## TODO
-* animation?
+
+* animation ?
 * javascript + canvas
-* Haskel
+* Haskell
 * Reason
   * format from OCaml??
 * threejs?

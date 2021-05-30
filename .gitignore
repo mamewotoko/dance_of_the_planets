@@ -1,7 +1,8 @@
 bs/js
 bs/lib
 bs/node_modules
-labltk/dance
+/labltk/dance
+/labltk/_build
 scalajs/project/target
 scalajs/target
 scalajs/.metals
@@ -9,8 +10,14 @@ scalajs/.metals
 .merlin
 *.bs.js
 *.cmi
+*.cmt
 *.cmx
 *.o
 .DS_Store
 /haskell/dist-newstyle/
 /haskell/dop.png
+/kotlinjs/build/
+/reason/esy.lock/
+/java/.gradle/
+/java/build/
+/ocaml/_build/

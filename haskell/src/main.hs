@@ -6,7 +6,7 @@ import Codec.Picture
 -- import Debug.Trace
 import Graphics.Rasterific
 import Graphics.Rasterific.Texture
-
+import Graphics.Text.TrueType( loadFontFile )
 
 data Planet = Mercury | Venus | Earth | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto
   deriving (Enum, Show)
@@ -79,13 +79,22 @@ colorOfI 7 = darkred
 colorOfI _ = orange
 
 drawDance :: Planet -> Planet -> Int -> IO ()
-drawDance innerPlanet outerPlanet orbits =
-  writePng "dop.png" image
+drawDance innerPlanet outerPlanet orbits = do
+  fontErr <- loadFontFile "ipaexg00301/ipaexg.ttf"
+  case fontErr of
+    Left err -> putStrLn err
+    Right font ->
+      writePng "dop.png" $ image font
+  
   where
-    image =
+    image font = do
       renderDrawing 400 400 white $ do
-      mapM_ oneLine $
-        takeWhile (\n -> (n * intervalDays) < (outerPlanetYear * (fromIntegral orbits))) [0..]
+        withTexture (uniformTexture blue) $ do
+          printTextAt font (PointSize 12) (V2 10 (canvasLen - 20 - 5)) (show outerPlanet)
+          printTextAt font (PointSize 12) (V2 10 (canvasLen - 40 - 5)) (show innerPlanet)
+          printTextAt font (PointSize 12) (V2 10 20) (show orbits ++ " orbits")
+        mapM_ oneLine $
+          takeWhile (\n -> (n * intervalDays) < (outerPlanetYear * (fromIntegral orbits))) [0..]
 
     oneLine n =
       withTexture (uniformTexture c) $

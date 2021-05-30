@@ -20,4 +20,5 @@ Executable dop
     Build-Depends: base >= 4.14.1.0
                  , Rasterific
                  , JuicyPixels
+                 , FontyFruity
 

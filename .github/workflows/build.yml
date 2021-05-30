@@ -124,5 +124,6 @@ jobs:
       - name: build haskell
         run: |
           cd haskell
+          bash setup.sh
           cabal run
           ls -l dop.png

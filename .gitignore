@@ -11,4 +11,6 @@ scalajs/.metals
 *.cmi
 *.cmx
 *.o
-
+.DS_Store
+/haskell/dist-newstyle/
+/haskell/dop.png

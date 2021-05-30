@@ -68,6 +68,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## TODO
 
 * animation ?
+* [ipycanvas](https://github.com/martinRenou/ipycanvas)
 * javascript + canvas
 * Reason
   * format from OCaml??

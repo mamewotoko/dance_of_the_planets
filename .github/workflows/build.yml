@@ -106,8 +106,23 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'      
+          distribution: 'adopt'
       - name: build kotlinjs
         run: |
           cd kotlinjs
           ./gradlew build
+
+  build_haskell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install haskell
+        uses: haskell/actions/setup@v1
+        with:
+          ghc-version: '8.10.4'
+          cabal-version: '3.4.0.0'
+      - name: build kotlinjs
+        run: |
+          cabal run
+          ls -l dop.png
+

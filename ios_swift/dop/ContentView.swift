@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    var orbits = 8.0
-    var canvasLen = 400
+    let orbits = 8.0
+    let canvasLen = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 40
     //venus
-    var innerPlanetName = "Venus"
-    var innerPlanetYear = 224.701
-    var innerPlanetOrbit = 108.21
+    let innerPlanetName = "Venus"
+    let innerPlanetYear = 224.701
+    let innerPlanetOrbit = 108.21
     //earth
-    var outerPlanetName = "Earth"
-    var outerPlanetYear = 365.256
-    var outerPlanetOrbit = 149.60
+    let outerPlanetName = "Earth"
+    let outerPlanetYear = 365.256
+    let outerPlanetOrbit = 149.60
     
     func colorOfI(i: Int) -> Color {
         switch i {

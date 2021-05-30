@@ -121,8 +121,8 @@ jobs:
         with:
           ghc-version: '8.10.4'
           cabal-version: '3.4.0.0'
-      - name: build kotlinjs
+      - name: build haskell
         run: |
+          cd haskell
           cabal run
           ls -l dop.png
-

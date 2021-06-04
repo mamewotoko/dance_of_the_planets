@@ -21,3 +21,4 @@ scalajs/.metals
 /java/.gradle/
 /java/build/
 /ocaml/_build/
+.ipynb_checkpoints

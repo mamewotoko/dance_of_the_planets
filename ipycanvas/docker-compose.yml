@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  jupyter:
+    image: jupyter/scipy-notebook:ubuntu-20.04
+    ports:
+      - "127.0.0.1:${JUPYTER_PORT:-8888}:8888"
+    volumes:
+      - .:/home/jovyan/work
+    restart: always

@@ -115,4 +115,4 @@ if __name__ == "__main__":
     im = Image.new("RGB", (400, 400), (0xFF, 0xFF, 0xFF))
     draw = ImageDraw.Draw(im)
     main(draw, Planets.EARTH, Planets.VENUS, 8.0)
-    im.save("result_daonce.png")
+    im.save("result_dance.png")

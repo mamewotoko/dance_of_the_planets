@@ -17,7 +17,7 @@ Build & run
 cabal run
 ```
 
-An image file ![dop.png](dop.png) will be generated.
+An image file ![haskell_dance.png](./image/haskell_dance.png) will be generated.
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >  

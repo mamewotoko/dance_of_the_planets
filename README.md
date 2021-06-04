@@ -35,7 +35,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ## Smartphone app
 * [Kotlin Android](./kotlin_android)
-* [swift iOS](./ios_swift)
+* [Swift iOS](.b/ios_swift)
   * iPad, iPhone
 
 ## TODO

@@ -39,6 +39,11 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Pillow](https://pillow.readthedocs.io/en/stable/)
 * output png image file
 
+## Jupyter Notebook [ipycanvas](./ipycanvas)
+
+* [ipycanvas](https://github.com/martinRenou/ipycanvas)
+* draw to canvas in Jupyter Notebook
+
 ## [Scala.js](./scalajs)
 
 * scala-js-dom
@@ -68,7 +73,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## TODO
 
 * animation ?
-* [ipycanvas](https://github.com/martinRenou/ipycanvas)
+
 * javascript + canvas
 * Reason
   * format from OCaml??

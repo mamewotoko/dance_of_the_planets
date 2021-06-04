@@ -4,71 +4,39 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ![earth venus](./bs/img/earth_venus.png)
 
-## BuckleScript [bs](./bs)
+## HTML
 
-* webiopi
-  * Canvas2d
-* HTML
+* BuckleScript [bs](./bs)
+    * Canvas2d
+* [svgjs bucklescript](https://github.com/mamewotoko/bs-svgjs)
+* [Scala.js](./scalajs)
+    * scala-js-dom
+* [Kotlin/JS](./kotlinjs)
 
-## [svgjs bucklescript](https://github.com/mamewotoko/bs-svgjs)
+## GUI
 
-* HTML
+* OCaml graphics [ocaml](./ocaml)
+* OCaml lalbltk [labltk](./labltk)
+* OCaml lalblgtk [lablgtk](./lablgtk)
+* [Java](./java)
+* [C#](./csharp)
 
-## OCaml graphics [ocaml](./ocaml)
 
-* graphics
-* GUI
+## PNG (image file)
+* Haskell [haskell](./haskell)
+* Python [Pillow](./python)
+    * [Pillow](https://pillow.readthedocs.io/en/stable/)
+* [R](./r)
 
-## OCaml lalbltk [labltk](./labltk)
+## Jupyter Notebook
+* [ipycanvas](./ipycanvas)
+  * [ipycanvas](https://github.com/martinRenou/ipycanvas)
+  * draw to canvas in Jupyter Notebook
 
-* labltk
-* GUI
-
-## OCaml lalblgtk [lablgtk](./lablgtk)
-
-* lablgtk
-* GUI
-
-## Haskell [haskell](./haskell)
-
-* png file
-
-## Python [Pillow](./python)
-
-* python
-* [Pillow](https://pillow.readthedocs.io/en/stable/)
-* output png image file
-
-## Jupyter Notebook [ipycanvas](./ipycanvas)
-
-* [ipycanvas](https://github.com/martinRenou/ipycanvas)
-* draw to canvas in Jupyter Notebook
-
-## [Scala.js](./scalajs)
-
-* scala-js-dom
-* html
-
-## [Java](./java)
-
-* GUI
-
-## [Kotlin/JS](./kotlinjs)
-
-* HTML
-
-## [Kotlin Android](./kotlin_android)
-
-* Android App
-
-## [R](./r)
-
-* png image file
-
-## [C#](./csharp)
-
-* GUI
-* Windows
+## Smartphone app
+* [Kotlin Android](./kotlin_android)
+* [swift iOS](./ios_swift)
+  * iPad, iPhone
 
 ## TODO
 

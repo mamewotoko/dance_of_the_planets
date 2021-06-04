@@ -83,7 +83,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * Perl?
 * Qt??
 
-Refefence
+Reference
 --------------
 * [ESPL: The dance of the plantes](https://web.archive.org/web/20140122124421/http:/ensign.editme.com/t43dances)
 

@@ -12,6 +12,8 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Scala.js](./scalajs)
     * scala-js-dom
 * [Kotlin/JS](./kotlinjs)
+* [three.js](./threejs)
+    * 3D
 
 ## GUI
 
@@ -40,13 +42,11 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ## TODO
 
+* add text to threejs
 * animation ?
 * javascript + canvas
 * Reason
   * format from OCaml??
-* threejs?
-* Ruby
-  * [Ruby2D](https://www.ruby2d.com/)
 * typescript?
 * Perl?
 * Qt??

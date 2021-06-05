@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby
 require 'ruby2d'
 
 module Planet
@@ -123,4 +124,3 @@ set width: CANVAS_LEN, height: CANVAS_LEN, background: 'white'
 dance(Planet::VENUS, Planet::EARTH, 8.0)
 # Show the window
 show
-

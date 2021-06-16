@@ -87,7 +87,7 @@ let draw_line group color from_x from_y to_x to_y =
     group
 ;;
 
-let main group outer_planet inner_planet orbits =
+let dance group outer_planet inner_planet orbits =
   let outer_planet_year = year outer_planet in
   let inner_planet_year = year inner_planet in
   let outer_planet_radius = orbit outer_planet in
@@ -143,8 +143,9 @@ let main group outer_planet inner_planet orbits =
 
 let _ =
   ignore @@ GtkMain.Main.init ();
-  let window = GWindow.window ~width:(canvas_len + 40) ~height:(canvas_len + 40)
-                 ~title:"Dance of the Planets" () in
+  let window = GWindow.window ~width:canvas_len ~height:canvas_len
+                              ~show:true
+                              ~title:"Dance of the Planets" () in
   ignore @@ window#connect#destroy ~callback:GMain.Main.quit;
   let canvas = GnoCanvas.canvas
                  ~width:canvas_len
@@ -155,9 +156,10 @@ let _ =
   ignore @@ GnoCanvas.rect ~props:[`X1 ~-.f_canvas_len; `Y1 ~-.f_canvas_len;
                                    `X2 f_canvas_len; `Y2 f_canvas_len;
                                    `FILL_COLOR "white"]
-              group;
-  main group Earth Venus 8.;
-  (* window# *)
-  window#show ();
+                           group;
+  (* ignore @@ canvas#event#connect#expose ~callback:(fun _ -> dance group Earth Venus 8.; true); *)
+  (* TODO: canvas position is not collect on mac *)
+  (* TODO: canvas is not drawn until mouse cursor move on window *)
+  dance group Earth Venus 8.;
   GtkMain.Main.main ();
 ;;

@@ -3,7 +3,7 @@ Ocaml lablgtk: Dance of the planets
 
 Setup
 --------
-1. install gtk3
+1. install gtk2
 
     ```bash
     brew install gtk
@@ -13,7 +13,7 @@ Setup
 3. install lablgtk
 
     ```
-    sh setup-opam
+    bash setup-opam
     ```
 
 Build

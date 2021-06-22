@@ -25,7 +25,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Ruby 2D](./ruby2d)
 * [gauche scheme](./gauche-scheme)
 * [SCRATCH](./scratch)
-* [rust]
+* [gtk-rs(rust)](./rust)
 
 ## PNG (image file)
 

@@ -22,3 +22,4 @@ scalajs/.metals
 /java/build/
 /ocaml/_build/
 .ipynb_checkpoints
+/rust/target/

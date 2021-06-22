@@ -15,6 +15,7 @@ Run
 ./dance
 ```
 
+A image file named [dance.png](./dance.png) will be created.
 
 ------
 Takashi Masuyama < mamewotoko@gmail.com >  

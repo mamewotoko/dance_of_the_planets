@@ -58,6 +58,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * typescript?
 * Perl?
 * Qt??
+* Prolog??
 
 Reference
 --------------

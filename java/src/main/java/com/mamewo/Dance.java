@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Dance {
-    static private int w = 800, h = 800;
+    static private int w = 400, h = 400;
     static private Color BLACK = new Color(0x00, 0x00, 0x00);
     static private Color BLUE = new Color(0x00,0x00,0xFF);
     static private Color RED = new Color(0xFF,0x00,0x00);
@@ -87,17 +87,18 @@ public class Dance {
     }
 
     public static void run() {
+        final double orbits = 8.0;
+        final int headerHeight = 30;
         // JFrameのインスタンスを生成
         JFrame frame = new JFrame("Dance of the planets");
         // ウィンドウを閉じたらプログラムを終了する
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // ウィンドウのサイズ・初期位置
-        frame.setSize(w, h);
+        frame.setSize(w, h + headerHeight);
         frame.setLocationRelativeTo(null);
-        // setBounds(x, y, w, h);
 
         // PaintCanvasのインスタンスを生成
-        PaintCanvas canvas = new PaintCanvas(Planet.Earth, Planet.Venus, 8.0);
+        PaintCanvas canvas = new PaintCanvas(Planet.Earth, Planet.Venus, orbits);
 
         // フレームに追加
         JPanel pane = new JPanel();
@@ -141,7 +142,7 @@ public class Dance {
             final int ycenter = w / 2;
             final int xcenter = h / 2;
             final double r1 = ycenter;
-            final double r2 = r1 * innerPlanetYear / outerPlanetRadius;
+            final double r2 = r1 * innerPlanetRadius / outerPlanetRadius;
             double r = 0.0;
             final double rstop = outerPlanetYear * orbits_;
             double a1 = 0.0;

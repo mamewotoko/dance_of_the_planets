@@ -1,4 +1,19 @@
-apply plugin: 'java'
+repositories {
+    jcenter()
+}
+
 apply plugin: 'application'
+//coverage
+apply plugin: 'jacoco'
 
 mainClassName = 'com.mamewo.Dance'
+
+jacoco {
+    applyTo run
+}
+
+task applicationCodeCoverageReport(type:JacocoReport){
+    executionData run
+    sourceSets sourceSets.main
+}
+

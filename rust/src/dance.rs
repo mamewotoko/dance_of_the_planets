@@ -51,7 +51,6 @@ fn dance(cairo: &cairo::Context, orbits: f64){
     cairo.rectangle(0.0, 0.0, canvas_len as f64, canvas_len as f64);
     cairo.fill();
 
-
     while r < rstop {
         let i = (r / interval_days / 75.).floor() as i32;
         let color = color_of_i(i);

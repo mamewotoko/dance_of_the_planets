@@ -35,6 +35,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [R](./r)
 * [Golang](./golang)
     * [fogleman/gg](https://github.com/fogleman/gg)
+* [perl](./perl)
 
 ## Jupyter Notebook
 
@@ -56,7 +57,6 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * Reason
     * format from OCaml??
 * typescript?
-* Perl?
 * Qt??
 * Prolog??
 

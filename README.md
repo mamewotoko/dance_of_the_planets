@@ -59,7 +59,10 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * typescript?
 * Qt??
 * Prolog??
-
+* langeuage of 3D printer???
+    * G-code
+    * simulators <https://all3dp.com/1/best-3d-slicer-software-3d-printer/>
+    
 Reference
 --------------
 * [ESPL: The dance of the plantes](https://web.archive.org/web/20140122124421/http:/ensign.editme.com/t43dances)

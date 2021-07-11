@@ -25,8 +25,21 @@ npm run start
 	1. click Show Taskpane button on Home ribbon
 	2. click Run lin kin right pane
 
-Getting log
--------------
+Getting log on Mac
+-------------------
+
+1. enable logging
+
+	```
+	defaults write com.microsoft.Excel CEFRuntimeLoggingFile -string log.txt
+	```
+2. view log which is stored in the `~/Library/Containers/com.microsoft.Word/Data/` directory.
+
+	```
+	tail -f ~/library/Containers/com.microsoft.Word/Data/log.txt
+	```
+
+### Reference
 
 * <https://docs.microsoft.com/en-us/office/dev/add-ins/testing/runtime-logging#runtime-logging-on-mac>
 

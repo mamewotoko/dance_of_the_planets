@@ -3,7 +3,6 @@ Excel add-ins: The dance of the plantes
 
 ![](image/dance.png)
 
-
 Setup
 -----
 

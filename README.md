@@ -14,6 +14,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Kotlin/JS](./kotlinjs)
 * [three.js](./threejs)
     * 3D
+* [Excel](./exceljs)
 
 ## GUI
 

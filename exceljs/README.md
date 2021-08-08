@@ -8,8 +8,8 @@ Setup
 
 ```
 cd "My Office Add-in/"
-npm i
-npm build
+npm install
+npm run build
 ```
 
 Run
@@ -18,7 +18,7 @@ Run
 1. run
 
 ```
-npm run start 
+npm run start
 ```
 
 2. run add-in
@@ -65,9 +65,9 @@ $ yo office
    `---------´   │ @OfficeDev! Let's create │
     ( _´U`_ )    │    a project together!   │
     /___A___\   /╰──────────────────────────╯
-     |  ~  |     
-   __'.___.'__   
- ´   `  |° ´ Y ` 
+     |  ~  |
+   __'.___.'__
+ ´   `  |° ´ Y `
 
 ? Choose a project type: Office Add-in Task Pane project
 ? Choose a script type: JavaScript
@@ -87,5 +87,5 @@ References
 * [Work with shapes using the Excel JavaScript API](https://docs.microsoft.com/en-us/office/dev/add-ins/excel/excel-add-ins-shapes)
 
 ----
-Takashi Masuyama < mamewotoko@gmail.com >  
+Takashi Masuyama < mamewotoko@gmail.com >
 <https://mamewo.ddo.jp/>

@@ -23,7 +23,7 @@ npm run start
 
 2. run add-in
 	1. click Show Taskpane button on Home ribbon
-	2. click Run lin kin right pane
+	2. click the `Run` link in right pane
 
 Getting log on Mac
 -------------------
@@ -33,10 +33,10 @@ Getting log on Mac
 	```
 	defaults write com.microsoft.Excel CEFRuntimeLoggingFile -string log.txt
 	```
-2. view log which is stored in the `~/Library/Containers/com.microsoft.Word/Data/` directory.
+2. view log which is stored in the `~/Library/Containers/com.microsoft.Excel/Data/` directory.
 
 	```
-	tail -f ~/library/Containers/com.microsoft.Word/Data/log.txt
+	tail -f ~/library/Containers/com.microsoft.Excel/Data/log.txt
 	```
 
 ### Reference

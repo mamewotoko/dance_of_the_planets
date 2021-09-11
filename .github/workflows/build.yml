@@ -47,7 +47,7 @@ jobs:
         # sudo apt-get install -y make
         bash -ex .travis-ocaml.sh
         eval $(opam env)
-        sh setup-opam
+        ./setup.sh
         dune
       env:
         OCAML_VERSION: 4.11
@@ -64,7 +64,6 @@ jobs:
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        bash -x setup-opam
         dune
       env:
         OCAML_VERSION: 4.11
@@ -81,7 +80,6 @@ jobs:
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        sh setup-opam
         make
       env:
         OCAML_VERSION: 4.11

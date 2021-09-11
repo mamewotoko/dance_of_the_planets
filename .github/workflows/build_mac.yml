@@ -37,7 +37,6 @@ jobs:
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        sh setup-opam
         dune
       env:
         OPAM_VERSION: 2
@@ -54,7 +53,6 @@ jobs:
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        bash -x setup-opam
         dune
       env:
         OPAM_VERSION: 2
@@ -70,7 +68,7 @@ jobs:
         cd lablgtk
         bash -ex .travis-ocaml.sh
         eval $(opam env)
-        sh setup-opam
+        ./setup.sh
         make
       env:
         OPAM_VERSION: 2

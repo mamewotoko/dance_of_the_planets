@@ -1,9 +1,12 @@
 #! /bin/bash
 if [ $(uname) = Darwin ]; then
-    brew install pkg-config expat
+    brew install gtk+ libgnomecanvas expat
 elif [ -f /etc/lsb-release ]; then
-    sudo apt-get update
-    sudo apt-get install -y make libexpat1-dev libgnomecanvas2-dev libgtk2.0-dev
+    sudo apt update
+    sudo apt install -y gtk2.0 libgnomecanvas2-dev
 else
-    echo not yet
+    echo not supported yet
 fi
+#opam install -y depext
+#opam depext -y lablgtk conf-gnomecanvas dune
+opam install -y lablgtk conf-gnomecanvas dune

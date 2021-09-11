@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 if [ $(uname) = Darwin ]; then
     # brew install make cask
     brew install xorgproto
@@ -9,3 +9,6 @@ elif [ -f /etc/lsb-release ]; then
 else
     echo not yet
 fi
+
+# assume xquartz is installed
+opam install -y odoc graphics dune

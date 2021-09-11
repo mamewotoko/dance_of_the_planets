@@ -6,7 +6,7 @@ if [ $(uname) = Darwin ]; then
     brew install xquartz --cask
 elif [ -f /etc/lsb-release ]; then
     sudo apt-get update
-    sudo apt-get install -y x11-app
+    sudo apt-get install -y x11-apps
 else
     echo not yet
     exit 1

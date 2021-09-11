@@ -13,5 +13,5 @@ else
 fi
 
 # TODO: for CI
-opam option depext-run-installs=false
+# opam option depext-run-installs=false
 opam install -y odoc graphics dune

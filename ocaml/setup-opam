@@ -3,4 +3,5 @@ if [ $(uname) = Darwin ]; then
     brew install pkg-config
     brew install xquartz --cask
 fi
-opam install -y odoc graphics dune
+# assume xquartz is installed
+opam install -y --assume-depexts odoc graphics dune

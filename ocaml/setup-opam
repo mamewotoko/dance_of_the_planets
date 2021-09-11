@@ -1,7 +1,7 @@
 #! /bin/bash
-# if [ $(uname) = Darwin ]; then
-#     brew install pkg-config
-# fi
-opam install -y depext
-opam depext -y odoc graphics dune
+if [ $(uname) = Darwin ]; then
+    brew install pkg-config
+fi
+#opam install -y depext
+#opam depext -y odoc graphics dune
 opam install -y odoc graphics dune

@@ -1,4 +1,5 @@
 #! /bin/bash
+set -e
 if [ $(uname) = Darwin ]; then
     # brew install make cask
     brew install xorgproto
@@ -8,7 +9,9 @@ elif [ -f /etc/lsb-release ]; then
     sudo apt-get install -y x11-app
 else
     echo not yet
+    exit 1
 fi
 
-# assume xquartz is installed
+# TODO: for CI
+opam option depext-run-installs=false
 opam install -y odoc graphics dune

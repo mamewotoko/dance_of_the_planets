@@ -2,5 +2,5 @@
 if [ $(uname) = Darwin ]; then
     brew install pkg-config
 fi
-
+opam install -y depext
 opam install -y odoc graphics dune

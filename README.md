@@ -42,8 +42,8 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## Jupyter Notebook
 
 * [ipycanvas](./ipycanvas)
-    * [ipycanvas](https://github.com/martinRenou/ipycanvas)
     * draw to canvas in Jupyter Notebook
+    * this notebook can be executed on Colab
 
 ## Smartphone app
 

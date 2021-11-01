@@ -42,6 +42,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 ## Jupyter Notebook
 
 * [ipycanvas](./ipycanvas)
+    * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mamewotoko/dance_of_the_planets/blob/master/ipycanvas/DanceOfThePlanets.ipynb)
     * draw to canvas in Jupyter Notebook
     * this notebook can be executed on Colab
 

@@ -1,6 +1,8 @@
 ipycanvas: Dance of the Planets
 ======================================
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mamewotoko/dance_of_the_planets/blob/master/ipycanvas/DanceOfThePlanets.ipynb)
+
 ![](./image/ipy_dance.png)
 
 Setup
@@ -22,5 +24,5 @@ Setup
 3. Run cells
 
 --------
-Takashi Masuyama < mamewotoko@gamil.com >  
+Takashi Masuyama < mamewotoko@gamil.com >
 https://mamewo.ddo.jp/

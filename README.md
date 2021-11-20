@@ -38,6 +38,7 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Golang](./golang)
     * [fogleman/gg](https://github.com/fogleman/gg)
 * [perl](./perl)
+* [C (with libgd)](./libgd_c)
 
 ## Jupyter Notebook
 

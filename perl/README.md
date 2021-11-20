@@ -5,7 +5,9 @@ Setup
 1. install library.
 
 ```
-cpan GD::Simple
+# use cpanminus
+cpanm PkgConfig
+cpanm GD
 ```
 
 Run

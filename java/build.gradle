@@ -8,6 +8,11 @@ apply plugin: 'jacoco'
 
 mainClassName = 'com.mamewo.Dance'
 
+run {
+    // always run "run" gradlew task
+    outputs.upToDateWhen { false }
+}
+
 jacoco {
     applyTo run
 }

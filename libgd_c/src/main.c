@@ -92,17 +92,6 @@ void dance(gdImagePtr im,
     double rstop = year(outer_planet) * orbits;
     int i, x1, y1, x2, y2, color, num_colors;
 
-    colors[0] = gdImageColorAllocate(im, 0x00, 0x00, 0x00);
-    colors[1] = gdImageColorAllocate(im, 0x00, 0x00, 0xff);
-    colors[2] = gdImageColorAllocate(im, 0xff, 0x00, 0x00);
-    colors[3] = gdImageColorAllocate(im, 0x00, 0xff, 0x00);
-    colors[4] = gdImageColorAllocate(im, 0x80, 0x00, 0x80);
-    colors[5] = gdImageColorAllocate(im, 0x80, 0x00, 0x00);
-    colors[6] = gdImageColorAllocate(im, 0x00, 0x00, 0x8b);
-    colors[7] = gdImageColorAllocate(im, 0x8b, 0x00, 0x00);
-    colors[8] = gdImageColorAllocate(im, 0xff, 0xa5, 0x00);
-    num_colors = 9;
-
     while(r < rstop){
 	i = (int)floor(r / interval_days / 75.0);
 	if(i < sizeof(colors)/sizeof(int)){
@@ -118,7 +107,6 @@ void dance(gdImagePtr im,
 	x2 = (int)(r2 * cos(a2)) + xcenter;
 	y2 = (int)(r2 * sin(a2)) + ycenter;
 
-	//printf("%d %d %d %d\n", x1, y1, x2, y2);
 	gdImageLine(im, x1, y1, x2, y2, color);
 
 	r += interval_days;
@@ -136,6 +124,16 @@ int main(int argc, char* argv[])
 
   im = gdImageCreate(CANVAS_LEN, CANVAS_LEN);
   white = gdImageColorAllocate(im, 255, 255, 255);
+
+  colors[0] = gdImageColorAllocate(im, 0x00, 0x00, 0x00);
+  colors[1] = gdImageColorAllocate(im, 0x00, 0x00, 0xff);
+  colors[2] = gdImageColorAllocate(im, 0xff, 0x00, 0x00);
+  colors[3] = gdImageColorAllocate(im, 0x00, 0xff, 0x00);
+  colors[4] = gdImageColorAllocate(im, 0x80, 0x00, 0x80);
+  colors[5] = gdImageColorAllocate(im, 0x80, 0x00, 0x00);
+  colors[6] = gdImageColorAllocate(im, 0x00, 0x00, 0x8b);
+  colors[7] = gdImageColorAllocate(im, 0x8b, 0x00, 0x00);
+  colors[8] = gdImageColorAllocate(im, 0xff, 0xa5, 0x00);
 
   dance(im, 8.0, Earth, Venus);
 

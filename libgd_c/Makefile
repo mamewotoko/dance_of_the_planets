@@ -1,7 +1,7 @@
 .PHONY: run clean
 
 main: src/main.c
-	gcc -lgd src/main.c -o main
+	gcc src/main.c -lm -lgd -o main
 
 run: main
 	./main

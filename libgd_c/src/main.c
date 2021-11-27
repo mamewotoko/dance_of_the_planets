@@ -61,58 +61,17 @@ double orbit(enum PLANET planet)
     }
 }
 
-int color_of_i(gdImagePtr im,
-	       int i)
-{
-    int r, g, b;
-    switch(i){
-    case 0:
-	r = 0x00;
-	g = 0x00;
-	b = 0x00;
-	break;
-    case 1:
-	r = 0x00;
-	g = 0x00;
-	b = 0xff;
-	break;
-    case 2:
-	r = 0xff;
-	g = 0x00;
-	b = 0x00;
-	break;
-    case 3:
-	r = 0x00;
-	g = 0xff;
-	b = 0x00;
-	break;
-    case 4:
-	r = 0x80;
-	g = 0x00;
-	b = 0x80;
-	break;
-    case 5:
-	r = 0x80;
-	g = 0x00;
-	b = 0x00;
-	break;
-    case 6:
-	r = 0x00;
-	g = 0x00;
-	b = 0x8b;
-	break;
-    case 7:
-	r = 0x8b;
-	g = 0x00;
-	b = 0x00;
-	break;
-    default:
-	r = 0xff;
-	g = 0xa5;
-	b = 0x00;
-    }
-    return gdImageColorAllocate(im, r, g, b);
-}
+static int colors[] = {
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+};
 
 void dance(gdImagePtr im,
 	   double orbits,
@@ -131,11 +90,27 @@ void dance(gdImagePtr im,
     double a1_interval = 2.0 * M_PI * interval_days / year(outer_planet);
     double a2_interval = 2.0 * M_PI * interval_days / year(inner_planet);
     double rstop = year(outer_planet) * orbits;
-    int i, x1, y1, x2, y2, color;
-    
+    int i, x1, y1, x2, y2, color, num_colors;
+
+    colors[0] = gdImageColorAllocate(im, 0x00, 0x00, 0x00);
+    colors[1] = gdImageColorAllocate(im, 0x00, 0x00, 0xff);
+    colors[2] = gdImageColorAllocate(im, 0xff, 0x00, 0x00);
+    colors[3] = gdImageColorAllocate(im, 0x00, 0xff, 0x00);
+    colors[4] = gdImageColorAllocate(im, 0x80, 0x00, 0x80);
+    colors[5] = gdImageColorAllocate(im, 0x80, 0x00, 0x00);
+    colors[6] = gdImageColorAllocate(im, 0x00, 0x00, 0x8b);
+    colors[7] = gdImageColorAllocate(im, 0x8b, 0x00, 0x00);
+    colors[8] = gdImageColorAllocate(im, 0xff, 0xa5, 0x00);
+    num_colors = 9;
+
     while(r < rstop){
 	i = (int)floor(r / interval_days / 75.0);
-	color = color_of_i(im, i);
+	if(i < sizeof(colors)/sizeof(int)){
+	    color = colors[i];
+	}
+	else {
+	    color = colors[num_colors-1];
+	}
 	a1 -= a1_interval;
 	a2 -= a2_interval;
 	x1 = (int)(r1 * cos(a1)) + xcenter;
@@ -150,7 +125,7 @@ void dance(gdImagePtr im,
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
   /* Declare the image */
   gdImagePtr im;

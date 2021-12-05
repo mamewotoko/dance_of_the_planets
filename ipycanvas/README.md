@@ -5,8 +5,9 @@ ipycanvas: Dance of the Planets
 
 ![](./image/ipy_dance.png)
 
-Setup
----------
+Method1: Run in docker container
+-----------------------------------
+
 1. Install docker and docker-compose
 2. Run Jupyter Notebook container
 
@@ -22,6 +23,19 @@ Setup
    * Browse <http://127.0.0.1:8888/notebooks/work/DanceOfThePlantes.ipynb>
    * enter token to login
 3. Run cells
+
+
+Method2: Run with VS code
+-------------------------
+
+1. Open `DanceOfThePlanets.ipynb` with VS code
+2. Install ipykernel
+3. Enable jupyter widget setting of VS code.
+   Select menu, Codes > Preferences.
+   Search with keywords `widget jupyter`, then add `Widget Script Sources`.
+   ![](image/jupyter_widget.png)
+4. Run `DanceOfThePlanets.ipynb` by pressing `Shift-Enter`.
+   ![](image/vscode_result.png)
 
 --------
 Takashi Masuyama < mamewotoko@gamil.com >

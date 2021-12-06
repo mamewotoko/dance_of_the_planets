@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  builder:
+    build: .
+    volumes:
+      - .:/root
+    working_dir: /root
+    command: make clean main run

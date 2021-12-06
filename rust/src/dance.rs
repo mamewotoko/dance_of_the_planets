@@ -80,7 +80,7 @@ fn build_ui(application: &gtk::Application) {
     window.set_default_size(canvas_len, canvas_len);
     let area = gtk::DrawingArea::new();
     area.set_size_request(400, 400);
-        
+
     //    let button = gtk::Canvas
     window.add(&area);
     area.connect_draw(|_, cairo| {

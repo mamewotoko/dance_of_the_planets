@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  rust:
+    build: .
+    volumes:
+      - .:/root
+    working_dir: /root
+    command: cargo build

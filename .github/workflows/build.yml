@@ -11,7 +11,7 @@ jobs:
       run: |
         cd bs
         sudo apt-get update
-        sudo apt-get install -y nodejs make
+        sudo apt-get install -y nodejs make npm
         npm i
         ./build.sh
         mkdir site

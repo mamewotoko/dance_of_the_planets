@@ -132,6 +132,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: install tools
         run: |
+          sudo apt update
           sudo apt install -y gfortran libgtk-3-dev cmake libplplot-dev plplot-driver-cairo
           git clone https://github.com/vmagnin/gtk-fortran.git
           cd gtk-fortran

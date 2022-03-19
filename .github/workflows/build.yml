@@ -142,7 +142,7 @@ jobs:
           cmake ..
           make
           sudo make install
-          cd ..
+          cd ../..
           ls -l
           make
           file dance

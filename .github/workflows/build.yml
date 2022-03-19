@@ -125,3 +125,21 @@ jobs:
           bash setup.sh
           cabal run
           ls -l dop.png
+
+  build_fortran:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install tools
+        run: |
+          sudo apt install -y gfortran libgtk-3-dev cmake libplplot-dev plplot-driver-cairo
+          git clone https://github.com/vmagnin/gtk-fortran.git
+          cd gtk-fortran
+          mkdir build
+          cd build
+          cmake ..
+          make
+          sudo make install
+          cd ..
+          make
+          file dance

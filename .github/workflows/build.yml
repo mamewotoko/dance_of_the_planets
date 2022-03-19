@@ -143,5 +143,6 @@ jobs:
           make
           sudo make install
           cd ..
+          ls -l
           make
           file dance

@@ -44,7 +44,7 @@ if [ "$TRAVIS_OS_NAME" = "osx" ] ; then
     while sleep 60; do echo "brew update is still running..."; done &
     wait %1
     kill %2
-    BREW_OPAM_VERSION=$(brew info opam --json=v1 | tr '\n' ' ' | sed -e 's/.*"versions": {[^}]*"stable": "//' -e 's/".*//')
+    BREW_OPAM_VERSION=$(brew info opam --json=v1 | sed -e 's/.*"versions":{[^}]*"stable":"//' -e 's/".*//')
     if [ "$OPAM_VERSION" != "$BREW_OPAM_VERSION" ] ; then
         set +x
         echo -e "[\e[0;31mWARNING\e[0m] Ignored OPAM_VERSION=$OPAM_VERSION; interpreted as \"$BREW_OPAM_VERSION\"" >&2
@@ -167,8 +167,10 @@ install_on_freebsd () {
     4.08) OCAML_FULL_VERSION=4.08.1; install_opam2 ;;
     4.09) OCAML_FULL_VERSION=4.09.1; install_opam2 ;;
     4.10) OCAML_FULL_VERSION=4.10.1; install_opam2 ;;
-    4.11) OCAML_FULL_VERSION=4.11.0; install_opam2 ;;
-    4.12) OCAML_FULL_VERSION=4.12.0+trunk; OCAML_BETA=enable; install_opam2 ;;
+    4.11) OCAML_FULL_VERSION=4.11.2; install_opam2 ;;
+    4.12) OCAML_FULL_VERSION=4.12.1; install_opam2 ;;
+    4.13) OCAML_FULL_VERSION=4.13.1; install_opam2 ;;
+    4.14) OCAML_FULL_VERSION=4.14.0+trunk; OCAML_BETA=enable; install_opam2 ;;
     *)
         if [ "$OCAML_BETA" != "enable" ]; then
             echo "Unknown OCAML_VERSION=$OCAML_VERSION"
@@ -195,8 +197,10 @@ install_on_linux () {
     4.08) OCAML_FULL_VERSION=4.08.1; install_opam2 ;;
     4.09) OCAML_FULL_VERSION=4.09.1; install_opam2 ;;
     4.10) OCAML_FULL_VERSION=4.10.1; install_opam2 ;;
-    4.11) OCAML_FULL_VERSION=4.11.1; install_opam2 ;;
-    4.12) OCAML_FULL_VERSION=4.12.0+trunk; OCAML_BETA=enable; install_opam2 ;;
+    4.11) OCAML_FULL_VERSION=4.11.2; install_opam2 ;;
+    4.12) OCAML_FULL_VERSION=4.12.1; install_opam2 ;;
+    4.13) OCAML_FULL_VERSION=4.13.1; install_opam2 ;;
+    4.14) OCAML_FULL_VERSION=4.14.0+trunk; OCAML_BETA=enable; install_opam2 ;;
     *)
         if [ "$OCAML_BETA" != "enable" ]; then
             echo "Unknown OCAML_VERSION=$OCAML_VERSION"
@@ -266,8 +270,10 @@ install_on_osx () {
           OPAM_SWITCH=${OPAM_SWITCH:-ocaml-system};
           brew install ocaml;
           install_opam2 ;;
-    4.11) OCAML_FULL_VERSION=4.11.1; install_opam2 ;;
-    4.12) OCAML_FULL_VERSION=4.12.0+trunk; OCAML_BETA=enable; install_opam2 ;;
+    4.11) OCAML_FULL_VERSION=4.11.2; install_opam2 ;;
+    4.12) OCAML_FULL_VERSION=4.12.1; install_opam2 ;;
+    4.13) OCAML_FULL_VERSION=4.13.1; install_opam2 ;;
+    4.14) OCAML_FULL_VERSION=4.14.0+trunk; OCAML_BETA=enable; install_opam2 ;;
     *)
         if [ "$OCAML_BETA" != "enable" ]; then
             echo "Unknown OCAML_VERSION=$OCAML_VERSION"

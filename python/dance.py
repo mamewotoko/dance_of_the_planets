@@ -74,7 +74,7 @@ def draw_text(draw, color, x, y, text):
     draw.text((x, y), text, fill=color)
 
 
-def main(draw, outer_planet, inner_planet, orbits):
+def dance(draw, outer_planet, inner_planet, orbits):
     outer_planet_year = year[outer_planet]
     inner_planet_year = year[inner_planet]
     outer_planet_radius = orbit[outer_planet]
@@ -114,5 +114,5 @@ def main(draw, outer_planet, inner_planet, orbits):
 if __name__ == "__main__":
     im = Image.new("RGB", (400, 400), (0xFF, 0xFF, 0xFF))
     draw = ImageDraw.Draw(im)
-    main(draw, Planets.EARTH, Planets.VENUS, 8.0)
+    dance(draw, Planets.EARTH, Planets.VENUS, 8.0)
     im.save("result_dance.png")

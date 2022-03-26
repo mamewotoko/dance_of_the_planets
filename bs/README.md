@@ -37,4 +37,5 @@
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >
+
 https://mamewo.ddo.jp/

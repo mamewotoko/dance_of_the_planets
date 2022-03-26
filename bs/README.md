@@ -6,12 +6,12 @@
 
 1.
 
-        sh setup.sh
+        ./setup.sh
 
 ## Build
 1.
 
-        sh build.sh
+        ./build.sh
 
    A file `js/dance.js` will be generated.
 

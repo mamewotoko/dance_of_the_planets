@@ -86,3 +86,13 @@ jobs:
         cd scalajs
         ./setup.sh
         sbt fastOptJS
+
+  build_rust:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build rust
+      run: |
+        cd rust
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        cargo build

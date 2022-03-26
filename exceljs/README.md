@@ -15,7 +15,7 @@ npm run build
 Run
 -----
 
-1. run
+1. run server and excel
 
 ```
 npm run start
@@ -24,6 +24,20 @@ npm run start
 2. run add-in
 	1. click Show Taskpane button on Home ribbon
 	2. click the `Run` link in right pane
+
+Run only development server
+---------------------------
+
+```
+npm run dev-server
+```
+
+Run only excel
+---------------------------
+
+```
+npm run start:desktop
+```
 
 Getting log on Mac
 -------------------
@@ -36,7 +50,7 @@ Getting log on Mac
 2. view log which is stored in the `~/Library/Containers/com.microsoft.Excel/Data/` directory.
 
 	```
-	tail -f ~/library/Containers/com.microsoft.Excel/Data/log.txt
+	tail -f ~/library/Containers/com.microsoft.Excel/Data/log.txtlscd
 	```
 
 ### Reference

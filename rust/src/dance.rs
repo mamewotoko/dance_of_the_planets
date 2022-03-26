@@ -74,7 +74,7 @@ fn build_ui(application: &gtk::Application) {
     let canvas_len = 400;
     let window = gtk::ApplicationWindow::new(application);
 
-    window.set_title("First GTK+ Program");
+    window.set_title("The dance of the planets");
     window.set_border_width(10);
     window.set_position(gtk::WindowPosition::Center);
     window.set_default_size(canvas_len, canvas_len);

@@ -158,6 +158,7 @@ jobs:
     - name: build rust
       run: |
         cd rust
+        sudo apt update && sudo apt search libpango1.0-dev
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > setup.sh
         bash setup.sh -y
         source $HOME/.cargo/env

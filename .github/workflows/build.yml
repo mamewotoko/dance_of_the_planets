@@ -43,14 +43,16 @@ jobs:
     - name: build ocaml
       run: |
         cd ocaml
-        # sudo apt-get update
-        # sudo apt-get install -y make
+        ls -la
+        sudo apt update
+        sudo apt install -y darcs unzip m4 make pkg-config
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
         dune
+        file dance
       env:
-        OCAML_VERSION: 4.11
+        OCAML_VERSION: 4.11.0
         TRAVIS_OS_NAME: linux
         TRAVIS_DIST: focal
 
@@ -62,13 +64,13 @@ jobs:
       run: |
         cd labltk
         sudo apt update
-        sudo apt install -y darcs
+        sudo apt install -y darcs unzip m4 make unzip
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        dune
+        make
       env:
-        OCAML_VERSION: 4.11
+        OCAML_VERSION: 4.11.0
         TRAVIS_OS_NAME: linux
         TRAVIS_DIST: focal
 
@@ -84,9 +86,11 @@ jobs:
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        dune build src/dance.exe
+        # dune build src/dance.exe
+        make
+        file dance
       env:
-        OCAML_VERSION: 4.11
+        OCAML_VERSION: 4.11.0
         TRAVIS_OS_NAME: linux
         TRAVIS_DIST: focal
 

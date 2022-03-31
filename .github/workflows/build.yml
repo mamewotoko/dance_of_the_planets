@@ -80,11 +80,11 @@ jobs:
       run: |
         cd lablgtk
         sudo apt update
-        sudo apt install -y darcs
+        sudo apt install -y darcs make m4 unzip pkg-config
         bash -ex .travis-ocaml.sh
         eval $(opam env)
         ./setup.sh
-        make
+        dune build src/dance.exe
       env:
         OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: linux

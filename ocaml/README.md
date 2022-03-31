@@ -6,13 +6,13 @@ A sample program using Graphics to draw lines, text.
 
 ## Install
 
-1. 
+1.
 
         opam install odoc graphics dune
 
 ## Build
 
-1. 
+1.
 
         dune build src/dance.exe
 
@@ -23,6 +23,5 @@ A sample program using Graphics to draw lines, text.
         dune exec src/dance.exe
 
 ----
-Takashi Masuyama < mamewotoko@gmail.com >  
+Takashi Masuyama < mamewotoko@gmail.com >
 http://mamewo.ddo.jp/
-

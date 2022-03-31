@@ -52,7 +52,7 @@ jobs:
         dune
         file dance
       env:
-        OCAML_VERSION: 4.11.0
+        OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: linux
         TRAVIS_DIST: focal
 
@@ -70,7 +70,7 @@ jobs:
         ./setup.sh
         make
       env:
-        OCAML_VERSION: 4.11.0
+        OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: linux
         TRAVIS_DIST: focal
 
@@ -90,7 +90,7 @@ jobs:
         make
         file dance
       env:
-        OCAML_VERSION: 4.11.0
+        OCAML_VERSION: 4.11
         TRAVIS_OS_NAME: linux
         TRAVIS_DIST: focal
 

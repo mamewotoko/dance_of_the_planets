@@ -49,7 +49,7 @@ function color_of_i(i){
 	else {
 	    c = orange
 	}
-  return c;
+    return c;
 }
 
 function dance(outer_planet, inner_planet, orbits) {
@@ -72,10 +72,8 @@ function dance(outer_planet, inner_planet, orbits) {
   var a2_interval = 2 * Math.PI * interval_days / inner_planet_year;
 
   while(r < rstop){
-		var i = Math.floor(r / interval_days / 75);
-		var c = color_of_i(i);
-    //LineFill.setSolidFill(c);
-    //slide.get
+    var i = Math.floor(r / interval_days / 75);
+	var c = color_of_i(i);
     a1 = a1 - a1_interval;
     a2 = a2 - a2_interval;
     var x1 = ycenter * Math.cos(a1);
@@ -92,4 +90,5 @@ function dance(outer_planet, inner_planet, orbits) {
     r = r + interval_days;
   }
 }
+
 dance("earth", "venus", 8);

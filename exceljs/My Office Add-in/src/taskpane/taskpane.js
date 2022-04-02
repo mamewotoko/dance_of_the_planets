@@ -57,50 +57,50 @@ async function dance(context, outer_planet, inner_planet, orbits) {
     var a2 = 0;
     var a2_interval = 2 * pi * interval_days / inner_planet_year;
     while(r < rstop) {
-	var i = Math.floor(r / interval_days / 75);
-	var c;
-	if(i == 0){
-	    c = black;
-	}
-	else if(i == 1){
-	    c = blue;
-	}
-	else if(i == 2){
-	    c = red;
-	}
-	else if(i == 3){
-	    c = green;
-	}
-	else if(i == 4){
-	    c = purple;
-	}
-	else if(i == 5){
-	    c = maroon;
-	}
-	else if(i == 6){
-	    c = navy;
-	}
-	else if(i == 7){
-	    c = dark_red;
-	}
-	else {
-	    c = orange
-	}
-	a1 = a1 - a1_interval;
-	a2 = a2 - a2_interval;
+		var i = Math.floor(r / interval_days / 75);
+		var c;
+		if(i == 0){
+	   		c = black;
+		}
+		else if(i == 1){
+			c = blue;
+		}
+		else if(i == 2){
+			c = red;
+		}
+		else if(i == 3){
+			c = green;
+		}
+		else if(i == 4){
+			c = purple;
+		}
+		else if(i == 5){
+			c = maroon;
+		}
+		else if(i == 6){
+			c = navy;
+		}
+		else if(i == 7){
+			c = dark_red;
+		}
+		else {
+			c = orange
+		}
+		a1 = a1 - a1_interval;
+		a2 = a2 - a2_interval;
 
-	var x1 = ycenter * Math.cos(a1);
-	var y1 = ycenter * Math.sin(a1);
-	var x2 = r2 * Math.cos(a2);
-	var y2 = r2 * Math.sin(a2);
+		var x1 = ycenter * Math.cos(a1);
+		var y1 = ycenter * Math.sin(a1);
+		var x2 = r2 * Math.cos(a2);
+		var y2 = r2 * Math.sin(a2);
 
-	var line = shapes.addLine(Math.round(x1) + xcenter,
-				  Math.round(y1) + ycenter,
-				  Math.round(x2) + xcenter,
-				  Math.round(y2) + ycenter,
-				  Excel.ConnectorType.straight);
-	line.lineFormat.color = c;
-	r = r + interval_days;
+		var line = shapes.addLine(Math.round(x1) + xcenter,
+					Math.round(y1) + ycenter,
+					Math.round(x2) + xcenter,
+					Math.round(y2) + ycenter,
+					Excel.ConnectorType.straight);
+		line.lineFormat.color = c;
+		r = r + interval_days;
     };
 }
 

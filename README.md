@@ -53,6 +53,10 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 * [Swift iOS](./ios_swift)
     * iPad, iPhone
 
+## Others
+
+* [Google Apps Script](./gas_slide/)
+
 ## TODO
 
 * add text to threejs

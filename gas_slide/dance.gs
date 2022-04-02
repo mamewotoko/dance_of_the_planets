@@ -74,20 +74,21 @@ function dance(outer_planet, inner_planet, orbits) {
   while(r < rstop){
 		var i = Math.floor(r / interval_days / 75);
 		var c = color_of_i(i);
-  
+    //LineFill.setSolidFill(c);
+    //slide.get
     a1 = a1 - a1_interval;
     a2 = a2 - a2_interval;
     var x1 = ycenter * Math.cos(a1);
     var y1 = ycenter * Math.sin(a1);
     var x2 = r2 * Math.cos(a2);
     var y2 = r2 * Math.sin(a2);
-
+    
     //TODO: change color
     slide.insertLine(SlidesApp.LineCategory.STRAIGHT,
                     x1 + xcenter,
                     y1 + ycenter,
                     x2 + xcenter,
-                    y2 + ycenter);
+                    y2 + ycenter).getLineFill().setSolidFill(c);
     r = r + interval_days;
   }
 }

@@ -93,6 +93,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: build rust
       run: |
+        set -x
         cd rust
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > mac_setup.sh
         bash mac_setup.sh -y

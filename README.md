@@ -55,6 +55,8 @@ A sample code ported ["The dance of the plantes"](https://web.archive.org/web/20
 
 ## TODO
 
+* Android app with Xamarin and F#
+  * <https://docs.microsoft.com/ja-jp/xamarin/cross-platform/platform/fsharp/>
 * add text to threejs
 * animation ?
 * javascript + canvas

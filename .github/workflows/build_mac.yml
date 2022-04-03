@@ -93,6 +93,11 @@ jobs:
     - uses: actions/checkout@v1
     - name: build rust
       run: |
+        set -x
         cd rust
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        cargo build
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > mac_setup.sh
+        bash mac_setup.sh -y
+        # install lib
+        ./setup.sh
+        ls -l /usr/local/lib/pkgconfig/
+        PKG_CONFIG_PATH=/usr/local/lib/pkgconfig cargo build

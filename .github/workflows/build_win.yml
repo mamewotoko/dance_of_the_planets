@@ -154,9 +154,5 @@ jobs:
       - name: Install dependencies
         run: |
           cd fsharp_avalonia
-          dotnet restore
-      - name: Build
-        run: |
-          cd csharp
           dotnet build
 #      - name: Test

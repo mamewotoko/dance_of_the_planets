@@ -99,4 +99,5 @@ jobs:
         bash mac_setup.sh -y
         # install lib
         ./setup.sh
+        ls -l /usr//local/lib/pkgconfig/
         PKG_CONFIG_PATH=/usr/local/lib/pkgconfig cargo build

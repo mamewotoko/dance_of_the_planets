@@ -1,5 +1,5 @@
 labltk: The dance of the planets
-=================================-
+=================================
 
 Build
 ------
@@ -20,5 +20,6 @@ Run
 ```
 
 ----
-Takashi Masyama < mamewotoko@gmail.com >  
+Takashi Masyama < mamewotoko@gmail.com >
+
 https://mamewo.ddo.jp/

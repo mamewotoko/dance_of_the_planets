@@ -7,17 +7,15 @@ Build
 1. install opam2
 2. install labltk
 
-```
-sh setup-opam
-make
-```
+        sh setup-opam
+        make
+
 
 Run
 -----
 
-```
-./dance
-```
+    ./dance
+
 
 ----
 Takashi Masyama < mamewotoko@gmail.com >
